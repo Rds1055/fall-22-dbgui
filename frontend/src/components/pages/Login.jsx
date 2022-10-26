@@ -28,9 +28,9 @@ export const Login = () => {
     // HTML for login form
     return (
         <>
-            <div id = "login" className = "container-fluid mt-5 row justify-content-center className='col me-3'">
+            <div id = "login" className = "account-form container-fluid mt-5 row justify-content-center className='col me-3'">
                 <h2>Login</h2>
-                <form>
+                <form name = "login">
                     {/* Username field */}
                     <TextField label = "Username: " value = {username} setValue = {setUsername} id = "login-username" type = "text"/>
                     {/* Password field */}
@@ -67,7 +67,7 @@ export const Login = () => {
                     {/* Invalid credentials */}
                     { 
                         valid === undefined &&
-                        <p id = "invalid-login">Invalid login</p>
+                        <p className = "invalid-login">Invalid login</p>
                     }
                     {/* Valid credentials */}
                     { 

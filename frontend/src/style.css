@@ -4,25 +4,25 @@
     margin: 0 auto;
 }
 
-/* Login */
-#login {
+/* Login/Register */
+.account-form {
     text-align: center;
 }
 
-#login form * {
+.account-form form * {
     display: block;
     margin: auto;
 }
 
-#login form input, #login form button {
+.account-form form input, .account-form form button {
     margin-bottom: 1rem;
 }
 
-#login form button {
+.account-form form button {
     display: inline;
     margin: 0 1rem;
 }
 
-#invalid-login {
+.invalid-login {
     color: red;
 }

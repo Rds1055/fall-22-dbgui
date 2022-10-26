@@ -12,6 +12,14 @@ export const Home = () => {
             >
                 Login
             </button>
+            <button
+                type = "button"
+                onClick = {() => {
+                    navigate("/register");
+                }}
+            >
+                Register
+            </button>
         </>
     )
 }
