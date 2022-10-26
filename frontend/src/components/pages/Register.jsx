@@ -67,6 +67,18 @@ export const Register = () => {
                         valid === -1 &&
                         <p className = "invalid-login">Invalid input</p>
                     }
+                    {/* Go to login */}
+                    <p>
+                        Already have an account?
+                    </p>
+                    <button
+                        type = "button"
+                        onClick = {() => {
+                            navigate("/login");
+                        }}
+                    >
+                        Login
+                    </button>
                 </form>
             </div>          
         </>

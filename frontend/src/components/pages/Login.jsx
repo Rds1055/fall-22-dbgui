@@ -74,6 +74,18 @@ export const Login = () => {
                         valid !== undefined && valid !== 1 &&
                         <p>You are logged in!</p>
                     }
+                    {/* Go to login */}
+                    <p>
+                        Don't have an account?
+                    </p>
+                    <button
+                        type = "button"
+                        onClick = {() => {
+                            navigate("/register");
+                        }}
+                    >
+                        Register
+                    </button>
                 </form>
             </div>          
         </>
