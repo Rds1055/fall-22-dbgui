@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextField } from "../common/index";
+import {useNavigate} from 'react-router-dom';
 
 export const Login = () => {
     // Set states for username and password
@@ -7,6 +8,9 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     // Bool to track if valid login
     const [valid, setValid] = useState(1);
+
+    // Navigator
+    const navigate = useNavigate();
 
     const verifyLogin = (username, password) => {
         // Temporary until APIs are implemented
@@ -51,10 +55,19 @@ export const Login = () => {
                             Login
                         </button>
                     }
+                    {/* Cancel (Go back to home) */}
+                    <button
+                        type = "button"
+                        onClick = {() => {
+                            navigate("/");
+                        }}
+                    >
+                        Cancel
+                    </button>
                     {/* Invalid credentials */}
                     { 
                         valid === undefined &&
-                        <p>Invalid login</p>
+                        <p id = "invalid-login">Invalid login</p>
                     }
                     {/* Valid credentials */}
                     { 
