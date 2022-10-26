@@ -1,10 +1,10 @@
-export const TextField = ({ label, value, setValue }) => {
+export const TextField = ({ label, value, setValue, id, type }) => {
     return (
         <>
-            <label htmlFor = "value">{label}</label>
-            <input type = "text"
-                id = "value"
-                name = "value"
+            <label htmlFor = {id}>{label}</label>
+            <input type = {type}
+                id = {id}
+                name = {id}
                 value = {value}
                 onChange = {event => setValue(event.target.value)}
             />
