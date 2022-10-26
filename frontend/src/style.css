@@ -1,0 +1,28 @@
+/* General */
+#root {
+    width: 95%;
+    margin: 0 auto;
+}
+
+/* Login */
+#login {
+    text-align: center;
+}
+
+#login form * {
+    display: block;
+    margin: auto;
+}
+
+#login form input, #login form button {
+    margin-bottom: 1rem;
+}
+
+#login form button {
+    display: inline;
+    margin: 0 1rem;
+}
+
+#invalid-login {
+    color: red;
+}
