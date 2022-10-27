@@ -1,4 +1,4 @@
-import { Home, Login, Register } from "./pages/index";
+import { Home, Login, Register } from "./pages";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 export const App = () => (
