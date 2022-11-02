@@ -1,8 +1,8 @@
 /* General */
-#root {
-    width: 95%;
+/* #root {
+    width: 95%; 
     margin: 0 auto;
-}
+} */
 
 /* Login/Register */
 .account-form {
@@ -26,3 +26,60 @@
 .invalid-login {
     color: red;
 }
+
+/* Navigation */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  .container {
+    margin: 1rem;
+    text-align: center;
+  }
+  
+  .site-title{
+    font-size: 2rem;
+  }
+  
+  .nav {
+    background-color: blue;
+    color: ghostwhite;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap :2rem;
+    padding: 0 1rem;
+  }
+  
+  .nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav a{
+    color:inherit;
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+  }
+  
+  .nav li.active{
+    background-color: darkblue;
+  }
+  
+  .nav li:hover{
+    background-color: black;
+  }
+
+  div.pageStyle > * {
+    text-align: center;
+  }
