@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseEndpoint = "http://localhost:3001/session";
-let apiConfig = {};
+let apiConfig;
 let token;
 
 export const getToken = () => {

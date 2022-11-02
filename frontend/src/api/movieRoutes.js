@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseEndpoint = "http://localhost:3001/movie";
-let apiConfig = {};
+let apiConfig;
 
 export const getMovieById = (movieId) => new Promise((resolve, reject) => {
     axios.get(`${ baseEndpoint }/${ movieId }`, apiConfig)
