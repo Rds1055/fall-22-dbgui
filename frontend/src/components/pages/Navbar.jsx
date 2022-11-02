@@ -16,7 +16,9 @@ export const Navbar = () => {
                     
                     <CustomLink href ="/SubmitTitle">Submit Title</CustomLink>
                     
-                    <CustomLink href ="/LoginSignup">Login Signup</CustomLink>
+                    <CustomLink href ="/login">Login</CustomLink>
+
+                    <CustomLink href ="/register">Register</CustomLink>
                 
                 </ul>
             </nav>
