@@ -135,6 +135,21 @@ module.exports = function routes(app, logger) {
         let fields = [rq.username, rq.password, rq.userType, userId];
         returnQuery(res, query, fields);
     }); 
+
+    // GET User via Email 
+    app.get('/user/:email', (req, res) => {
+        let userId = req.param("userId");
+        returnQuery(res, 'SELECT * FROM UserTable WHERE userId = (?)', userId);
+    });
+
+    // UPDATE User via Email 
+    app.put('/user/:email', (req, res) => {
+        let query = 'UPDATE UserTable SET username = (?), password = (?), userType = (?), WHERE userId = (?)';
+        let userId = req.param('userId');
+        let rq = req.query;
+        let fields = [rq.username, rq.password, rq.userType, userId];
+        returnQuery(res, query, fields);
+    }); 
     
     // DELETE User via userId 
     app.delete('/user/:userId', (req, res) => {
@@ -143,6 +158,17 @@ module.exports = function routes(app, logger) {
             simpleQuery(res, sql, 'DELETE FROM UserTable WHERE userID = (?)', userId, (rows) => {
                 sql.release();
                 res.status(200).send("Deleted User: " + userId);
+            });
+        });
+    });
+
+    // DELETE User via email 
+    app.delete('/user/:email', (req, res) => {
+        let email = req.param('email');
+        connect(res, (sql) => {
+            simpleQuery(res, sql, 'DELETE FROM UserTable WHERE email = (?)', email, (rows) => {
+                sql.release();
+                res.status(200).send("Deleted User: " + email);
             });
         });
     });
