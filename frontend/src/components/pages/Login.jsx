@@ -3,6 +3,8 @@ import { TextField } from "../common/index";
 import {useNavigate} from 'react-router-dom';
 
 export const Login = () => {
+
+    
     // Set states for username and password
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -27,6 +29,7 @@ export const Login = () => {
 
     // HTML for login form
     return (
+        
         <>
             <div id = "login" className = "account-form container-fluid mt-5 row justify-content-center className='col me-3'">
                 <h2>Login</h2>
