@@ -9,8 +9,11 @@ export const CreateTheory = () =>{
 
     const navigate = useNavigate();//navigator
 
+
+
     return (
         <>
+
     <div className="pageStyle">
 
         <div>
