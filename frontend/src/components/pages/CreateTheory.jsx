@@ -1,13 +1,19 @@
 
-//import {useNavigate} from 'react-router-dom';
-
+import { useState } from "react"
+import { TextAreaField } from "../common"
+import { useNavigate } from "react-router-dom";
 
 export const CreateTheory = () =>{
 
-//const navigate = useNavigate();
+    const [theory, setTheory] = useState("");
+
+    const navigate = useNavigate();//navigator
+
+
 
     return (
         <>
+
     <div className="pageStyle">
 
         <div>
@@ -26,20 +32,29 @@ export const CreateTheory = () =>{
         </div>
         
         <div>
-            <textarea id="CreteTheory" name="CreateTheory" rows="4" cols="50">
+            <TextAreaField 
+                label= "Put your theory here..."
+                value = {theory}
+                setValue = {setTheory}
+            />
+            {/* <textarea id="CreteTheory" name="CreateTheory" rows="4" cols="50">
             Put your theory here...   
-            </textarea>
+            </textarea> */}
         </div>
 
         <div>
             <button type = "button"onClick = {() => {
+
                             //navigate("/");
                         }}
                     >
                 Submit
             </button>
 
-            <button type = "button">
+            <button type = "button"
+            onClick = {() => {
+                            navigate("/");
+                        }}>
                 Cancel
             </button>
         </div>
