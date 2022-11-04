@@ -50,13 +50,13 @@ module.exports = function routes(app, logger) {
     });
 
     // GET UserId via Username (Links UserId to User)
-    app.get('/getUserId', (req, res) => {
+    app.get('/user/:userId', (req, res) => {
         let username = req.query.username;
         returnQuery(res, 'SELECT * FROM UserTable where username = (?)', username);
     });
 
     // Register a new User (Checks if user already exists)
-    app.post('/register', (req, res) => {
+    app.post('/user', (req, res) => {
         connect(res, (sql) => {
             let username = req.query.username;
             let password = req.query.password;
@@ -84,7 +84,7 @@ module.exports = function routes(app, logger) {
                 }
                 else {
                     simpleQuery(res, sql, 'INSERT INTO UserTable(username, password, email, userType) VALUES (?,?,?,?)', [username, password, email, usertype], (rows) => {
-                        if (usertype >= 3) { // If they're a supplier resolve.
+                        if (usertype >= 3) {
                             sql.release();
                             res.status(200).send("Registered account successfully");
                         }
