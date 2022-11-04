@@ -31,13 +31,13 @@ export const Register = () => {
                     {/* Disabled with no entered credentials */}
                     {
                         (username === "" || email === "" || password === "") && 
-                        <button type = "button" class="btn btn-secondary" disabled>Create Account</button>
+                        <button type = "button" className="btn btn-secondary" disabled>Create Account</button>
                     }
                     {/* Enabled with entered credentials */}
                     {
                         username !== "" && email !== "" && password !== "" &&
                         <button
-                            type = "button" class="btn btn-primary"
+                            type = "button" className="btn btn-primary"
                             onClick = {() => {
                                 setUsername("");
                                 setEmail("");
@@ -49,7 +49,7 @@ export const Register = () => {
                         </button>
                     }
                     {/* Cancel (Go back to home) */}
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
                         
                         onClick = {() => {
                             navigate("/");
@@ -72,7 +72,7 @@ export const Register = () => {
                         Already have an account?
                     </p>
                     <button 
-                        type = "button" class="btn btn-primary" data-bs-dismiss="modal"
+                        type = "button" className="btn btn-primary" data-bs-dismiss="modal"
                         onClick = {() => {
                             navigate("/login");
                         }}

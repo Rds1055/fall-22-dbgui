@@ -17,25 +17,25 @@ export const Home = () => {
         <>
         <div className = "pageStyle" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div className = "coolTitle">
-                    <div class="perspective-text">
-                        <div class="perspective-line">
+                    <div className="perspective-text">
+                        <div className="perspective-line">
                             <p></p>
                             <p>Reality</p>
                         </div>
 
-                        <div class="perspective-line">
+                        <div className="perspective-line">
                             <p>Reality</p>
                             <p>Is Only</p>
                         </div>
-                        <div class="perspective-line">
+                        <div className="perspective-line">
                             <p>Is Only</p>
                             <p>A Matter Of</p>
                         </div>
-                        <div class="perspective-line">
+                        <div className="perspective-line">
                             <p>A Matter Of</p>
                             <p>Perception</p>
                         </div>
-                        <div class="perspective-line">
+                        <div className="perspective-line">
                             <p>Perception</p>
                             <p></p>
                         </div>
@@ -47,13 +47,13 @@ export const Home = () => {
             </div>
         </div>
         {/* Modal */}
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="col-12 modal-title text-center">Join our Community</h3>
+        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h3 className="col-12 modal-title text-center">Join our Community</h3>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                     <Register/>
                     </div>                    
                 </div>
