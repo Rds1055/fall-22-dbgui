@@ -18,7 +18,7 @@ export const Register = () => {
     return (
         <>
             <div id = "register" className = "account-form container-fluid mt-5 row justify-content-center className='col me-3'">
-                <h2>Register</h2>
+                
                 <form name = "register">
                     {/* Username field */}
                     <TextField label = "Username: " value = {username} setValue = {setUsername} id = "register-username" type = "text"/>
@@ -31,13 +31,13 @@ export const Register = () => {
                     {/* Disabled with no entered credentials */}
                     {
                         (username === "" || email === "" || password === "") && 
-                        <button type = "button" disabled>Create Account</button>
+                        <button type = "button" class="btn btn-secondary" disabled>Create Account</button>
                     }
                     {/* Enabled with entered credentials */}
                     {
                         username !== "" && email !== "" && password !== "" &&
                         <button
-                            type = "button"
+                            type = "button" class="btn btn-primary"
                             onClick = {() => {
                                 setUsername("");
                                 setEmail("");
@@ -49,8 +49,8 @@ export const Register = () => {
                         </button>
                     }
                     {/* Cancel (Go back to home) */}
-                    <button
-                        type = "button"
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        
                         onClick = {() => {
                             navigate("/");
                         }}
@@ -71,8 +71,8 @@ export const Register = () => {
                     <p>
                         Already have an account?
                     </p>
-                    <button
-                        type = "button"
+                    <button 
+                        type = "button" class="btn btn-primary" data-bs-dismiss="modal"
                         onClick = {() => {
                             navigate("/login");
                         }}

@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
+import { TextField } from "../common/index";
+import { Register } from "./Register";
 export const Home = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -44,40 +46,20 @@ export const Home = () => {
 
             </div>
         </div>
-
+        {/* Modal */}
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h3 class="col-12 modal-title text-center" id="exampleModalLabel">Welcome!</h3>
+                        <h3 class="col-12 modal-title text-center">Join our Community</h3>
                     </div>
                     <div class="modal-body">
-        ... 
-                    
-                    </div>
-
-                    <div class="modal-footer">
-                        <div class="col text-center">
-                        {
-                        username !== "" && email !== "" && password !== "" &&
-                        <button
-                            type = "button"
-                            onClick = {() => {
-                                setUsername("");
-                                setEmail("");
-                                setPassword("");
-                                setValid(1);
-                            }}
-                        >
-                            Create Account
-                        </button>
-                    }
-                        <button type="button" class="btn btn-primary">Close</button>
-                        </div>
-                    </div>
+                    <Register/>
+                    </div>                    
                 </div>
             </div>
         </div>
+      
 
         </>
      )
