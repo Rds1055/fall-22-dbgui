@@ -17,35 +17,35 @@ export const Home = () => {
         <>
         <div className = "pageStyle" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div className = "coolTitle">
-                    <div className="perspective-text">
-                        <div className="perspective-line">
-                            <p></p>
-                            <p>Reality</p>
-                        </div>
+                <div className="perspective-text">
+                    <div className="perspective-line">
+                        <p></p>
+                        <p>Enter</p>
+                    </div>
 
-                        <div className="perspective-line">
-                            <p>Reality</p>
-                            <p>Is Only</p>
-                        </div>
-                        <div className="perspective-line">
-                            <p>Is Only</p>
-                            <p>A Matter Of</p>
-                        </div>
-                        <div className="perspective-line">
-                            <p>A Matter Of</p>
-                            <p>Perception</p>
-                        </div>
-                        <div className="perspective-line">
-                            <p>Perception</p>
-                            <p></p>
-                        </div>
-                    </div>    
-        </div>
+                    <div className="perspective-line">
+                        <p>Reality</p>
+                        <p>Here</p>
+                    </div>
+                    <div className="perspective-line">
+                        <p>Is Only</p>
+                        <p>To</p>
+                    </div>
+                    <div className="perspective-line">
+                        <p>A Matter Of</p>
+                        <p>Join...</p>
+                    </div>
+                    <div className="perspective-line">
+                        <p>Perception</p>
+                        <p></p>
+                    </div>
+                </div>    
+            </div>
 
             <div className = "homeImage">
-
             </div>
         </div>
+
         {/* Modal */}
         <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
@@ -59,8 +59,6 @@ export const Home = () => {
                 </div>
             </div>
         </div>
-      
-
         </>
      )
 }

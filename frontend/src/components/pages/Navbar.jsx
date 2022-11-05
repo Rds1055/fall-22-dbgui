@@ -19,12 +19,6 @@ export const Navbar = ()=> {
             </button>
             </li>
 
-            <li className="nav-item active">
-            <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-                <a className="nav-link" href="/CreateTheory">Create Theory <span className="sr-only"></span></a>
-            </button>
-            </li>
-
             <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
             <a className="nav-link" href="/Profile">Profile</a>
