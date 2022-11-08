@@ -2,9 +2,9 @@ const bcrypt = require("bcrypt");
 
 class User {
     // Constructor
-    constructor(_DBQuery, _disconnect) {
-        this.DBQuery = _DBQuery;
-        this.disconnect = _disconnect;
+    constructor(DBQuery, disconnect) {
+        this.DBQuery = DBQuery;
+        this.disconnect = disconnect;
     }
 
     // Disconnect from the database
