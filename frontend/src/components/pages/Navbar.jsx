@@ -6,7 +6,7 @@ export const Navbar = ()=> {
 
     
         <a class="ripple" href="./">
-        <img alt="example" class="img-fluid rounded-circle"src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/11-hands-on-crystal-ball-and-cryptocurrency-allan-swart.jpg" width="80" height="75" alt=""/>
+        <img alt="example" class="img-fluid rounded-circle"src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/11-hands-on-crystal-ball-and-cryptocurrency-allan-swart.jpg" width="80" height="75"/>
     </a>
     
 
