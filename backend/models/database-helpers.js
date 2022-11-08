@@ -7,8 +7,8 @@ const connectToDatabase = async () => {
         //todo: update info later
         const DBConnection = mysql.createConnection({
             host: 'localhost',
-            user: 'root',
-            password: 'wyZmKWLv#t3h7E',
+            user: '',
+            password: '',
             insecureAuth: true,
             database: 'movie_discussion'
         });
