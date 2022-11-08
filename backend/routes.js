@@ -1,177 +1,98 @@
 const pool = require('./db')
 
-const connect = (res, callback) => {
-    pool.getConnection((error, connection) => {
-        if(error) {
-            logger.error('Problem obtaining MySQL connection', error);
-            res.status(400).send('Problem obtaining MySQL connection');
-        } else {
-            callback(connection);
-        }
-    });
-}
-
-const simpleQuery = (res, sql, query, fields, callback) => {
-    sql.query(query, fields, (error, rows, fields) => {
-        if(error) {
-            sql.release();
-            console.log(error);
-            res.status(400).send("An error has occurred");
-        } else {
-            callback(rows);
-        }
-    });
-}
-
-const returnQuery = (res, query, fields) => {
-    connect(res, (sql) => {
-        simpleQuery(res, sql, query, fields, (rows) => {
-            res.status(200).send(JSON.stringify(rows));
-            sql.release();
-        });
-    });
-}
-
-const badParam = (param) => {
-    return (!param || param === null || param === "null" || param === "undefined");
-}
-
 module.exports = function routes(app, logger) {
+  // GET /
+  app.get('/', (req, res) => {
+    res.status(200).send('Go to 0.0.0.0:3000.');
+  });
 
-    app.get('/', (req, res) => {
-        res.status(200).send('This is the port for the API. Go to port 3000 to view the web page.');
-    });
-
-    /********** User Routes **********/
-
-    // GET All Users
-    app.get('/user', (req, res) => {
-        returnQuery(res, 'SELECT * FROM UserTable');
-    });
-
-    // GET UserId via Username (Links UserId to User)
-    app.get('/user/:userId', (req, res) => {
-        let username = req.query.username;
-        returnQuery(res, 'SELECT * FROM UserTable where username = (?)', username);
-    });
-
-    // Register a new User (Checks if user already exists)
-    app.post('/user', (req, res) => {
-        connect(res, (sql) => {
-            let username = req.query.username;
-            let password = req.query.password;
-            let email = req.query.email;
-            let usertype = req.query.usertype;
-            let userId;
-
-            if(!username || !password || !email || !usertype || usertype <= 0) {
-                res.status(400).send('Invalid credentials');
-                return;
-            }
-            if(username.length < 5) {
-                res.status(400).send('Username is too short');
-                return;
-            }
-            if(password.length < 5) {
-                res.status(400).send('Password is too short');
-                return;
-            }
-
-            simpleQuery(res, sql, 'SELECT * FROM UserTable where username = (?)', username, (rows) => {
-                if (rows.length > 0) {
-                    sql.release();
-                    res.status(400).send("Username already exists");
-                }
-                else {
-                    simpleQuery(res, sql, 'INSERT INTO UserTable(username, password, email, userType) VALUES (?,?,?,?)', [username, password, email, usertype], (rows) => {
-                        if (usertype >= 3) {
-                            sql.release();
-                            res.status(200).send("Registered account successfully");
-                        }
-                    });
-                }
+  // POST /reset
+  app.post('/reset', (req, res) => {
+    // obtain a connection from our pool of connections
+    pool.getConnection(function (err, connection){
+      if (err){
+        console.log(connection);
+        // if there is an issue obtaining a connection, release the connection instance and log the error
+        logger.error('Problem obtaining MySQL connection', err)
+        res.status(400).send('Problem obtaining MySQL connection'); 
+      } else {
+        // if there is no issue obtaining a connection, execute query
+        connection.query('drop table if exists test_table', function (err, rows, fields) {
+          if (err) { 
+            // if there is an error with the query, release the connection instance and log the error
+            connection.release()
+            logger.error("Problem dropping the table test_table: ", err); 
+            res.status(400).send('Problem dropping the table'); 
+          } else {
+            // if there is no error with the query, execute the next query and do not release the connection yet
+            connection.query('CREATE TABLE `db`.`test_table` (`id` INT NOT NULL AUTO_INCREMENT, `value` VARCHAR(45), PRIMARY KEY (`id`), UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);', function (err, rows, fields) {
+              if (err) { 
+                // if there is an error with the query, release the connection instance and log the error
+                connection.release()
+                logger.error("Problem creating the table test_table: ", err);
+                res.status(400).send('Problem creating the table'); 
+              } else { 
+                // if there is no error with the query, release the connection instance
+                connection.release()
+                res.status(200).send('created the table'); 
+              }
             });
+          }
         });
-    });     
-    
-     // GET Logins in a User (Checks password and if account exists)
-     app.get('/login', (req, res) => {
-        connect(res, (sql) => {
-            let username = req.query.username;
-            let password = req.query.password;
+      }
+    });
+  });
 
-            if(!username || !password) {
-                res.status(400).send('Invalid username or password');
-                return;
-            }
-            simpleQuery(res, sql, 'SELECT * FROM UserTable where username = ?', username, (rows) => {
-                sql.release();
-                if(rows.length === 0) {
-                    res.status(400).send('Username does not exist');
-                } 
-                else {
-                    if(password === rows[0].password) {
-                        res.status(200).send(rows[0]);
-                    } 
-                    else {
-                        res.status(400).send('Incorrect password');
-                    }
-                }
+  // POST /multplynumber
+  app.post('/multplynumber', (req, res) => {
+    console.log(req.body.product);
+    // obtain a connection from our pool of connections
+    pool.getConnection(function (err, connection){
+      if(err){
+        // if there is an issue obtaining a connection, release the connection instance and log the error
+        logger.error('Problem obtaining MySQL connection',err)
+        res.status(400).send('Problem obtaining MySQL connection'); 
+      } else {
+        // if there is no issue obtaining a connection, execute query and release connection
+        connection.query('INSERT INTO `db`.`test_table` (`value`) VALUES(\'' + req.body.product + '\')', function (err, rows, fields) {
+          connection.release();
+          if (err) {
+            // if there is an error with the query, log the error
+            logger.error("Problem inserting into test table: \n", err);
+            res.status(400).send('Problem inserting into table'); 
+          } else {
+            res.status(200).send(`added ${req.body.product} to the table!`);
+          }
+        });
+      }
+    });
+  });
+
+  // GET /checkdb
+  app.get('/values', (req, res) => {
+    // obtain a connection from our pool of connections
+    pool.getConnection(function (err, connection){
+      if(err){
+        // if there is an issue obtaining a connection, release the connection instance and log the error
+        logger.error('Problem obtaining MySQL connection',err)
+        res.status(400).send('Problem obtaining MySQL connection'); 
+      } else {
+        // if there is no issue obtaining a connection, execute query and release connection
+        connection.query('SELECT value FROM `db`.`test_table`', function (err, rows, fields) {
+          connection.release();
+          if (err) {
+            logger.error("Error while fetching values: \n", err);
+            res.status(400).json({
+              "data": [],
+              "error": "Error obtaining values"
+            })
+          } else {
+            res.status(200).json({
+              "data": rows
             });
+          }
         });
+      }
     });
-
-    // GET User via UserId 
-    app.get('/user/:userId', (req, res) => {
-        let userId = req.param("userId");
-        returnQuery(res, 'SELECT * FROM UserTable WHERE userId = (?)', userId);
-    });
-
-    // UPDATE User via UserId 
-    app.put('/user/:userId', (req, res) => {
-        let query = 'UPDATE UserTable SET username = (?), password = (?), userType = (?), WHERE userId = (?)';
-        let userId = req.param('userId');
-        let rq = req.query;
-        let fields = [rq.username, rq.password, rq.userType, userId];
-        returnQuery(res, query, fields);
-    }); 
-
-    // GET User via Email 
-    app.get('/user/:email', (req, res) => {
-        let userId = req.param("userId");
-        returnQuery(res, 'SELECT * FROM UserTable WHERE userId = (?)', userId);
-    });
-
-    // UPDATE User via Email 
-    app.put('/user/:email', (req, res) => {
-        let query = 'UPDATE UserTable SET username = (?), password = (?), userType = (?), WHERE userId = (?)';
-        let userId = req.param('userId');
-        let rq = req.query;
-        let fields = [rq.username, rq.password, rq.userType, userId];
-        returnQuery(res, query, fields);
-    }); 
-    
-    // DELETE User via userId 
-    app.delete('/user/:userId', (req, res) => {
-        let userId = req.param('userId');
-        connect(res, (sql) => {
-            simpleQuery(res, sql, 'DELETE FROM UserTable WHERE userID = (?)', userId, (rows) => {
-                sql.release();
-                res.status(200).send("Deleted User: " + userId);
-            });
-        });
-    });
-
-    // DELETE User via email 
-    app.delete('/user/:email', (req, res) => {
-        let email = req.param('email');
-        connect(res, (sql) => {
-            simpleQuery(res, sql, 'DELETE FROM UserTable WHERE email = (?)', email, (rows) => {
-                sql.release();
-                res.status(200).send("Deleted User: " + email);
-            });
-        });
-    });
-
-    /********** Discussion Board Routes **********/
+  });
 }
