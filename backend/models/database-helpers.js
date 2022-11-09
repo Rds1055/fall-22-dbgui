@@ -7,10 +7,10 @@ const connectToDatabase = async () => {
         //todo: update info later
         const DBConnection = mysql.createConnection({
             host: 'localhost',
-            user: '',
-            password: '',
+            user: 'crystalballadmin',
+            password: 'bzfeoLnKOevuHcxg4mDh',
             insecureAuth: true,
-            database: 'movie_discussion'
+            database: 'movie_discussion' // db-cb-2022
         });
 
         // Actually create the connection
