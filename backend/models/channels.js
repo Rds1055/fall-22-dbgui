@@ -73,6 +73,10 @@ class channels {
     async updateSummary(id, summary) {
         const result = await this.DBQuery("UPDATE Channel SET summary = ? WHERE ID = ?", [summary, id]);
     };
+
+    async addPost() {
+        const result = await req.models.posts.createNewPost(body);
+    }
 }
 
 module.exports = channels;
