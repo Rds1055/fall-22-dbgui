@@ -176,4 +176,6 @@ html body {
     z-index: 999;
   }
 
-  
+  .hidden {
+    display: none;
+  }

@@ -20,7 +20,7 @@ export const Navbar = ()=> {
 
             <li class="nav-item">
             <button type="button" class="btn btn-outline-primary btn-lg btn-block">
-            <a class="nav-link" href="/Profile">Profile</a>
+            <a class="nav-link" href="/TestSearchBars">TestSearchBar</a>
             </button>
             </li>
 

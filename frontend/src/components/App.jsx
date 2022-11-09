@@ -1,4 +1,4 @@
-import { Home, Login, Register, Navbar, CreateTheory } from "./pages";
+import { Home, Login, Register, Navbar, CreateTheory, TestSearchBars } from "./pages";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 export const App = () => (
@@ -10,6 +10,7 @@ export const App = () => (
         <Route path="/login" element={<Login/>} ></Route>
         <Route path="/register" element={<Register/>} ></Route>
         <Route path="/createTheory" element={<CreateTheory/>} ></Route>
+        <Route path="/TestSearchBars" element={<TestSearchBars/>} ></Route>
       </Routes>
     </Router>
   </>
