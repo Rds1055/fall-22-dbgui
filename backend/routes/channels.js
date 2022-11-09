@@ -31,6 +31,7 @@ router.put('/:id', async (req, res, next) => {
     next();
 }); 
 
+// get all channels
 router.get("/", async (req, res, next) => {
     try {
       const results = await req.models.channels.getAllChannels();
@@ -42,6 +43,7 @@ router.get("/", async (req, res, next) => {
     next();
 });
 
+// get by id
 router.get("/:id", async (req, res, next) => {
     try {
       const id = req.params.id;
@@ -54,7 +56,8 @@ router.get("/:id", async (req, res, next) => {
     next();
 });
 
-router.get("/:id", async (req, res, next) => {
+// get by channelName
+router.get("/:channelName", async (req, res, next) => {
     try {
       const channelName = req.params.id;
       const results = await req.models.channels.getByName(channelName);
@@ -66,7 +69,8 @@ router.get("/:id", async (req, res, next) => {
     next();
 });
 
-router.get("/:id", async (req, res, next) => {
+// get by movieTitle
+router.get("/:movieTitle", async (req, res, next) => {
     try {
       const movieTitle = req.params.id;
       const results = await req.models.channels.getByMovie(movieTitle);
@@ -74,6 +78,20 @@ router.get("/:id", async (req, res, next) => {
     } catch (err) {
       console.error("Channel not found:", err);
       res.status(500).json({message: err.message});
+    }
+    next();
+});
+
+// add post
+router.post('/posts/', async (req, res, next) => {
+    try {
+        const body = req.body;
+        console.log(body);
+        const result = await req.models.posts.createNewPost(body);
+        res.status(201).json(result);
+    } catch (err) {
+        console.error('Post creation failed:', err);
+        res.status(500).json({ message: err.toString() });
     }
     next();
 });
