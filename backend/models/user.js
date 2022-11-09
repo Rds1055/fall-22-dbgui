@@ -47,7 +47,6 @@ class User {
         const password = body.password;
         const email = body.email;
         const usertype = body.usertype;
-        const userId = body.userId;
         if (password !== undefined) {
             this.updatePassword(username, password);
         }

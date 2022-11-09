@@ -6,7 +6,6 @@ CREATE TABLE User (
     password VARCHAR(60),
     email VARCHAR(30),
     usertype VARCHAR(30),
-    userId integer
 );
 
 CREATE TABLE Channel (
