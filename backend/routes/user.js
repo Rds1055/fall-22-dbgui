@@ -34,7 +34,7 @@ router.get('/', async(req, res, next) => {
         const result = await req.models.user.getAllUsers();
         res.status(200).json(result);
     } catch (err) {
-        console.error('User not found:', err);
+        console.error('Users not found:', err);
         res.status(500).json({ message: err.toString() });
     }
     next();

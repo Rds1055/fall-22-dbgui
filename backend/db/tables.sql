@@ -9,21 +9,26 @@ CREATE TABLE User (
 );
 
 CREATE TABLE Channel (
-    ID SERIAL PRIMARY KEY,
+    ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
     channelName VARCHAR(30),
     movieTitle VARCHAR(30),
-    summary VARCHAR(2000)
+    summary VARCHAR(100000)
 );
 
 CREATE TABLE Comment (
-    ID SERIAL PRIMARY KEY,
+    ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     posterName VARCHAR(30),
     text VARCHAR(2000)
-
+    postID integer,
+    postID FOREIGN KEY (postID)
+    REFERENCES Post(ID)
 );
 
 CREATE TABLE Post (
-    ID SERIAL PRIMARY KEY,
+    ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     posterName VARCHAR(30),
-    text VARCHAR(2000)
+    text VARCHAR(100000),
+    channelID integer,
+    channelID FOREIGN KEY (channelID)
+    REFERENCES Channel(ID)
 );
