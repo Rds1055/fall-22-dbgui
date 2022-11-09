@@ -12,12 +12,12 @@ class channels {
         const id = body.ID;
         const name = body.channelName;
         const movie = body.movieTitle;
-        
+        const summary = body.summary;
         let result;
         if (id === undefined) {
-            result = await this.DBQuery("INSERT INTO Channel(ID, channelName, movieTitle) VALUES (?,?,?)", [id, name, movie]);
+            result = await this.DBQuery("INSERT INTO Channel(ID, channelName, movieTitle, summary) VALUES (?,?,?, ?)", [id, name, movie, summary]);
         } else {
-            result = await this.DBQuery("INSERT INTO Channel(ID, channelName, movieTitle) VALUES (?, ?,?)", [id, name, movie]);
+            result = await this.DBQuery("INSERT INTO Channel(ID, channelName, movieTitle, summary) VALUES (?,?,?, ?)", [id, name, movie, summary]);
         }
         const newRecord = await this.DBQuery("SELECT * FROM Channel WHERE ID = ?", [result.insertId]);
         return newRecord;
