@@ -15,25 +15,25 @@ export const Home = () => {
         <>
         <div className = "pageStyle" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div className = "coolTitle">
-                    <div class="perspective-text">
-                        <div class="perspective-line">
+                    <div className="perspective-text">
+                        <div className="perspective-line">
                             <p></p>
                             <p>Reality</p>
                         </div>
 
-                        <div class="perspective-line">
+                        <div className="perspective-line">
                             <p>Reality</p>
                             <p>Is Only</p>
                         </div>
-                        <div class="perspective-line">
+                        <div className="perspective-line">
                             <p>Is Only</p>
                             <p>A Matter Of</p>
                         </div>
-                        <div class="perspective-line">
+                        <div className="perspective-line">
                             <p>A Matter Of</p>
                             <p>Perception</p>
                         </div>
-                        <div class="perspective-line">
+                        <div className="perspective-line">
                             <p>Perception</p>
                             <p></p>
                         </div>
@@ -45,19 +45,19 @@ export const Home = () => {
             </div>
         </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h3 class="col-12 modal-title text-center" id="exampleModalLabel">Welcome!</h3>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-header">
+                    <h3 className="col-12 modal-title text-center" id="exampleModalLabel">Welcome!</h3>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
         ... 
                     
                     </div>
 
-                    <div class="modal-footer">
-                        <div class="col text-center">
+                    <div className="modal-footer">
+                        <div className="col text-center">
                         {
                         username !== "" && email !== "" && password !== "" &&
                         <button
@@ -72,7 +72,7 @@ export const Home = () => {
                             Create Account
                         </button>
                     }
-                        <button type="button" class="btn btn-primary">Close</button>
+                        <button type="button" className="btn btn-primary">Close</button>
                         </div>
                     </div>
                 </div>
