@@ -36,22 +36,27 @@ export const Login = () => {
             <header>
         <h1>Login</h1>
         </header>
+        
                 <form name = "login" id = "login">
                     {/* Username field */}
+                    <div class="form-outline w-50">
                     <TextField label = "Username: " value = {username} setValue = {setUsername} id = "login-username" type = "text"/>
                     {/* Password field */}
                     <TextField label = "Password: " value = {password} setValue = {setPassword} id = "login-password" type = "password"/>
+                    </div>
+
                     {/* Submit button */}
                     {/* Disabled with no entered credentials */}
                     {
                         (username === "" || password === "") && 
-                        <button type = "button" disabled>Login</button>
+                        <button type = "button" className = "btn btn-primary" disabled>Login</button>
+                    
                     }
+               
                     {/* Enabled with entered credentials */}
                     {
                         username !== "" && password !== "" &&
-                        <button
-                            type = "button"
+                        <button type="button" className="btn btn-primary"
                             onClick = {() => {
                                 setValid(verifyLogin(username, password));
                                 setUsername("");
@@ -63,7 +68,7 @@ export const Login = () => {
                     }
                     {/* Cancel (Go back to home) */}
                     <button
-                        type = "button"
+                        type = "button" className="btn btn-primary"
                         onClick = {() => {
                             navigate("/");
                         }}
@@ -85,7 +90,7 @@ export const Login = () => {
                         Don't have an account?
                     </p>
                     <button
-                        type = "button"
+                        type = "button" className="btn btn-primary"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                     >
                         Register
@@ -101,6 +106,7 @@ export const Login = () => {
                         </div>
                         <div className="modal-body">
                         <Register/>
+                        
                         </div>                    
                     </div>
                 </div>

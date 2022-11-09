@@ -1,7 +1,5 @@
-import { useNavigate } from "react-router-dom"
 export const Navbar = ()=> {
-    const path = window.location.pathname;
-    const navigate = useNavigate();
+    const path = window.location.pathname
     return(
 <div className = "navigationBar">
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
@@ -67,7 +65,7 @@ export const Navbar = ()=> {
 function CustomLink({href,children, ...props}){
     const path = window.location.pathname
     return (
-    <li classNameName={path === href ? "active" : ""}>
+    <li className={path === href ? "active" : ""}>
         <a href={href}{...props}>{children}</a>
     </li>
     )
