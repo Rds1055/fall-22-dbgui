@@ -13,13 +13,14 @@ html body {
   );
 
   background-repeat: no-repeat;
-  background-size: cover;
-  min-width: 100%;
+  background-size: 100%;
+  min-width: 100vh;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  padding-top: 0px;
-  
+  overflow: hidden;
+
+ 
 } 
 
 /* Login/Register */
@@ -45,6 +46,9 @@ html body {
     color: red;
 }
 
+#login {
+  color: #fdfdfe;
+}
 /* Navigation */
 * {
     box-sizing: border-box;
@@ -176,4 +180,23 @@ html body {
     z-index: 999;
   }
 
-  
+  /* Modal */
+  .modal-header
+ {
+     padding:9px 15px;
+     border-bottom:1px solid #eee;
+     background-color: blue;
+ }
+
+ .modal-title
+ {
+  color: white;
+ }
+
+ header h1 {
+  font-size: 70px;
+  font-weight: 600;
+  color: #fdfdfe;
+  text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+    0px 0px 20px #b393d3;
+}
