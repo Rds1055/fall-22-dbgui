@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const connectToDatabase = require('../models/database-helpers.js');
 
-const accessTokenSecret = 'rateababy';
+const accessTokenSecret = 'pesant';
 
 const authenticateUser = async (username, password) => {
     const { DBQuery, disconnect } = await connectToDatabase();

@@ -16,7 +16,8 @@ class User {
         const username = body.username;
         const password = body.password;
         const hashedPassword = bcrypt.hashSync(password, 10);
-        const result = await this.DBQuery("INSERT INTO User(username, password) VALUES (?, ?)", [username, hashedPassword]);
+        const isAdmin = body.IS_ADMIN;
+        const result = await this.DBQuery("INSERT INTO User(username, password, IS_ADMIN) VALUES (?, ?, ?)", [username, hashedPassword, isAdmin]);
         delete body.password;
         this.updateUserData(username, body);
         return this.findUserByUsername(username);
@@ -66,11 +67,11 @@ class User {
     };
     
     async updateEmail(username, email) {
-        const results = await this.DBQuery("UPDATE User SET email = ? WHERE username = ?", [email, username]);
+        const result = await this.DBQuery("UPDATE User SET email = ? WHERE username = ?", [email, username]);
     };
     
-    async updateUserType(username, usertype) {
-        const results = await this.DBQuery("UPDATE User SET phone = ? WHERE username = ?", [usertype, username]);
+    async updateUserType(username) {
+        const result = await this.DBQuery("UPDATE User SET IS_ADMIN = true WHERE username = ?", [username]);
     };
 }
 
