@@ -44,7 +44,7 @@ class channels {
     }
 
     async updateChannel(id, body) {
-        const id = body.ID;
+        //const id = body.ID;
         const channelName = body.channelName;
         const movieTitle = body.movieTitle;
         const summary = body.summary;

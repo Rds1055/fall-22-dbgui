@@ -2,7 +2,7 @@ const connectToDatabase = require('../models/database-helpers.js');
 const User = require('../models/user');
 const Channel = require('../models/channels');
 const Comment = require('../models/comments');
-const Movie = require('../models/movies');
+//const Movie = require('../models/movies');
 const Post = require('../models/posts');
 
 /**
@@ -18,7 +18,7 @@ const Post = require('../models/posts');
         user: new User(DBQuery, disconnect),
         channel: new Channel(DBQuery, disconnect),
         comment: new Comment(DBQuery, disconnect),
-        movie: new Movie(DBQuery, disconnect),
+        //movie: new Movie(DBQuery, disconnect),
         post: new Post(DBQuery, disconnect)
     }
     req.disconnect = disconnect;
