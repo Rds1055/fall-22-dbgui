@@ -55,6 +55,8 @@ export const Home = () => {
                     </div>
                     <div className="modal-body">
                     <Register/>
+                    {/* Go to login */}
+                
                     </div>                    
                 </div>
             </div>

@@ -37,7 +37,7 @@ export const Register = () => {
                     {
                         username !== "" && email !== "" && password !== "" &&
                         <button
-                            type = "button" className="btn btn-primary"
+                            type = "button" class="btn btn-primary"
                             onClick = {() => {
                                 setUsername("");
                                 setEmail("");
