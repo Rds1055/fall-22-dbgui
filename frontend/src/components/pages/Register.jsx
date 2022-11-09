@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TextField } from "../common/index";
 import {useNavigate} from 'react-router-dom';
+import { addUser } from "../../api";
 
 export const Register = () => {
     // Set states for username, email, and password
@@ -10,6 +11,13 @@ export const Register = () => {
 
     // Track if valid account credentials
     const [valid, setValid] = useState(0);
+
+    // API Effects
+    useEffect(() => {
+        getProductById(1).then(x => {
+            setProduct(x);
+        });
+    }, []);
 
     // Navigator
     const navigate = useNavigate();
