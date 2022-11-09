@@ -5,13 +5,13 @@ CREATE TABLE User (
     username VARCHAR(30) PRIMARY KEY,
     password VARCHAR(60),
     email VARCHAR(30),
-    usertype VARCHAR(30),
+    IS_ADMIN BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE Channel (
     ID SERIAL PRIMARY KEY,
     channelName VARCHAR(30),
-    movieTitle VARCHAR(30),--CONSTRAINT FOREIGN KEY--
+    movieTitle VARCHAR(30),
     summary VARCHAR(2000)
 );
 

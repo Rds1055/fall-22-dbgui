@@ -9,7 +9,7 @@ router.post('/', async(req, res, next) => {
         const result = await req.models.user.createNewUser(body);
         res.status(201).json(result);
     } catch (err) {
-        console.error('Failed to create account:', err);
+        console.error('Account creation failure:', err);
         res.status(500).json({ message: err.toString() });
     }
     next();
@@ -22,7 +22,7 @@ router.get('/:username', async(req, res, next) => {
         const result = await req.models.user.getByUsername(user);
         res.status(200).json(result);
     } catch (err) {
-        console.error('Failed to find user:', err);
+        console.error('User not found:', err);
         res.status(500).json({ message: err.toString() });
     }
     next();
@@ -34,7 +34,7 @@ router.get('/', async(req, res, next) => {
         const result = await req.models.user.getAllUsers();
         res.status(200).json(result);
     } catch (err) {
-        console.error('Failed to find users:', err);
+        console.error('User not found:', err);
         res.status(500).json({ message: err.toString() });
     }
     next();
@@ -48,7 +48,7 @@ router.put('/:username', async (req, res, next) => {
         const result = await req.models.user.updateData(user, body);
         res.status(201).json(result);
     } catch (err) {
-        console.error('Failed to log in:', err);
+        console.error('Login failure:', err);
         res.status(500).json({ message: err.toString() });
     }
     next();
