@@ -83,8 +83,9 @@ router.get("/:movieTitle", async (req, res, next) => {
 });
 
 // add post
-router.post('/posts/', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
     try {
+        const id = req.params.id;
         const body = req.body;
         console.log(body);
         const result = await req.models.posts.createNewPost(body);
