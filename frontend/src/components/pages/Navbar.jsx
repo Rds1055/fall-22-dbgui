@@ -4,20 +4,20 @@ export const Navbar = ()=> {
     const navigate = useNavigate();
     return(
 <div className = "navigationBar">
-    
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
 
     
         <a className="ripple" href="./">
-        {/* <img alt="example" classNAme="img-fluid rounded-circle"src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/11-hands-on-crystal-ball-and-cryptocurrency-allan-swart.jpg" width="80" height="75"/> */}
+        <img alt="example" className="img-fluid rounded-circle"src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/11-hands-on-crystal-ball-and-cryptocurrency-allan-swart.jpg" width="100" height="75"/>
     </a>
     
 
     <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav nav-fill w-100">
-            <li className="nav-item active">
+
+            <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-                <a className="nav-link" href="/CreateTheory">Create Theory <span className="sr-only"></span></a>
+            <a className="nav-link" href="/dashboard">Dashboard</a>
             </button>
             </li>
 
