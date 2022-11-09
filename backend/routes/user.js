@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+// Get users listing
 // create new user
 router.post('/', async(req, res, next) => {
     try {
