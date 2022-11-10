@@ -4,23 +4,20 @@ import { TextField } from "../common/index";
 import {useNavigate} from 'react-router-dom';
 //import { TextAreaField } from "../common"
 
+
 export const TestSearchBars = () =>{
 
 
-    // (app => {
+    const [class_, setClass_] = useState("hidden");
 
-    //     // You do not need to do anything in this file. You're welcome. :)
-    
-    //     app._changeView = viewId => {
-    //         let sections = document.querySelectorAll('main > section');
-    //         sections.forEach(section => {
-    //             section.classList.remove('active');
-    //         });
-    
-    //         document.getElementById(viewId).classList.add('active');
-    //     };
-    
-    // })(app || (app = {}));
+    const changeView = () => {
+        console.log("here");
+        if (class_ === "hidden") {
+            setClass_("");
+        } else {
+            setClass_("hidden");
+        }
+    };
 
 
 
@@ -36,14 +33,19 @@ export const TestSearchBars = () =>{
 
 return ( <>
 <div className = "AdvancedSearch">
-    <button type="button" class="btn btn-outline-primary btn-lg btn-block">
-        <a class="nav-link" href="/Profile">Advanced Search</a>
+    <button type="button" class="btn btn-outline-primary btn-lg btn-block"
+        onClick={() => {
+            changeView();
+        }}>
+        {/* > */}
+        {/* > */}
+            Advanced Search
     </button>
 </div>
 
 
 
-<div id = "SearchBars" className = "hidden">
+<div id = "SearchBars" className = { class_ }>
 
 <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
 <TextField label = "Search Date: " value = {date} setValue = {setDate} id = "Search-Date" type = "text"/>
