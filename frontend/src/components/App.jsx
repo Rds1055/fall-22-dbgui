@@ -1,4 +1,6 @@
-import { Home, Login, Register, Navbar, CreateTheory, TestSearchBars } from "./pages";
+
+import { Channel } from "./pages/Channel/Channel";
+import { Home, Login, Register, Navbar, Dashboard } from "./pages";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 export const App = () => (

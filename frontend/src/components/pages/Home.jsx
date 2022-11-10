@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
+import { TextField } from "../common/index";
+import { Register } from "./Register";
 export const Home = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -15,70 +17,65 @@ export const Home = () => {
         <>
         <div className = "pageStyle" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div className = "coolTitle">
-                    <div class="perspective-text">
-                        <div class="perspective-line">
-                            <p></p>
-                            <p>Reality</p>
-                        </div>
+                <div className="perspective-text">
+                    <div className="perspective-line">
+                        <p></p>
+                        <p>Enter</p>
+                    </div>
 
-                        <div class="perspective-line">
-                            <p>Reality</p>
-                            <p>Is Only</p>
-                        </div>
-                        <div class="perspective-line">
-                            <p>Is Only</p>
-                            <p>A Matter Of</p>
-                        </div>
-                        <div class="perspective-line">
-                            <p>A Matter Of</p>
-                            <p>Perception</p>
-                        </div>
-                        <div class="perspective-line">
-                            <p>Perception</p>
-                            <p></p>
-                        </div>
-                    </div>    
-        </div>
+                    <div className="perspective-line">
+                        <p>Reality</p>
+                        <p>Here</p>
+                    </div>
+                    <div className="perspective-line">
+                        <p>Is Only</p>
+                        <p>To</p>
+                    </div>
+                    <div className="perspective-line">
+                        <p>A Matter Of</p>
+                        <p>Join...</p>
+                    </div>
+                    <div className="perspective-line">
+                        <p>Perception</p>
+                        <p></p>
+                    </div>
+                </div>    
+            </div>
 
             <div className = "homeImage">
-
             </div>
         </div>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h3 class="col-12 modal-title text-center" id="exampleModalLabel">Welcome!</h3>
+        {/* Modal */}
+        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h3 className="col-12 modal-title text-center">Join our Community</h3>
                     </div>
-                    <div class="modal-body">
-        ... 
-                    
+                    <div className="modal-body">
+                    <Register/>
+                    {/* Go to login */}
+                    <div className ="d-flex justify-content-center">
+                    <p>
+                        Already have an account?
+                    </p>
                     </div>
-
-                    <div class="modal-footer">
-                        <div class="col text-center">
-                        {
-                        username !== "" && email !== "" && password !== "" &&
-                        <button
-                            type = "button"
-                            onClick = {() => {
-                                setUsername("");
-                                setEmail("");
-                                setPassword("");
-                                setValid(1);
-                            }}
-                        >
-                            Create Account
-                        </button>
-                    }
-                        <button type="button" class="btn btn-primary">Close</button>
-                        </div>
+                    <div className ="d-flex justify-content-center">
+                    <button 
+                        type = "button" className="btn btn-primary" data-bs-dismiss="modal"
+                        onClick = {() => {
+                            navigate("/login");
+                        }}
+                    >
+                        Login
+                    </button>
                     </div>
+                
+                    </div>                    
                 </div>
             </div>
         </div>
-
         </>
      )
 }

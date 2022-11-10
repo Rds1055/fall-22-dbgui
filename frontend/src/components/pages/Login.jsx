@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextField } from "../common/index";
+import { Register } from "./Register";
 import {useNavigate} from 'react-router-dom';
 
 export const Login = () => {
@@ -32,23 +33,30 @@ export const Login = () => {
         
         <>
             <div id = "login" className = "account-form container-fluid mt-5 row justify-content-center className='col me-3'">
-                <h2>Login</h2>
-                <form name = "login">
+            <header>
+        <h1>Login</h1>
+        </header>
+        
+                <form name = "login" id = "login">
                     {/* Username field */}
+                    <div class="form-outline w-50">
                     <TextField label = "Username: " value = {username} setValue = {setUsername} id = "login-username" type = "text"/>
                     {/* Password field */}
                     <TextField label = "Password: " value = {password} setValue = {setPassword} id = "login-password" type = "password"/>
+                    </div>
+
                     {/* Submit button */}
                     {/* Disabled with no entered credentials */}
                     {
                         (username === "" || password === "") && 
-                        <button type = "button" disabled>Login</button>
+                        <button type = "button" className = "btn btn-primary" disabled>Login</button>
+                    
                     }
+               
                     {/* Enabled with entered credentials */}
                     {
                         username !== "" && password !== "" &&
-                        <button
-                            type = "button"
+                        <button type="button" className="btn btn-primary"
                             onClick = {() => {
                                 setValid(verifyLogin(username, password));
                                 setUsername("");
@@ -60,7 +68,7 @@ export const Login = () => {
                     }
                     {/* Cancel (Go back to home) */}
                     <button
-                        type = "button"
+                        type = "button" className="btn btn-primary"
                         onClick = {() => {
                             navigate("/");
                         }}
@@ -82,15 +90,27 @@ export const Login = () => {
                         Don't have an account?
                     </p>
                     <button
-                        type = "button"
-                        onClick = {() => {
-                            navigate("/register");
-                        }}
+                        type = "button" className="btn btn-primary"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal"
                     >
                         Register
                     </button>
                 </form>
-            </div>          
+            </div>   
+            {/* Modal */}
+            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h3 className="col-12 modal-title text-center">Join our Community</h3>
+                        </div>
+                        <div className="modal-body">
+                        <Register/>
+                        
+                        </div>                    
+                    </div>
+                </div>
+            </div>       
         </>
     );
 };
