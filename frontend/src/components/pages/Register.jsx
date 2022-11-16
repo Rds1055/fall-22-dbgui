@@ -68,17 +68,7 @@ export const Register = () => {
                         <p className = "invalid-login">Invalid input</p>
                     }
                     {/* Go to login */}
-                    <p>
-                        Already have an account?
-                    </p>
-                    <button 
-                        type = "button" className="btn btn-primary" data-bs-dismiss="modal"
-                        onClick = {() => {
-                            navigate("/login");
-                        }}
-                    >
-                        Login
-                    </button>
+                    
                 </form>
             </div>          
         </>

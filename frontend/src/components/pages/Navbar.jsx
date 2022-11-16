@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Channel} from "../../models";
 export const Navbar = ()=> {
     const path = window.location.pathname;
     const navigate = useNavigate();
     const channel = new Channel(1,'Spidey Web','cb-spiderbob','Aug -1, 20202','Johnston and Johnston ate my weiner');
+
     return(
 <div className = "navigationBar">
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
@@ -70,7 +70,7 @@ export const Navbar = ()=> {
 function CustomLink({href,children, ...props}){
     const path = window.location.pathname
     return (
-    <li classNameName={path === href ? "active" : ""}>
+    <li className={path === href ? "active" : ""}>
         <a href={href}{...props}>{children}</a>
     </li>
     )

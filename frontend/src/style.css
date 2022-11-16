@@ -15,7 +15,7 @@ html body {
   background-repeat: no-repeat;
   background-size: 100%;
   min-width: 100vh;
-  min-height: 100vh;
+  min-height: 200vh;
   align-items: center;
   justify-content: center;
  
@@ -178,6 +178,9 @@ html body {
     z-index: 999;
   }
 
+  .hidden {
+    display: none;
+  }
   /* Modal */
   .modal-header
  {
