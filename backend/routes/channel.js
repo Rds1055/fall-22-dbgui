@@ -4,16 +4,15 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
-router.get('/current', async (req, res, next) => {
-   if (req.query.name) {
-       const channelByName = await req.models.channel.fetchChannelsByName(req.query.title);
-       res.json(channelByName);
-       next();
-   } else {
-       const allChannels = await req.models.channel.fetchAllChannels();
-       res.json(allChannels);
-       next();
-   }
+router.get('/', async (req, res, next) => {
+    const allChannels = await req.models.channel.fetchAllChannels();
+    res.json(allChannels);
+    next();
+});
+router.get('/:title', async (req, res, next) => {
+    const channelByName = await req.models.channel.fetchChannelsByName(req.query.title);
+    res.json(channelByName);
+    next();
 });
 router.post('/', async (req, res, next) => {
     const createChannel = await req.models.channel.createChannel(req.body.admin_id, req.body.title, 

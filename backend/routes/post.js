@@ -4,20 +4,20 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
-router.get('/current', async (req, res, next) => {
-   if (req.query.title) {
-       const postByName = await req.models.post.fetchPostsByName(req.query.title);
-       res.json(postByName);
-       next();
-   } else if(req.query.user_id){
-        const postByUser = await req.models.post.fetchPostsByUser(req.query.user_id);
-        res.json(postByUser);
-        next();
-   }else {
-       const allPosts = await req.models.post.fetchAllPosts();
-       res.json(allPosts);
-       next();
-   }
+router.get('/:title', async (req, res, next) => {
+    const postByName = await req.models.post.fetchPostsByName(req.query.title);
+    res.json(postByName);
+    next();
+});
+router.get('/:user_id', async (req, res, next) => {
+    const postByUser = await req.models.post.fetchPostsByUser(req.query.user_id);
+    res.json(postByUser);
+    next();
+});
+router.get('/', async (req, res, next) => {
+    const allPosts = await req.models.post.fetchAllPosts();
+    res.json(allPosts);
+    next();
 });
 router.post('/', async (req, res, next) => {
     const createPost = await req.models.post.createPost(req.body.user_id, req.body.channel_id, 
