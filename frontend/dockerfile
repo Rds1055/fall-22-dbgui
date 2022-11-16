@@ -9,7 +9,7 @@ FROM node:16
 # Set the working directory within docker image
 WORKDIR /usr/src/app
 
-RUN chmod 777 /node_modules
+RUN cd /usr/src/app && npm install
 
 # expose port 3000
 EXPOSE 3000
