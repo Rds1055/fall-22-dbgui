@@ -6,6 +6,8 @@
 # We are using node version 16
 FROM node:16
 
+USER node
+
 # Set the working directory within docker image
 WORKDIR /usr/src/app
 
@@ -13,7 +15,7 @@ COPY --chown=node:node package.json .
 RUN npm install
 
 COPY --chown=node:node . .
-USER ubuntu
+USER node
 
 RUN npm install
 
