@@ -29,10 +29,8 @@ services:
     restart: always
     # working directory in container to place files
     working_dir: /usr/src/app
-    # install dependencies command 
-    command1: bash -c "npm install"
     # startup command 
-    command2: bash -c "npm start"
+    command: bash -c "npm start"
     # map code volumes from local to inside working directory, changes made locally will update into the container
     volumes:
       - ./frontend:/usr/src/app
