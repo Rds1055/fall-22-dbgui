@@ -3,8 +3,8 @@ import axios from "axios";
 const baseEndpoint = "http://localhost:3001/comment";
 let apiConfig;
 
-export const getCommentsByMovie = (movieId) => new Promise((resolve, reject) => {
-    axios.get(`${ baseEndpoint }/${ movieId }`, apiConfig)
+export const getCommentsByPost = (post_id) => new Promise((resolve, reject) => {
+    axios.get(`${ baseEndpoint }/${ post_id }`, apiConfig)
         .then(x => resolve(x.data))
         .catch(x => {
             alert(x);

@@ -4,6 +4,25 @@
     margin: 0 auto;
 } */
 
+html body {
+
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    white 0%,
+    black 40%
+  );
+
+  background-repeat: no-repeat;
+  background-size: 100%;
+  min-width: 100vh;
+  min-height: 200vh;
+  align-items: center;
+  justify-content: center;
+  
+
+ 
+} 
+
 /* Login/Register */
 .account-form {
     text-align: center;
@@ -27,6 +46,9 @@
     color: red;
 }
 
+#login {
+  color: #fdfdfe;
+}
 /* Navigation */
 * {
     box-sizing: border-box;
@@ -82,4 +104,99 @@
 
   div.pageStyle > * {
     text-align: center;
+    margin-top: 0;
   }
+
+  
+/* CSS for home page title */
+  .perspective-text {
+    color: white;
+    font-family: Arial;
+    font-size: 58px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+  }
+  
+  .perspective-line {
+    height: 50px;
+    overflow: hidden;
+    position:relative;
+
+  }
+  
+  p {
+    margin: 0;
+    height: 50px;
+    line-height: 50px;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .perspective-line:nth-child(odd) {
+    transform: skew(60deg, -30deg) scaleY(0.8);
+  }
+  
+  .perspective-line:nth-child(even) {
+    transform: skew(0deg, -30deg) scaleY(1.337);
+  }
+  
+  .perspective-text:hover p {
+    transform: translate(0, -50px);
+  }
+  
+  .perspective-line:nth-child(1) {
+    left: 29px;
+  }
+  
+  .perspective-line:nth-child(2) {
+    left: 58px;
+    background: #f07e6e;
+  }
+  
+  .perspective-line:nth-child(3) {
+    left: 87px;
+    background: #84cdfa;
+  }
+  
+  .perspective-line:nth-child(4) {
+    left: 116px;
+    background: #5ad1cd;
+  }
+  
+  .perspective-line:nth-child(5) {
+    left: 145px;
+  }
+  
+  div.coolTitle > *{
+    padding-top: 250px;
+    padding-right: 100px;
+    margin-left: -120px;
+    margin-right: 0px;
+    z-index: -999;
+
+  }
+
+  div.navigationBar > * {
+    z-index: 999;
+  }
+
+  /* Modal */
+  .modal-header
+ {
+     padding:9px 15px;
+     border-bottom:1px solid #eee;
+     background-color: blue;
+ }
+
+ .modal-title
+ {
+  color: white;
+ }
+
+ header h1 {
+  font-size: 70px;
+  font-weight: 600;
+  color: #fdfdfe;
+  text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+    0px 0px 20px #b393d3;
+}

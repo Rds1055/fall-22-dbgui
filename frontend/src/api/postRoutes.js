@@ -43,3 +43,12 @@ export const getPostsByChannel = (channelId) => new Promise((resolve, reject) =>
             reject(x);
         });
 });
+
+export const updatePost = (postId, params) => new Promise((resolve, reject) => {
+    axios.put(`${ baseEndpoint }/${ postId }`, params, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+})
