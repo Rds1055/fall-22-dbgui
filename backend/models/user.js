@@ -19,7 +19,7 @@ class User {
         const isAdmin = body.IS_ADMIN;
         const result = await this.DBQuery("INSERT INTO User(username, password, IS_ADMIN) VALUES (?, ?, ?)", [username, hashedPassword, isAdmin]);
         delete body.password;
-        this.updateUserData(username, body);
+        this.updateData(username, body);
         return this.findUserByUsername(username);
     };
 
