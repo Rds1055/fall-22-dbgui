@@ -1,3 +1,3 @@
 export * from "./Comment"
 export * from "./Post"
-export * from "./Movie"
+export * from "./Channel"
