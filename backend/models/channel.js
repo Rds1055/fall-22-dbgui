@@ -10,6 +10,11 @@ const fetchChannelsByName = async (title) => {
     const results = await query;
     return results;
 }
+const fetchChannelsById = async (channel_id) => {
+    const query = knex(CHANNELS_TABLE).where({ channel_id });
+    const results = await query;
+    return results;
+}
 const updateChannelName = async (title, channel_id)  => {
     const query = knex(CHANNELS_TABLE).update({username}).where({user_id});
     const results = await query;

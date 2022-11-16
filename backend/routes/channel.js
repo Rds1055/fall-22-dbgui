@@ -14,6 +14,11 @@ router.get('/:title', async (req, res, next) => {
     res.json(channelByName);
     next();
 });
+router.get('/:channel_id', async (req, res, next) => {
+    const channelById = await req.models.channel.fetchChannelsById(req.query.channel_id);
+    res.json(channelByName);
+    next();
+});
 router.post('/', async (req, res, next) => {
     const createChannel = await req.models.channel.createChannel(req.body.admin_id, req.body.title, 
         req.body.movie_title);
