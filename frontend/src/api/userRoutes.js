@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:3001/user";
+const baseEndpoint = "http://localhost:3306/user";
 let apiConfig;
 
 export const getUserById = (userId) => new Promise((resolve, reject) => {
