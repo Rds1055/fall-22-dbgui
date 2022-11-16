@@ -9,7 +9,7 @@ FROM node:16
 # Set the working directory within docker image
 WORKDIR /usr/src/app
 
-RUN chmod 755 ./node_modules/.cache/.eslintcache
+RUN chmod 755 frontend/node_modules
 
 # expose port 3000
 EXPOSE 3000
