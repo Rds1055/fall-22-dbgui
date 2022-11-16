@@ -1,46 +1,28 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-
-// Import route handlers
-const userRoutes = require('./routes/user');
-const channelRoutes = require('./routes/channels');
-const commentRoutes = require("./routes/comments");
-const postRoutes = require("./routes/posts");
-const sessionRoutes = require("./routes/session");
-
-// Import middleware
-const middleware = require("./middleware/model-middleware");
-
-// Define the express app instance
+const usersRoutes = require('./routes/user' );
+const channelRoutes = require('./routes/channel' );
+const postRoutes = require('./routes/post' );
+const commentRoutes = require('./routes/comment' );
+const sessionRoutes = require('./routes/session' );
+const registerRoutes  = require('./routes/register' );
+const { authenticateJWT , authenticateWithClaims  } = require('./middleware/auth' );
+const { createModelsMiddleware  } = require('./middleware/model-middleware' );
 const app = express();
-const port = 3001;
-
-// First step in the "middleware chain".
-// This is first because we know the route handlers need connections
-// to the database
-app.use(cors());
-app.use(middleware.createModelsMiddleware);
-app.use(middleware.requestLogMiddleware);
+const port = 3000;
 app.use(bodyParser.json());
-
-// Health route
+app.use(createModelsMiddleware );
 app.get('/health', (request, response, next) => {
-    const responseBody = { status: 'up', port };
-    response.json(responseBody);
-    // Continue through the middleware chain
-    next();
+  const responseBody = { status: 'up', port };
+  response.json(responseBody);
+  next();
 });
-
 app.use('/session', sessionRoutes);
-
-// Any route that starts with /users
-app.use('/user', userRoutes);
-app.use("/channels", channelRoutes);
-app.use("/comments", commentRoutes);
-app.use("/posts", postRoutes);
-
-// Listen for incoming requests
+app.use('/users', authenticateJWT , usersRoutes);
+app.use('/channels', channelRoutes);
+app.use('/posts', postRoutes);
+app.use('/comments', commentRoutes);
+app.use('/register', registerRoutes);
 app.listen(port, () => {
-    console.log(`App is listening on port ${port}`);
+  console.log(`This app is listening on port  ${port}`);
 });
