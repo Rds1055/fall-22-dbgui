@@ -13,6 +13,7 @@ export const App = () => (
         <Route path="/login" element={<Login/>} ></Route>
         <Route path="/register" element={<Register/>} ></Route>
         {/* <Route path="/createTheory" element={<CreateTheory/>} ></Route> */}
+        <Route path="/dashboard" element={<Dashboard/>} ></Route>
         <Route path="/TestSearchBars" element={<TestSearchBars/>} ></Route>
       </Routes>
     </Router>
