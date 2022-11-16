@@ -3,3 +3,4 @@ export * from "./Home";
 export * from "./Register";
 export * from "./Navbar";
 export * from "./Dashboard";
+export * from "./channel"
