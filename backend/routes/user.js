@@ -1,57 +1,33 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-// Get users listing
-// create new user
-router.post('/', async(req, res, next) => {
-    try {
-        const body = req.body;
-        const result = await req.models.user.createNewUser(body);
-        res.status(201).json(result);
-    } catch (err) {
-        console.error('Account creation failure:', err);
-        res.status(500).json({ message: err.toString() });
-    }
+const router = express.Router();
+
+const bodyParser = require('body-parser');
+router.use(bodyParser.json());
+router.get('/:username', async (req, res, next) => {
+    const userByName = await req.models.user.fetchUsersByName(req.query.username);
+    res.json(userByName);
     next();
 });
-
-// find user by username
-router.get('/:username', async(req, res, next) => {
-    try {
-        const user = req.params.username;
-        const result = await req.models.user.getByUsername(user);
-        res.status(200).json(result);
-    } catch (err) {
-        console.error('User not found:', err);
-        res.status(500).json({ message: err.toString() });
-    }
+router.get('/', async (req, res, next) => {
+    const allUsers = await req.models.user.fetchAllUsers();
+    res.json(allUsers);
     next();
 });
-
-// find all users
-router.get('/', async(req, res, next) => {
-    try {
-        const result = await req.models.user.getAllUsers();
-        res.status(200).json(result);
-    } catch (err) {
-        console.error('Users not found:', err);
-        res.status(500).json({ message: err.toString() });
-    }
+router.post('/', async (req, res, next) => {
+    const createUser = await req.models.user.createUser(req.body.username, req.body.email, 
+        req.body.pword, req.body.is_admin, req.body.user_since);
+    res.status(201).json(createUser);
     next();
-});
-
-// update user info
-router.put('/:username', async (req, res, next) => {
-    try {
-        const user = req.params.username;
-        const body = req.body;
-        const result = await req.models.user.updateData(user, body);
-        res.status(201).json(result);
-    } catch (err) {
-        console.error('Login failure:', err);
-        res.status(500).json({ message: err.toString() });
-    }
+ });
+ router.put('/', async (req, res, next) => {
+    const updateUser = await req.models.user.updateUser(req.body.username, req.body.user_id);
+    res.json(updateUser);
     next();
-});
-  
+ });
+ router.delete('/', async (req, res, next) => {
+    const deleteUser = await req.models.user.deleteUser(req.body.user_id);
+    res.status(204).end();
+    next();
+ });
 module.exports = router;
