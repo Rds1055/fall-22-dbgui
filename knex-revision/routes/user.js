@@ -4,16 +4,15 @@ const router = express.Router();
 
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
-router.get('/current', async (req, res, next) => {
-   if (req.query.name) {
-       const userByName = await req.models.user.fetchUsersByName(req.query.name);
-       res.json(userByName);
-       next();
-   } else {
-       const allUsers = await req.models.user.fetchAllUsers();
-       res.json(allUsers);
-       next();
-   }
+router.get('/:username', async (req, res, next) => {
+    const userByName = await req.models.user.fetchUsersByName(req.query.username);
+    res.json(userByName);
+    next();
+});
+router.get('/', async (req, res, next) => {
+    const allUsers = await req.models.user.fetchAllUsers();
+    res.json(allUsers);
+    next();
 });
 router.post('/', async (req, res, next) => {
     const createUser = await req.models.user.createUser(req.body.username, req.body.email, 
