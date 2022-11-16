@@ -9,5 +9,11 @@ FROM node:16
 # Set the working directory within docker image
 WORKDIR /usr/src/app
 
+COPY --chown=node:node package.json .
+RUN npm install
+
+COPY --chown=node:node . .
+USER node
+
 # expose port 3000
 EXPOSE 3000
