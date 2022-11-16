@@ -9,7 +9,7 @@ const registerRoutes  = require('./routes/register' );
 const { authenticateJWT , authenticateWithClaims  } = require('./middleware/auth' );
 const { createModelsMiddleware  } = require('./middleware/model-middleware' );
 const app = express();
-const port = 3000;
+const port = 3306;
 app.use(bodyParser.json());
 app.use(createModelsMiddleware );
 app.get('/health', (request, response, next) => {
