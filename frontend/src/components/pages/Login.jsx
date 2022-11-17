@@ -36,7 +36,8 @@ export const Login = () => {
             <header>
         <h1>Login</h1>
         </header>
-                <form name = "login" id = "login">
+        <div class="form-group col-lg-5">
+                <form name = "login" id = "login" >
                     {/* Username field */}
                     <TextField label = "Username: " value = {username} setValue = {setUsername} id = "login-username" type = "text"/>
                     {/* Password field */}
@@ -45,13 +46,13 @@ export const Login = () => {
                     {/* Disabled with no entered credentials */}
                     {
                         (username === "" || password === "") && 
-                        <button type = "button" disabled>Login</button>
+                        <button type = "button" className="btn btn-secondary" disabled>Login</button>
                     }
                     {/* Enabled with entered credentials */}
                     {
                         username !== "" && password !== "" &&
                         <button
-                            type = "button"
+                            type = "button" className="btn btn-primary"
                             onClick = {() => {
                                 setValid(verifyLogin(username, password));
                                 setUsername("");
@@ -63,7 +64,7 @@ export const Login = () => {
                     }
                     {/* Cancel (Go back to home) */}
                     <button
-                        type = "button"
+                        type = "button" className="btn btn-primary"
                         onClick = {() => {
                             navigate("/");
                         }}
@@ -85,12 +86,13 @@ export const Login = () => {
                         Don't have an account?
                     </p>
                     <button
-                        type = "button"
+                        type = "button" className="btn btn-primary"
                         data-bs-toggle="modal" data-bs-target="#exampleModal"
                     >
                         Register
                     </button>
                 </form>
+                </div>
             </div>   
             {/* Modal */}
             <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

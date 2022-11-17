@@ -56,7 +56,19 @@ export const Home = () => {
                     <div className="modal-body">
                     <Register/>
                     {/* Go to login */}
-                
+                    <div className="text-center">
+                    <p>
+                        Already have an account?
+                    </p>
+                    <button 
+                        type = "button" className="btn btn-primary" data-bs-dismiss="modal"
+                        onClick = {() => {
+                            navigate("/login");
+                        }}
+                    >
+                        Login
+                    </button>
+                </div>
                     </div>                    
                 </div>
             </div>

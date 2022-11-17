@@ -5,11 +5,16 @@
 } */
 
 html body {
-
+  
+  overflow-x: hidden;
+  position: relative;
   background-image: radial-gradient(
+    
     farthest-corner at 40px 40px,
     white 0%,
     black 40%
+    
+
   );
 
   background-repeat: no-repeat;
@@ -18,6 +23,7 @@ html body {
   min-height: 200vh;
   align-items: center;
   justify-content: center;
+
   
 
  
@@ -110,6 +116,7 @@ html body {
   
 /* CSS for home page title */
   .perspective-text {
+    
     color: white;
     font-family: Arial;
     font-size: 58px;
@@ -119,6 +126,7 @@ html body {
   }
   
   .perspective-line {
+    
     height: 50px;
     overflow: hidden;
     position:relative;
@@ -169,10 +177,12 @@ html body {
   
   div.coolTitle > *{
     padding-top: 250px;
-    padding-right: 100px;
+    padding-right: auto;
     margin-left: -120px;
     margin-right: 0px;
     z-index: -999;
+    min-width: 100vh;
+    
 
   }
 
@@ -201,6 +211,7 @@ html body {
     0px 0px 20px #b393d3;
 }
 
+
 header h2 {
   font-size: 50px;
   font-weight: 600;
@@ -219,3 +230,4 @@ header h2 {
   width:100%;
   text-align:center;
 }
+

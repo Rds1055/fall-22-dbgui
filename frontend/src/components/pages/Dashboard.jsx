@@ -11,6 +11,7 @@ export const Dashboard = () => {
 
   return (
 
+
     <>
 
 
@@ -52,6 +53,12 @@ export const Dashboard = () => {
       <div class="carousel-caption d-none d-md-block">
         {/* <h5>Third slide label</h5>
         <p>Some representative placeholder content for the third slide.</p> */}
+
+    {/* <header> Possible welcome screen
+        <h1>Welcome Back</h1>
+    </header> */}
+ 
+   
       </div>
     </div>
   </div>
@@ -65,11 +72,15 @@ export const Dashboard = () => {
   </button>
 </div>
 
+
       <div className =  "p-5 text-center">
         <header>
           <h2> Todays Top Theories </h2>
         </header>
       </div>
+
+
+
 </>
 
  
