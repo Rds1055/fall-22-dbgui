@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Channel } from "../../models";
 export const Navbar = ()=> {
     const path = window.location.pathname;
     const navigate = useNavigate();
