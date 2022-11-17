@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:3001/movie";
+const baseEndpoint = "http://localhost:8000/movie";
 let apiConfig;
 
 export const getMovieById = (movieId) => new Promise((resolve, reject) => {
