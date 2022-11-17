@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:3001/channel";
+const baseEndpoint = "http://localhost:8000/channel";
 let apiConfig;
 
 export const getChannelById = (channelId) => new Promise((resolve, reject) => {
