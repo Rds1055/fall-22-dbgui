@@ -16,7 +16,7 @@ const fetchPostsByUser = async (user_id) => {
     return results;
 }
 const updatePostName = async (title, post_id)  => {
-    const query = knex(POSTS_TABLE).update({username}).where({user_id});
+    const query = knex(POSTS_TABLE).update({title}).where({post_id});
     const results = await query;
     return results;
 }

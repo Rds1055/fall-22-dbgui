@@ -14,6 +14,11 @@ router.get('/', async (req, res, next) => {
     res.json(allUsers);
     next();
 });
+router.get('/:email', async (req, res, next) => {
+    const userByEmail = await req.models.user.fetchUserByEmail(req.query.email);
+    res.json(userByEmail);
+    next();
+});
 router.post('/', async (req, res, next) => {
     const createUser = await req.models.user.createUser(req.body.username, req.body.email, 
         req.body.pword, req.body.is_admin, req.body.user_since);
@@ -21,8 +26,18 @@ router.post('/', async (req, res, next) => {
     next();
  });
  router.put('/', async (req, res, next) => {
-    const updateUser = await req.models.user.updateUser(req.body.username, req.body.user_id);
+    const updateUser = await req.models.user.updateUsername(req.body.username, req.body.user_id);
     res.json(updateUser);
+    next();
+ });
+ router.put('/', async (req, res, next) => {
+    const updatePass = await req.models.user.updatePassword(req.body.username, req.body.pword);
+    res.json(updatePass);
+    next();
+ });
+ router.put('/', async (req, res, next) => {
+    const updateEmail = await req.models.user.updateEmail(req.body.username, req.body.email);
+    res.json(updateEmail);
     next();
  });
  router.delete('/', async (req, res, next) => {

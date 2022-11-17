@@ -16,17 +16,21 @@ router.get('/:title', async (req, res, next) => {
 });
 router.get('/:channel_id', async (req, res, next) => {
     const channelById = await req.models.channel.fetchChannelsById(req.query.channel_id);
-    res.json(channelByName);
+    res.json(channelById);
+    next();
+});
+router.get('/:movie_title', async (req, res, next) => {
+    const channelByMovie = await req.models.channel.fetchChannelsByMovie(req.query.movie_title);
+    res.json(channelByMovie);
     next();
 });
 router.post('/', async (req, res, next) => {
-    const createChannel = await req.models.channel.createChannel(req.body.admin_id, req.body.title, 
-        req.body.movie_title);
+    const createChannel = await req.models.channel.createChannel(req.body.admin_id, req.body.title, req.body.movie_title);
     res.status(201).json(createChannel);
     next();
  });
  router.put('/', async (req, res, next) => {
-    const updateChannel = await req.models.channel.updateChannel(req.body.title, req.body.channel_id);
+    const updateChannel = await req.models.channel.updateChannelName(req.body.title, req.body.channel_id);
     res.json(updateChannel);
     next();
  });
