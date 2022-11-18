@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:3306/post";
+const baseEndpoint = "http://localhost:8000/post";
 let apiConfig;
 
 export const getPostById = (postId) => new Promise((resolve, reject) => {
