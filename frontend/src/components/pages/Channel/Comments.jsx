@@ -56,12 +56,11 @@ export const Comments = () => {
                 
                         <h6 className=" col-8 mx-auto text-center p-0">{comment.content} </h6>
                         <p className="card-subtitle  pt-3  mb-2 text-muted float-end">
-                            <span className='m-2 text-primary'>{comment.user_id}</span>
+                            <span className='m-1 text-primary'>{comment.user_id}</span>
                             <br/>
                         </p>
                         
                         <br />
-                        
                         
                         <button type='button' className='btn btn-secondary btn-sm'>Reply</button>
                     </div>
