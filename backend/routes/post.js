@@ -14,6 +14,11 @@ router.get('/:user_id', async (req, res, next) => {
     res.json(postByUser);
     next();
 });
+router.get('/:post_id', async (req, res, next) => {
+    const postById = await req.models.post.fetchPostsById(req.query.post_id);
+    res.json(postById);
+    next();
+});
 router.get('/', async (req, res, next) => {
     const allPosts = await req.models.post.fetchAllPosts();
     res.json(allPosts);
