@@ -9,6 +9,11 @@ router.get('/:username', async (req, res, next) => {
     res.json(userByName);
     next();
 });
+router.get('/:user_id', async (req, res, next) => {
+    const userById = await req.models.user.fetchUsersById(req.query.user_id);
+    res.json(userById);
+    next();
+});
 router.get('/', async (req, res, next) => {
     const allUsers = await req.models.user.fetchAllUsers();
     res.json(allUsers);

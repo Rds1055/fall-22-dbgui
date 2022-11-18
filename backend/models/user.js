@@ -7,6 +7,11 @@ const fetchAllUsers = async () => {
     const results = await query;
     return results;
 }
+const fetchUsersById = async (user_id) => {
+    const query = knex(USERS_TABLE).where({ user_id });
+    const results = await query;
+    return results;
+}
 const fetchUsersByName = async (username) => {
     const query = knex(USERS_TABLE).where({ username });
     const results = await query;
@@ -67,6 +72,7 @@ const authenticateUser = async (email, pword) => {
 }
    module.exports = {
     fetchAllUsers,
+    fetchUsersById,
     fetchUsersByName,
     createUser,
     updateUsername,
