@@ -1,22 +1,33 @@
 
 import { useState } from "react"
+import { useEffect } from "react";
 import { TextAreaField } from "../common"
 import { useNavigate } from "react-router-dom";
+import { Channel } from "./Channel/Channel";
+import { getChannels } from "../../api";
 
 export const Dashboard = () => {
 
-  const [theory, setTheory] = useState("");
+const [theory, setTheory] = useState("");
 
-  const navigate = useNavigate();//navigator
+const navigate = useNavigate();//navigator
+
+const [channels, setChannels] = useState("");
+
+useEffect(() => {
+      getChannels().then(x => setChannels(x));
+}, []);
+
+  if (!channels) {
+    return <>
+      loading...
+    </>
+  }
+
+
 
   return (
-
-
     <>
-
-
-
-
 <div class="overlay">
   <div class="p-5 text-center">
 
@@ -25,7 +36,6 @@ export const Dashboard = () => {
   </header>
   </div>
 </div>
-
 
 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
@@ -78,12 +88,19 @@ export const Dashboard = () => {
           <h2> Todays Top Theories </h2>
         </header>
       </div>
+      
+      {
+          channels.map((movieName) => {
+            <ul>
+              <li>{movieName}</li>
+            </ul>
+            
+          })
+      }
+      
 
 
-
-</>
-
- 
+ </>
 
   )
 }
