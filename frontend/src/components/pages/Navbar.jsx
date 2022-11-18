@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Channel } from "../../models";
 export const Navbar = ()=> {
     const path = window.location.pathname;
     const navigate = useNavigate();
@@ -28,6 +29,11 @@ export const Navbar = ()=> {
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
             <a className="nav-link" href="/Profile">Profile</a>
             </button>
+            </li>
+
+            <li className="nav-item">
+                <Link type='button' to={`${channel.channel_title}/${channel.channel_id}`}> See Comments
+                </Link>
             </li>
 
             <li className="nav-item">

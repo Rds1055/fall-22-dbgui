@@ -1,8 +1,31 @@
 import { useEffect,useState } from 'react';
+import { TextField } from '../../common';
 import {useNavigate, useParams} from 'react-router-dom';
 import {PostsList} from "./PostsList";
 import { Post,Channel } from '../../../models';
 export const Community = ({channel_id}) => {
+
+    //Michael: START OF SEARCH BAR STUFF 
+    const [class_, setClass_] = useState("hidden");
+
+    const changeView = () => {
+        console.log("here");
+        if (class_ === "hidden") {
+            setClass_("");
+        } else {
+            setClass_("hidden");
+        }
+    };
+
+    const [keyword, setKeyword] = useState('');
+    const [date, setDate] = useState('');
+    const [likes, setLikes] = useState('');
+    const [title, setTitle] = useState('');
+
+    //MICHAEL: END OF SEARCH BAR STUFF 
+
+
+
     const [channel,setChannel] = useState({});
     const navigate = useNavigate();
      //const movie = getCommentsByPost({post_id});
@@ -25,7 +48,43 @@ export const Community = ({channel_id}) => {
         new Post(3,0,"Is Aunt May single?",300,"Sept. 4, 2022","@johnBonesJones")
     ];
     
-return(
+return(<>
+    <div className='my-2 ms-2'>
+        <div className = "AdvancedSearch">
+            <button type="button" className="btn btn-primary btn-lg btn-block"
+                onClick={() => {
+                    changeView();
+                }}>
+                    Advanced Search
+            </button>
+        </div>
+    </div>
+
+
+    <div className='px-4'>
+        <div id = "SearchBars" className = { class_ }>
+
+            <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
+            <TextField label = "Search Date: " value = {date} setValue = {setDate} id = "Search-Date" type = "text"/>
+            <TextField label = "Minimum Likes: " value = {likes} setValue = {setLikes} id = "Minimum-Likes" type = "text"/>
+            <TextField label = "Search Title: " value = {title} setValue = {setTitle} id = "SearchWord" type = "text"/>
+
+            <button
+                type = "button" className="btn btn-primary btn-lg btn-block"
+                    onClick = {() => {
+                    setKeyword("");
+                    setDate("");
+                    setLikes("");
+                    setTitle("");
+                    }}
+                    >
+                    Search
+            </button>
+        </div>
+    </div>
+
+
+
     <div className='w-75 mx-auto rounded-3 mt-3'>
         <div className="card text-center">
             <div className="card-body col">
@@ -37,6 +96,10 @@ return(
          </div>
             <PostsList posts={posts}/>
     </div>
+
+
+
+    </>
     )
 
 

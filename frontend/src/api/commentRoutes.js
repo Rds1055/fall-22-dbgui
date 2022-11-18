@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:3001/comment";
+const baseEndpoint = "http://localhost:8000/comment";
 let apiConfig;
 
 export const getCommentsByPost = (post_id) => new Promise((resolve, reject) => {
