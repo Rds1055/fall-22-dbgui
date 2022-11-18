@@ -3,6 +3,7 @@ import { useState,useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Post, Comment } from '../../../models';
 export const Comments = () => {
+    // TESTING
     const navigate = useNavigate();
     //const comments = getCommentsByPost({post_id});
     // const post = getPostById({post_id});
