@@ -8,7 +8,7 @@ export const getToken = () => {
     return token;
 }
 
-export const login = (info, setLogin) => new Promise((resolve, reject) => {
+export const login = (info, setLogin = undefined) => new Promise((resolve, reject) => {
     axios.post(`${baseEndpoint}/session/`, info, apiConfig)
         .then(x => {
           token = x.data;

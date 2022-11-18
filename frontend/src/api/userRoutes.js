@@ -12,7 +12,7 @@ export const getUserById = (userId) => new Promise((resolve, reject) => {
         });
 });
 
-export const addUser = (user) => new Promise((resolve, reject) => {
+export const register = (user) => new Promise((resolve, reject) => {
     axios.post(`${ baseEndpoint }`, user, apiConfig)
         .then(x => resolve(x.data))
         .catch(x => {

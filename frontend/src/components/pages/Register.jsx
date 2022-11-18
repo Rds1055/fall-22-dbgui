@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { TextField } from "../common/index";
+import { TextField } from "../common";
 import {useNavigate} from 'react-router-dom';
+import { login, register } from "../../api";
+import { User } from "../../models";
 
 export const Register = () => {
     // Set states for username, email, and password
@@ -9,7 +11,7 @@ export const Register = () => {
     const [password, setPassword] = useState('');
 
     // Track if valid account credentials
-    const [valid, setValid] = useState(0);
+    const [loggedIn, setLoggedIn] = useState("success");
 
     // Navigator
     const navigate = useNavigate();
@@ -39,10 +41,14 @@ export const Register = () => {
                         <button
                             type = "button" class="btn btn-primary"
                             onClick = {() => {
+                                register(new User(username, email, password));
+                                login({username, password}, setLoggedIn);
                                 setUsername("");
                                 setEmail("");
                                 setPassword("");
-                                setValid(1);
+                                if (loggedIn === "success") {
+                                    navigate("/dashboard");
+                                }
                             }}
                         >
                             Create Account
@@ -50,7 +56,6 @@ export const Register = () => {
                     }
                     {/* Cancel (Go back to home) */}
                     <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
-                        
                         onClick = {() => {
                             navigate("/");
                         }}
@@ -58,17 +63,15 @@ export const Register = () => {
                         Cancel
                     </button>
                     {/* Successfully created an account */}
-                    {
-                        valid === 1 &&
+                    {/* {
+                        loggedIn === "success" &&
                         <p>You have successfully created an account!</p>
-                    }
+                    } */}
                     {/* Invalid credentials */}
                     {
-                        valid === -1 &&
+                        loggedIn === "failed" &&
                         <p className = "invalid-login">Invalid input</p>
                     }
-                    {/* Go to login */}
-                    
                 </form>
             </div>          
         </>
