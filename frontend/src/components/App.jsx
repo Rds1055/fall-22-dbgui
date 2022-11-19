@@ -1,6 +1,6 @@
 
 import { Community,Comments } from "./pages/channel";
-import { Home, Login, Navbar, Dashboard, TestSearchBars } from "./pages";
+import { Home, Login, Navbar, Dashboard, TestSearchBars, NotFound } from "./pages";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { AccountProvider } from "../context";
 
@@ -18,6 +18,7 @@ export const App = () => {
           <Route path=":channelName/:channelId/:postId" element={<Comments/>} ></Route>
           <Route path="/dashboard" element={<Dashboard/>} ></Route>
           <Route path="/TestSearchBars" element={<TestSearchBars/>} ></Route>
+          <Route path="*" element={<NotFound/>}></Route>
         </Routes>
       </Router>
     </AccountProvider>

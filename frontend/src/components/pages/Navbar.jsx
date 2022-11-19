@@ -43,12 +43,8 @@ export const Navbar = ()=> {
             {
                 account.username &&
                 <li className="nav-item">
-                <button type="button" className="btn btn-outline-primary btn-lg btn-block"
-                        onClick={() => {
-                            navigate("/");
-                            account.setAccount(undefined);
-                        }}>
-                <span className="nav-link">Logout</span>
+                <button type="button" className="btn btn-outline-primary btn-lg btn-block">
+                <a className="nav-link" href="/" onClick={account.setAccount(undefined)}>Logout</a>
                 </button>
                 </li>
             }
@@ -60,7 +56,9 @@ export const Navbar = ()=> {
                 <a className="nav-link" href="/login">Login</a>
                 </button>
                 </li>
-            }  
+            }
+
+            
 
             <form className = "d-flex align-items-center flex-nowrap">
                 <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -78,5 +76,14 @@ export const Navbar = ()=> {
 </nav>
 
 </div>
+    )
+}
+
+function CustomLink({href,children, ...props}){
+    const path = window.location.pathname
+    return (
+    <li className={path === href ? "active" : ""}>
+        <a href={href}{...props}>{children}</a>
+    </li>
     )
 }
