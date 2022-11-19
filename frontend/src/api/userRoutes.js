@@ -3,8 +3,8 @@ import axios from "axios";
 const baseEndpoint = "http://localhost:8000/user";
 let apiConfig;
 
-export const getUserById = (userId) => new Promise((resolve, reject) => {
-    axios.get(`${ baseEndpoint }/${ userId }`, apiConfig)
+export const getUserByUsername = (username) => new Promise((resolve, reject) => {
+    axios.get(`${ baseEndpoint }/${ username }`, apiConfig)
         .then(x => resolve(x.data))
         .catch(x => {
             alert(x);
