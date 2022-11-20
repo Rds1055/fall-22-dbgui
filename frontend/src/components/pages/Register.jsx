@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { TextField } from "../common";
+import { PasswordField, TextField } from "../common";
 import {useNavigate} from 'react-router-dom';
 import { login, register } from "../../api";
 import { User } from "../../models";
@@ -31,7 +31,7 @@ export const Register = () => {
                     {/* Email field */}
                     <TextField label = "Email: " value = {email} setValue = {setEmail} id = "register-email" type = "email"/>
                     {/* Password field */}
-                    <TextField label = "Password: " value = {password} setValue = {setPassword} id = "register-password" type = "password"/>
+                    <PasswordField label = "Password: " value = {password} setValue = {setPassword} id = "register-password"/>
 
                     {/* Submit button */}
                     {/* Disabled with no entered credentials */}

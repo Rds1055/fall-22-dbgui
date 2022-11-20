@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Modal, TextField } from "../common/index";
+import { Modal, TextField, PasswordField } from "../common/index";
 import {useNavigate} from 'react-router-dom';
 import { login } from "../../api";
 import { AccountContext } from "../../context";
@@ -30,9 +30,9 @@ export const Login = () => {
                 
                 <div class="form-outline w-50">
                     {/* Username field */}
-                    <TextField label = "Username: " value = {username} setValue = {setUsername} id = "login-username" type = "text"/>
+                    <TextField label = "Username: " value = {username} setValue = {setUsername} id = "login-username"/>
                     {/* Password field */}
-                    <TextField label = "Password: " value = {password} setValue = {setPassword} id = "login-password" type = "password"/>
+                    <PasswordField label = "Password: " value = {password} setValue = {setPassword} id = "login-password"/>
                 </div>
 
                 {/* Submit button */}
