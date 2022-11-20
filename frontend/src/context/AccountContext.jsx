@@ -1,9 +1,11 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useMemo } from "react";
 
 export const AccountContext = createContext(undefined);
 
 export const AccountProvider = ({ children }) => {
     const [ username, setUsername ] = useState(sessionStorage.username);
+
+    const context = useMemo(() => ({ username, setUsername }), [ username ]);
 
     useEffect(() => {
         if (username) {
@@ -11,7 +13,7 @@ export const AccountProvider = ({ children }) => {
         }
     }, [ username ]);
 
-    return <AccountContext.Provider value = {{ username, setUsername }}>
+    return <AccountContext.Provider value = {{ context }}>
         { children }
     </AccountContext.Provider>
 }
