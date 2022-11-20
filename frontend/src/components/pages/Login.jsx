@@ -21,14 +21,14 @@ export const Login = () => {
 
     // HTML for login form
     return <>
-        <div id = "login" className = "account-form container-fluid mt-5 row justify-content-center className='col me-3'">
+        <div id = "login" className = "account-form container-fluid mt-5 row justify-content-center col me-3">
             <header>
                 <h1>Login</h1>
             </header>
         
             <form name = "login" id = "login">
                 
-                <div class="form-outline w-50">
+                <div className="form-outline w-50">
                     {/* Username field */}
                     <TextField label = "Username: " value = {username} setValue = {setUsername} id = "login-username"/>
                     {/* Password field */}
