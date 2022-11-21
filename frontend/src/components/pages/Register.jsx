@@ -46,7 +46,7 @@ export const Register = () => {
                             type = "button" className="btn btn-primary"
                             onClick = {() => {
                                 register(new User(username, email, password, new Date()));
-                                login({username, password}, setLoggedIn);
+                                // login({username, password}, setLoggedIn);
                                 setUsername("");
                                 setEmail("");
                                 setPassword("");
