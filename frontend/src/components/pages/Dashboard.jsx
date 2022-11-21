@@ -9,22 +9,22 @@ import { Movie } from "../../models";
 
 export const Dashboard = () => {
 
-  const [theory, setTheory] = useState("");
+//   const [theory, setTheory] = useState("");
 
-  const navigate = useNavigate();//navigator
+//   const navigate = useNavigate();//navigator
 
-  const [channels, setChannels] = useState("");
+//   const [channels, setChannels] = useState("");
 
   
-  useEffect(() => {
-    getChannels().then(x => setChannels(x));
-  }, []);
+//   useEffect(() => {
+//     getChannels().then(x => setChannels(x));
+//   }, []);
 
-  if (!channels) {
-    return <>
-      loading...
-    </>
-  }
+//   if (!channels) {
+//     return <>
+//       loading...
+//     </>
+//   }
 
   return (
     <>
@@ -89,14 +89,14 @@ export const Dashboard = () => {
         </header>
       </div>
 
-      {
-        channels.map((movieName) => {
-          <ul>
-            <li>{movieName}</li>
-          </ul>
+      {/* {
+      //   channels.map((movieName) => {
+      //     <ul>
+      //       <li>{movieName}</li>
+      //     </ul>
 
-        })
-      }
+      //   })
+      // } */}
 
 
 

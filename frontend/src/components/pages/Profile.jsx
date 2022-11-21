@@ -4,19 +4,19 @@ import { getUserInfo } from "../../api";
 
 export const Profile = () => {
 
-    const [ user, setUser ] = useState(undefined);
+    // const [ user, setUser ] = useState(undefined);
 
-    useEffect(() => {
-        getUserInfo(x => {
-            setUser(x);
-        })
-    }, [ user ])
+    // useEffect(() => {
+    //     getUserInfo(x => {
+    //         setUser(x);
+    //     })
+    // }, [ user ])
 
-    if (!user) {
-        return <>
-            Loading...
-        </>
-    }
+    // if (!user) {
+    //     return <>
+    //         Loading...
+    //     </>
+    // }
 
 return(
 
@@ -24,14 +24,14 @@ return(
 
 <div className = "text-center pt-3">
     <header>
-<h3> Username: { user.username }</h3>
-
-<h3> Email: { user.email }</h3>
-
-<h3>Admin: { user.Admin }</h3>
-
-<h3>Date Joined: { user.date }</h3>
-
+<h3> Username: </h3>
+{/* { user.username } */}
+<h3> Email: </h3>
+{/* { user.email } */}
+<h3>Admin: </h3>
+{/* { user.Admin } */}
+<h3>Date Joined:</h3>
+ {/* { user.date } */}
 </header>
 
 </div>
