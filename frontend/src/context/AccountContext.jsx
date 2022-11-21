@@ -4,13 +4,13 @@ export const AccountContext = createContext(undefined);
 
 export const AccountProvider = ({ children }) => {
 
-    const [ username, setUsername ] = useState(sessionStorage.userName);
+    const [ username, setUsername ] = useState(sessionStorage.username);
 
     const context = useMemo(() => ({ username, setUsername }), [ username ]);
 
     useEffect(() => {
         if (username) {
-            sessionStorage.userName = username;
+            sessionStorage.username = username;
         }
     }, [ username ]);
 

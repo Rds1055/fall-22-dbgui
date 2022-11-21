@@ -49,7 +49,6 @@ export const Login = () => {
                     <button type="button" className="btn btn-primary"
                         onClick = {() => {
                             login({ username, password }, setLoggedIn).then(x => {
-                                debugger;
                                 account.setUsername(username);
                                 navigate("/dashboard");
                             });
