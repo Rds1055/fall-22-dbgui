@@ -55,11 +55,11 @@ const query = knex(USERS_TABLE).where({ email });
 const result = await query;
 return result;
 }
-const authenticateUser = async (email, pword) => {
-    const users = await fetchUserByEmail(email);
+const authenticateUser = async (username, pword) => {
+    const users = await fetchUsersByName(username);
     console.log('Results of users query', users);
     if (users.length === 0) {
-        console.error(`No users matched the email: ${email}`);
+        console.error(`No users matched the username: ${username}`);
         return null;
     }
     const user = users[0];

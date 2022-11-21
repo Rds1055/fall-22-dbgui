@@ -48,13 +48,13 @@ export const Login = () => {
                     username !== "" && password !== "" &&
                     <button type="button" className="btn btn-primary"
                         onClick = {() => {
-                            login({ username, password }, setLoggedIn);
+                            login({ username, password }, setLoggedIn).then(x => {
+                                account.setUsername(username);
+                                navigate("/dashboard");
+                            });
                             setUsername("");
                             setPassword("");
-                            if (loggedIn === "success") {
-                                account.setUsername(username)
-                                navigate("/dashboard");
-                            }
+                            
                         }}
                     >
                         Login

@@ -9,7 +9,7 @@ export const getToken = () => {
 }
 
 export const login = (info, setLogin = undefined) => new Promise((resolve, reject) => {
-    axios.post(`${baseEndpoint}/session/`, info, apiConfig)
+    axios.post(`${baseEndpoint}/`, info, apiConfig)
         .then(x => {
           token = x.data;
           apiConfig = {
