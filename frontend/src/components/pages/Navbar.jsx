@@ -30,7 +30,7 @@ export const Navbar = ()=> {
            
             <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-            <a className="nav-link" href="/Profile">Profile</a>
+            <a className="nav-link" href="/profile">Profile</a>
             </button>
             </li>
 
