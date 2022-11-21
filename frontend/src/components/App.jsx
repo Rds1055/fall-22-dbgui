@@ -1,13 +1,13 @@
 
 import { Community,Comments } from "./pages/channel";
 import { Home, Login, Navbar, Dashboard, TestSearchBars, NotFound } from "./pages";
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { AccountProvider } from "../context";
 
 export const App = () => {
   return <>
     <AccountProvider>
-      <Router>
+      <BrowserRouter>
         <Navbar></Navbar>
         <Routes>
           <Route path="/" element={<Home/>} ></Route>
@@ -20,7 +20,7 @@ export const App = () => {
           <Route path="/TestSearchBars" element={<TestSearchBars/>} ></Route>
           <Route path="*" element={<NotFound/>}></Route>
         </Routes>
-      </Router>
+      </BrowserRouter>
     </AccountProvider>
     
   </>;
