@@ -5,6 +5,11 @@ const fetchAllPosts = async () => {
     const results = await query;
     return results;
 }
+const fetchPostsById = async (post_id) => {
+    const query = knex(POSTS_TABLE).where({ post_id });
+    const results = await query;
+    return results;
+}
 const fetchPostsByName = async (title) => {
     const query = knex(POSTS_TABLE).where({ title });
     const results = await query;
@@ -16,7 +21,7 @@ const fetchPostsByUser = async (user_id) => {
     return results;
 }
 const updatePostName = async (title, post_id)  => {
-    const query = knex(POSTS_TABLE).update({username}).where({user_id});
+    const query = knex(POSTS_TABLE).update({title}).where({post_id});
     const results = await query;
     return results;
 }
@@ -32,6 +37,7 @@ const deletePost = async (post_id) => {
 }
    module.exports = {
     fetchAllPosts,
+    fetchPostsById,
     fetchPostsByName,
     fetchPostsByUser,
     createPost,

@@ -9,9 +9,19 @@ router.get('/:username', async (req, res, next) => {
     res.json(userByName);
     next();
 });
+router.get('/:user_id', async (req, res, next) => {
+    const userById = await req.models.user.fetchUsersById(req.query.user_id);
+    res.json(userById);
+    next();
+});
 router.get('/', async (req, res, next) => {
     const allUsers = await req.models.user.fetchAllUsers();
     res.json(allUsers);
+    next();
+});
+router.get('/:email', async (req, res, next) => {
+    const userByEmail = await req.models.user.fetchUserByEmail(req.query.email);
+    res.json(userByEmail);
     next();
 });
 router.post('/', async (req, res, next) => {
@@ -21,8 +31,18 @@ router.post('/', async (req, res, next) => {
     next();
  });
  router.put('/', async (req, res, next) => {
-    const updateUser = await req.models.user.updateUser(req.body.username, req.body.user_id);
+    const updateUser = await req.models.user.updateUsername(req.body.username, req.body.user_id);
     res.json(updateUser);
+    next();
+ });
+ router.put('/', async (req, res, next) => {
+    const updatePass = await req.models.user.updatePassword(req.body.username, req.body.pword);
+    res.json(updatePass);
+    next();
+ });
+ router.put('/', async (req, res, next) => {
+    const updateEmail = await req.models.user.updateEmail(req.body.username, req.body.email);
+    res.json(updateEmail);
     next();
  });
  router.delete('/', async (req, res, next) => {
