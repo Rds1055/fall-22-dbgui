@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Channel } from "../../models";
-import { useContext } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { AccountContext } from "../../context";
 
 export const Navbar = ()=> {
@@ -44,7 +44,12 @@ export const Navbar = ()=> {
                 account.username &&
                 <li className="nav-item">
                 <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-                <a className="nav-link" href="/" onClick={account.setUsername(undefined)}>Logout</a>
+                <a href="#" className = "nav-link" 
+                    onClick={ () => {
+                        account.setUsername(undefined);
+                        navigate("/");
+                    } 
+                }>Logout</a>
                 </button>
                 </li>
             }
