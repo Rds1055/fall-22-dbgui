@@ -11,7 +11,14 @@ export const Dashboard = () => {
 
   return (
 <>
+<div class="overlay">
+        <div class="p-5 text-center">
 
+          <header>
+            <h1>Welcome Back</h1>
+          </header>
+        </div>
+      </div>
     <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
     <div className="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -50,6 +57,13 @@ export const Dashboard = () => {
       <span className="visually-hidden">Next</span>
     </button>
   </div>
+
+  <div className="p-5 text-center">
+        <header>
+          <h2> Todays Top Theories </h2>
+        </header>
+      </div>
+
 
 </>
  
