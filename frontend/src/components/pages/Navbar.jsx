@@ -1,7 +1,14 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Channel } from "../../models";
+import { useContext } from "react";
+import { AccountContext } from "../../context";
+
 export const Navbar = ()=> {
     const path = window.location.pathname;
     const navigate = useNavigate();
+    const channel = new Channel(1,'Spidey Web','cb-spiderbob','Aug -1, 20202','Johnston and Johnston ate my weiner');
+    const account = useContext(AccountContext);
     return(
 <div className = "navigationBar">
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
@@ -20,7 +27,7 @@ export const Navbar = ()=> {
             <a className="nav-link" href="/dashboard">Dashboard</a>
             </button>
             </li>
-
+           
             <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
             <a className="nav-link" href="/Profile">Profile</a>
@@ -33,17 +40,25 @@ export const Navbar = ()=> {
             </button>
             </li>
 
-            <li className="nav-item">
-            <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-            <a className="nav-link" href="/login">Login</a>
-            </button>
-            </li>
+            {
+                account.username &&
+                <li className="nav-item">
+                <button type="button" className="btn btn-outline-primary btn-lg btn-block">
+                <a className="nav-link" href="/" onClick={account.setUsername(undefined)}>Logout</a>
+                </button>
+                </li>
+            }
 
-            {/* <li className="nav-item">
-            <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-            <a className="nav-link" href="/register">Register</a>
-            </button>
-            </li> */}
+            {
+                !account.username &&
+                <li className="nav-item">
+                <button type="button" className="btn btn-outline-primary btn-lg btn-block">
+                <a className="nav-link" href="/login">Login</a>
+                </button>
+                </li>
+            }
+
+            
 
             <form className = "d-flex align-items-center flex-nowrap">
                 <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -67,7 +82,7 @@ export const Navbar = ()=> {
 function CustomLink({href,children, ...props}){
     const path = window.location.pathname
     return (
-    <li classNameName={path === href ? "active" : ""}>
+    <li className={path === href ? "active" : ""}>
         <a href={href}{...props}>{children}</a>
     </li>
     )

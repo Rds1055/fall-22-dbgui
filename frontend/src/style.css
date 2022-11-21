@@ -24,9 +24,6 @@ html body {
   align-items: center;
   justify-content: center;
 
-  
-
- 
 } 
 
 /* Login/Register */
@@ -190,6 +187,9 @@ html body {
     z-index: 999;
   }
 
+  .hidden {
+    display: none;
+  }
   /* Modal */
   .modal-header
  {
@@ -220,6 +220,7 @@ header h2 {
   0px 0px 20px #b393d3;
   
 }
+
 
 header h3 {
   font-size: 50px;

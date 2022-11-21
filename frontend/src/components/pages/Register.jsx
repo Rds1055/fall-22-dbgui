@@ -1,6 +1,9 @@
-import { useState } from "react";
-import { TextField } from "../common/index";
+import { useState, useContext } from "react";
+import { PasswordField, TextField } from "../common";
 import {useNavigate} from 'react-router-dom';
+import { login, register } from "../../api";
+import { User } from "../../models";
+import { AccountContext } from "../../context";
 
 export const Register = () => {
     // Set states for username, email, and password
@@ -9,7 +12,10 @@ export const Register = () => {
     const [password, setPassword] = useState('');
 
     // Track if valid account credentials
-    const [valid, setValid] = useState(0);
+    const [loggedIn, setLoggedIn] = useState("success");
+
+    // Account context
+    const account = useContext(AccountContext);
 
     // Navigator
     const navigate = useNavigate();
@@ -25,7 +31,7 @@ export const Register = () => {
                     {/* Email field */}
                     <TextField label = "Email: " value = {email} setValue = {setEmail} id = "register-email" type = "email"/>
                     {/* Password field */}
-                    <TextField label = "Password: " value = {password} setValue = {setPassword} id = "register-password" type = "password"/>
+                    <PasswordField label = "Password: " value = {password} setValue = {setPassword} id = "register-password"/>
 
                     {/* Submit button */}
                     {/* Disabled with no entered credentials */}
@@ -37,12 +43,17 @@ export const Register = () => {
                     {
                         username !== "" && email !== "" && password !== "" &&
                         <button
-                            type = "button" class="btn btn-primary"
+                            type = "button" className="btn btn-primary"
                             onClick = {() => {
+                                register(new User(username, email, password, new Date()));
+                                login({username, password}, setLoggedIn);
                                 setUsername("");
                                 setEmail("");
                                 setPassword("");
-                                setValid(1);
+                                if (loggedIn === "success") {
+                                    account.setUsername(username);
+                                    navigate("/dashboard");
+                                }
                             }}
                         >
                             Create Account
@@ -50,25 +61,20 @@ export const Register = () => {
                     }
                     {/* Cancel (Go back to home) */}
                     <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
-                        
                         onClick = {() => {
                             navigate("/");
                         }}
                     >
                         Cancel
                     </button>
-                    {/* Successfully created an account */}
-                    {
-                        valid === 1 &&
-                        <p>You have successfully created an account!</p>
-                    }
                     {/* Invalid credentials */}
                     {
-                        valid === -1 &&
+                        loggedIn === "failed" &&
                         <p className = "invalid-login">Invalid input</p>
                     }
+
                     {/* Go to login */}
-                 
+
                 </form>
             </div>          
         </>

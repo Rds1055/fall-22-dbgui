@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:3001/session";
+const baseEndpoint = "http://localhost:8000/session";
 let apiConfig;
 let token;
 
@@ -8,7 +8,7 @@ export const getToken = () => {
     return token;
 }
 
-export const login = (info, setLogin) => new Promise((resolve, reject) => {
+export const login = (info, setLogin = undefined) => new Promise((resolve, reject) => {
     axios.post(`${baseEndpoint}/session/`, info, apiConfig)
         .then(x => {
           token = x.data;
