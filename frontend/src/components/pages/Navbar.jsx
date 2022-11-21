@@ -43,9 +43,13 @@ export const Navbar = ()=> {
             {
                 account.username &&
                 <li className="nav-item">
-                {/* <button type="button" className="btn btn-outline-primary btn-lg btn-block" onClick = { account.setUsername(undefined) }> */}
                 <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-                <a className="nav-link" href="/">Logout</a>
+                <a href="#" className = "nav-link" 
+                    onClick={ () => {
+                        account.setUsername(undefined);
+                        navigate("/");
+                    } 
+                }>Logout</a>
                 </button>
                 </li>
             }
