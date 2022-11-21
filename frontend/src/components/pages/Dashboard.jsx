@@ -6,25 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { Channel } from "./channel";
 import { getChannels } from "../../api";
 import { Movie } from "../../models";
+import { AllChannels } from "./AllChannels";
 
 export const Dashboard = () => {
-
-//   const [theory, setTheory] = useState("");
-
-//   const navigate = useNavigate();//navigator
-
-//   const [channels, setChannels] = useState("");
-
-  
-//   useEffect(() => {
-//     getChannels().then(x => setChannels(x));
-//   }, []);
-
-//   if (!channels) {
-//     return <>
-//       loading...
-//     </>
-//   }
 
   return (
 
@@ -83,21 +67,7 @@ export const Dashboard = () => {
       </div>
 
 
-      <div className="p-5 text-center">
-        <header>
-          <h2> Todays Top Theories </h2>
-        </header>
-      </div>
-
-      {/* {
-      //   channels.map((movieName) => {
-      //     <ul>
-      //       <li>{movieName}</li>
-      //     </ul>
-
-      //   })
-      // } */}
-
+      <AllChannels/>
 
 
     </>
