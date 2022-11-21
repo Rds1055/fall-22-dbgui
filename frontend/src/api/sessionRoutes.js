@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:8000/session";
+const baseEndpoint = "http://3.144.198.45:8000/session";
 let apiConfig;
 let token;
 
