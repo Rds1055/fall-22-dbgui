@@ -23,40 +23,30 @@ export const Login = () => {
     return <>
         <div id = "login" className = "account-form container-fluid mt-5 row justify-content-center col me-3">
             <header>
-
-        <h1>Login</h1>
-        </header>
-        <div class="form-group col-lg-5">
-
+                <h1>Login</h1>
+            </header>
+        
+            <form name = "login" id = "login">
+                
+                <div className="form-outline w-50">
                     {/* Username field */}
                     <TextField label = "Username: " value = {username} setValue = {setUsername} id = "login-username"/>
                     {/* Password field */}
+                    <PasswordField label = "Password: " value = {password} setValue = {setPassword} id = "login-password"/>
+                </div>
 
-                    <TextField label = "Password: " value = {password} setValue = {setPassword} id = "login-password" type = "password"/>
-                    {/* Submit button */}
-                    {/* Disabled with no entered credentials */}
-                    {
-                        (username === "" || password === "") && 
-                        <button type = "button" className="btn btn-secondary" disabled>Login</button>
-                    }
-                    {/* Enabled with entered credentials */}
-                    {
-                        username !== "" && password !== "" &&
-                        <button
-                            type = "button" className="btn btn-primary"
-                            onClick = {() => {
-                                setValid(verifyLogin(username, password));
-                                setUsername("");
-                                setPassword("");
-                            }}
-                        >
-                            Login
-                        </button>
-                    }
-                    {/* Cancel (Go back to home) */}
-                    <button
-                        type = "button" className="btn btn-primary"
-
+                {/* Submit button */}
+                {/* Disabled with no entered credentials */}
+                {
+                    (username === "" || password === "") && 
+                    <button type = "button" className = "btn btn-primary" disabled>Login</button>
+                
+                }
+            
+                {/* Enabled with entered credentials */}
+                {
+                    username !== "" && password !== "" &&
+                    <button type="button" className="btn btn-primary"
                         onClick = {() => {
                             login({ username, password }, setLoggedIn).then(x => {
                                 account.setUsername(username);

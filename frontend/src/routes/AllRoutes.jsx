@@ -7,5 +7,5 @@ export const AllRoutes = () => [
     { path: "/channel/:channelId/post/:postId", element: <Comments/> },
     { path: "/dashboard", element: <Dashboard/> },
     { path: "/TestSearchBars", element: <TestSearchBars/> },
-    { path: "*", element: <NotFound/> },
+    { path: "*", element: <NotFound/> }
 ]
