@@ -34,6 +34,7 @@ export const Home = () => {
             </div>
         </div>
 
+
         <Modal page = {"home"}/>
         </>
      )

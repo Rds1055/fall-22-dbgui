@@ -72,6 +72,9 @@ export const Register = () => {
                         loggedIn === "failed" &&
                         <p className = "invalid-login">Invalid input</p>
                     }
+
+                    {/* Go to login */}
+
                 </form>
             </div>          
         </>
