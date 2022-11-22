@@ -10,6 +10,11 @@ const fetchCommentsByUser = async (user_id) => {
     const results = await query;
     return results;
 }
+const fetchCommentsByPost = async (post_id) => {
+    const query = knex(COMMENTS_TABLE).where({ post_id });
+    const results = await query;
+    return results;
+}
 const fetchCommentsById = async (comment_id) => {
     const query = knex(COMMENTS_TABLE).where({ comment_id });
     const results = await query;
@@ -33,6 +38,7 @@ const deleteComment = async (comment_id) => {
    module.exports = {
     fetchAllComments,
     fetchCommentsByUser,
+    fetchCommentsByPost,
     fetchCommentsById,
     createComment,
     updateComment,

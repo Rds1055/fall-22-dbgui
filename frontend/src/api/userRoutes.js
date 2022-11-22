@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:8000/register";
+const baseEndpoint = "http://3.144.198.45:8000/register";
 let apiConfig;
 
 // export const getUserByUsername = (username) => new Promise((resolve, reject) => {
