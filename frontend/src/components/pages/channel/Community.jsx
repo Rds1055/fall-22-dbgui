@@ -35,16 +35,15 @@ export const Community = () => {
    
    
     const params = useParams();
-    console.log(params);
 
 
 
 
     useEffect(() => {
-        // console.log(params.channel_id)
-        getChannelById(params.channel_id).then(x => setChannel(x));
+        getChannelById(params.channel_id).then(x => setChannel(x[0]));
         getPostsByChannel(params.channel_id).then( x => setPosts(x));
-        console.log(channel)
+        console.log(channel.title)
+        console.log(channel.posts)
     }, []);
     
 
@@ -118,7 +117,7 @@ return(<>
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                    
-                        <NewContent user_name="STATE"/>
+                        {/* <NewContent user_name="STATE"/> */}
                     
                 
                             
