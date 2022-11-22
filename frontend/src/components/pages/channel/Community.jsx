@@ -27,7 +27,9 @@ export const Community = ({channel_id}) => {
     //MICHAEL: END OF SEARCH BAR STUFF 
 
 
+
     const [posts,setPosts] = useState(undefined);
+
     const [channel,setChannel] = useState({});
     const navigate = useNavigate();
    
@@ -90,7 +92,9 @@ return(<>
                     Search
             </button>
         </div>
+
         <button type='button' className='btn btn-primary float-end' data-bs-toggle="modal" data-bs-target="#postModal">New Comment</button>
+
     </div>
 
 
@@ -108,6 +112,7 @@ return(<>
     </div>
 
 
+
     <div className="modal fade" id="postModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
@@ -119,6 +124,7 @@ return(<>
                 </div>
             </div>
         </div>
+
     </>
     )
 

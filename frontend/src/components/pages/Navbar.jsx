@@ -37,6 +37,11 @@ export const Navbar = ()=> {
             </li>
 
             <li className="nav-item">
+                <Link type='button' to={`${channel.channel_title}/${channel.channel_id}`}> See Comments
+                </Link>
+            </li>
+
+            <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
             <a className="nav-link" href="SubmitTitle">Submit Title</a>
             </button>
