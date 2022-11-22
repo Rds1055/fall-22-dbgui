@@ -14,6 +14,11 @@ router.get('/', async (req, res, next) => {
     res.json(allComments);
     next();
 });
+router.get('/:comment_id', async (req, res, next) => {
+    const commentById = await req.models.comment.fetchCommentsById(req.query.comment_id);
+    res.json(commentById);
+    next();
+});
 router.post('/', async (req, res, next) => {
     const createComment = await req.models.comment.createComment(req.body.user_id, req.body.post_id, 
         req.body.contents, req.body.parent);
