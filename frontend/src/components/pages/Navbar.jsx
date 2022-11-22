@@ -29,11 +29,6 @@ export const Navbar = ()=> {
             <a className="nav-link" href="/dashboard">Dashboard</a>
             </button>
             </li>
-            <li >
-            <Link className='btn fs-6 border border-primary'type='button' to={`channel/${channel.channel_id}`}>
-                                                See Comments
-                                        </Link>
-            </li>
            
             <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">

@@ -43,6 +43,17 @@ export const Comments = () => {
                     <h6 className=' m-3 text-muted'>{post.num_comments} Comments</h6>
                 </div>      
             </div>
+            <div className="modal fade" id="postModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                   
+                        <NewContent user_name="STATE"/>
+                    
+                
+                            
+                </div>
+            </div>
+        </div>
         
        <ul className='list-unstyled '>
         {

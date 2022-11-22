@@ -13,15 +13,18 @@ export const NewContent = ({user_name,type}) => {
     const [user_id,setUser_id] = useState('');
     const [content,setContent] = useState('');
     const params = useParams();
-    const navigate = useNavigate();
-    
+    const [ user, setUser ] = useState(undefined);
+
     useEffect(() => {
         if (params.channel_id) {
-            setChannel_id(params.channel_id);
-            setUser_id('@me');
+            setChannel_id(params.channel_id).then(x => setChannel_id(x));
         } 
-        
+       
     }, []);
+   
+    useEffect(() => {
+       
+    }, [ user ])
     return(
         <div>
             <div className="modal-header">

@@ -43,12 +43,7 @@ export const Community = ({channel_id}) => {
         getPostsByChannel(params.channel_id).then( x => setChannel(x));
         
     }, []);
-
-
-
-
-
-
+    
 
 
     const channel1 = new Channel(0,"Spider Man 3","Aug 1, 1943","Peter Parker (Tobey Maguire) and M.J. (Kirsten Dunst) seem to finally be on the right track in their complicated relationship, but trouble looms for the superhero and his lover. Peter's Spider-Man suit turns black and takes control of him, not only giving Peter enhanced power but also bringing out the dark side of his personality. Peter must overcome the suit's influence as two supervillains, Sandman and Venom, rise up to destroy him and all those he holds dear.");
