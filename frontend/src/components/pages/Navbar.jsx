@@ -16,7 +16,7 @@ export const Navbar = ()=> {
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
 
     
-        <a className="ripple" href="./">
+        <a className="ripple" href="/">
         <img alt="example" className="img-fluid rounded-circle"src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/11-hands-on-crystal-ball-and-cryptocurrency-allan-swart.jpg" width="100" height="75"/>
     </a>
     
