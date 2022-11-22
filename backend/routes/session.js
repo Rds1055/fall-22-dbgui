@@ -1,6 +1,7 @@
 const express = require('express');
 const UserController = require('../controllers/user');
 const router = express.Router();
+const auth = require("../middleware/auth");
 router.post('/', async (req, res, next) => {
    try {
        const body = req.body;
@@ -16,5 +17,17 @@ router.post('/', async (req, res, next) => {
        res.status(500).json({ message: err.toString() });
    }
    next();
+})
+
+router.get('/', auth.authenticateJWT, async(req, res, next) => {
+    try {
+        const username = req.user.username;
+        const result = await req.models.user.findUserByUsername(username);
+        res.status(200).json(result);
+    } catch (err) {
+        console.error("Failed to get session:", err);
+        res.status(500).json({message: err.toString()});
+    }
+    next();
 })
 module.exports = router;
