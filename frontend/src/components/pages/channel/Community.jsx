@@ -5,7 +5,7 @@ import {PostsList} from "./PostsList";
 import { Post,Channel } from '../../../models';
 import { getChannelById, getPostsByChannel } from '../../../api';
 import { NewContent } from './NewContent';
-export const Community = ({channel_id}) => {
+export const Community = () => {
 
     //Michael: START OF SEARCH BAR STUFF 
     const [class_, setClass_] = useState("hidden");
@@ -30,7 +30,7 @@ export const Community = ({channel_id}) => {
 
     const [posts,setPosts] = useState(undefined);
 
-    const [channel,setChannel] = useState({});
+    const [channel,setChannel] = useState(undefined);
     const navigate = useNavigate();
    
    
@@ -41,9 +41,10 @@ export const Community = ({channel_id}) => {
 
 
     useEffect(() => {
-        getChannelById(params.channel_id).then(x => setPosts(x));
-        getPostsByChannel(params.channel_id).then( x => setChannel(x));
-        
+        // console.log(params.channel_id)
+        getChannelById(params.channel_id).then(x => setChannel(x));
+        getPostsByChannel(params.channel_id).then( x => setPosts(x));
+        console.log(channel)
     }, []);
     
 
@@ -54,7 +55,7 @@ export const Community = ({channel_id}) => {
         new Post(2,0,"Does Lizard man eat Uncle Ben?",-3,"Jan 5, 2025","@jake_from_stateFarm"),
         new Post(3,0,"Is Aunt May single?",300,"Sept. 4, 2022","@johnBonesJones")
     ];
-    console.log(channel,posts);
+
     if(!posts || !channel){
         return <>Loading...</>
     }
