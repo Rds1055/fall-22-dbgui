@@ -5,20 +5,25 @@
 } */
 
 html body {
-
+  
+  overflow-x: hidden;
+  position: relative;
   background-image: radial-gradient(
+    
     farthest-corner at 40px 40px,
     white 0%,
     black 40%
+    
+
   );
 
   background-repeat: no-repeat;
   background-size: 100%;
   min-width: 100vh;
-  min-height: 100vh;
+  min-height: 200vh;
   align-items: center;
   justify-content: center;
- 
+
 } 
 
 /* Login/Register */
@@ -108,6 +113,7 @@ html body {
   
 /* CSS for home page title */
   .perspective-text {
+    
     color: white;
     font-family: Arial;
     font-size: 58px;
@@ -117,6 +123,7 @@ html body {
   }
   
   .perspective-line {
+    
     height: 50px;
     overflow: hidden;
     position:relative;
@@ -167,10 +174,12 @@ html body {
   
   div.coolTitle > *{
     padding-top: 250px;
-    padding-right: 100px;
+    padding-right: auto;
     margin-left: -120px;
     margin-right: 0px;
     z-index: -999;
+    min-width: 100vh;
+    
 
   }
 
@@ -178,6 +187,9 @@ html body {
     z-index: 999;
   }
 
+  .hidden {
+    display: none;
+  }
   /* Modal */
   .modal-header
  {
@@ -198,3 +210,34 @@ html body {
   text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
     0px 0px 20px #b393d3;
 }
+
+
+header h2 {
+  font-size: 50px;
+  font-weight: 600;
+  color: #fdfdfe;
+  text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+  0px 0px 20px #b393d3;
+  
+}
+
+
+header h3 {
+  font-size: 50px;
+  font-weight: 600;
+  color: #fdfdfe;
+  text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+  0px 0px 20px #b393d3;
+  
+}
+
+.overlay { 
+  color:#fff;
+  position:absolute;
+  z-index:12;
+
+  left:0;
+  width:100%;
+  text-align:center;
+}
+
