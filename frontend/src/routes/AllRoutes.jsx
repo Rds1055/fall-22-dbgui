@@ -1,4 +1,4 @@
-import { Home, Login, Dashboard, TestSearchBars, NotFound, Community, Comments, Profile } from "../components/pages";
+import { Home, Login, Dashboard, TestSearchBars, NotFound, Community, Comments, Profile, ChannelSearch } from "../components/pages";
 
 export const AllRoutes = () => [
     { path: "", element: <Home/> },
@@ -8,5 +8,6 @@ export const AllRoutes = () => [
     { path: "/dashboard", element: <Dashboard/> },
     { path: "/TestSearchBars", element: <TestSearchBars/> },
     { path: "/profile", element: <Profile/> },
+    { path: "/channel-search/:search", element: <ChannelSearch/> },
     { path: "*", element: <NotFound/> }
 ]

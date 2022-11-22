@@ -7,3 +7,4 @@ export * from "./Dashboard";
 export * from "./channel";
 export * from "./NotFound";
 export * from "./Profile";
+export * from "./ChannelSearch";
