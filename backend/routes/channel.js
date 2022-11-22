@@ -9,18 +9,18 @@ router.get('/', async (req, res, next) => {
     res.json(allChannels);
     next();
 });
-router.get('/:title', async (req, res, next) => {
-    const channelByName = await req.models.channel.fetchChannelsByName(req.query.title);
+router.get('/title/:title', async (req, res, next) => {
+    const channelByName = await req.models.channel.fetchChannelsByName(req.params.title);
     res.json(channelByName);
     next();
 });
 router.get('/:channel_id', async (req, res, next) => {
-    const channelById = await req.models.channel.fetchChannelsById(req.query.channel_id);
+    const channelById = await req.models.channel.fetchChannelsById(req.params.channel_id);
     res.json(channelById);
     next();
 });
-router.get('/:movie_title', async (req, res, next) => {
-    const channelByMovie = await req.models.channel.fetchChannelsByMovie(req.query.movie_title);
+router.get('/movie/:movie_title', async (req, res, next) => {
+    const channelByMovie = await req.models.channel.fetchChannelsByMovie(req.params.movie_title);
     res.json(channelByMovie);
     next();
 });
