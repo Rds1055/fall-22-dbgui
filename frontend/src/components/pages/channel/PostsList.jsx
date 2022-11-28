@@ -1,7 +1,8 @@
 import {useNavigate} from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { Channel } from '../../../models';
-
+import { updatePost } from '../../../api';
+import { Post } from '../../../models';
 import "./postList.css";
 export const PostsList = ({posts}) => {
     const navigate = useNavigate();
@@ -24,7 +25,9 @@ return(
                             
                             <div className='row'>
                                 <div className='col-3'>
-                                    <a type='button' className=" arrow up"></a>
+                                    <a type='button' className=" arrow up" onClick={ 
+                                        updateLikes(post.post_id,post.likes+1)
+                                    }></a>
                                     <h6 className='ps-3 mt-1'>{post.likes}</h6>
                                     <a type='button' className="arrow down"></a>
                                 </div>
