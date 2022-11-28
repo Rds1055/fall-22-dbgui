@@ -6,8 +6,7 @@ import {NewContent} from "../../pages/channel/NewContent"
 import { getCommentsByPost } from '../../../api';
 import { getPostById } from '../../../api';
 export const Comments = () => {
-    // TESTING
-    const navigate = useNavigate();
+ 
    console.log(params);
    
     // const post = new Post(1,0,"The survival of the human race for the 300,000 years1 since we evolved has largely been attributed to our pack mentality.  People are incredibly social and depend on socialization for their mental health and physical health.  This pack mentality has been ingrained into our species which leads us to do things that do not necessarily benefit ourselves the most, but rather benefit our neighbor.  This act of selflessness is what has given humanity such great success.  In the case of the Plug virus, the ethical choice of whether to get the antidote or not is clear when viewed through the history of mankind and through more modern ethical frameworks.  Getting the antidote is a selfless act that not only benefits one’s neighbor, but also protects the recipient as well.  Through Christianity an rule utilitarianism, the act of receiving the antidote of the Plug virus is the most ethical choice and is necessary for the survival of mankind.  ",4000,"aug 99, 1023","@john_denver",3);
@@ -16,8 +15,8 @@ export const Comments = () => {
     //     new Comment(1,"@spongebob",1,"Peter Parker (Tobey Maguire) and M.J. (Kirsten Dunst) seem to finally be on the right track in their complicated relationship, but trouble loom","May 1,1997",0),
     //     new Comment(1,"@Jim",1,"Aunt May is hot","May 100,1997",1),
     //     ];
-    const [post,setPost] = useState({});
-    const [comments, setComments] = useState({});
+    const [post,setPost] = useState(undefined);
+    const [comments, setComments] = useState(undefined);
    
     const params = useParams();
     console.log(params);
@@ -25,9 +24,13 @@ export const Comments = () => {
         getPostById(params.post_id).then(x => setPost(x));
         getCommentsByPost(params.post_id).then(x => setComments(x));
         
-    }, []);
+    }, [comments]);
 
-    console.log(comments);
+    if(!comments){
+        return <>
+                Loading...
+                </>
+    }
     return(
         <div>
             <div className="card w-75 mx-auto m-3">          
