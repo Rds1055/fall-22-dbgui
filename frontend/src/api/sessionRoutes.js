@@ -6,6 +6,7 @@ let apiConfig;
 export const login = (info, setLogin = undefined) => new Promise((resolve, reject) => {
     axios.post(`${baseEndpoint}/`, info, apiConfig)
         .then(x => {
+          sessionStorage.token = x.data;
           if(setLogin){
             setLogin('success');
           }

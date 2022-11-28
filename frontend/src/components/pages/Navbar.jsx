@@ -11,8 +11,8 @@ export const Navbar = ()=> {
     const channel = new Channel(1,'Spidey Web','cb-spiderbob','Aug -1, 20202','Johnston and Johnston ate my weiner');
     const [ search, setSearch ] = useState("");
     
-    return(
-<div className = "navigationBar">
+    return(<>
+    <div className = "navigationBar large-view">
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
 
     
@@ -89,14 +89,37 @@ export const Navbar = ()=> {
 </nav>
 
 </div>
-    )
-}
+<div className = "navigationBar small-view">
+<nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
+    <div className = "container-fluid">
+    <a className="ripple" href="/">
+        <img alt="example" className="img-fluid rounded-circle"src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/11-hands-on-crystal-ball-and-cryptocurrency-allan-swart.jpg" width="100" height="75"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+    </div>
+    
+</nav>
+</div>
+    </>
 
-function CustomLink({href,children, ...props}){
-    const path = window.location.pathname
-    return (
-    <li className={path === href ? "active" : ""}>
-        <a href={href}{...props}>{children}</a>
-    </li>
     )
 }

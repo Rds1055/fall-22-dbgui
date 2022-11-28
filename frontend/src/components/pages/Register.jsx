@@ -43,7 +43,6 @@ export const Register = () => {
                             onClick = {() => {
                                 register(new User(username, email, password, new Date())).then(x => {
                                     login({username, password}, setLoggedIn).then(x => {
-                                        sessionStorage.token = x;
                                         navigate("/dashboard");
                                     });
                                 }).catch(x => {
