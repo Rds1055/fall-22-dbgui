@@ -2,7 +2,7 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
+ exports.up = function(knex) {
     return knex.schema.createTable('channels', (table) => {
         table.increments('channel_id').notNullable();
         table.integer('admin_id');
@@ -11,8 +11,9 @@ exports.up = function(knex) {
         table.integer('num_posts').defaultTo(0);
         table.string('director');
         table.string('lead_actor');
-        table.date('realease_date');
-        
+        table.date('release_date');
+        table.text('movie_sum');
+        table.index('channel_id');
     });
 };
 /**
