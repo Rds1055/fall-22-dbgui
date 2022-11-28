@@ -5,7 +5,7 @@ import {PostsList} from "./PostsList";
 import { Post,Channel } from '../../../models';
 import { getChannelById, getPostsByChannel } from '../../../api';
 import { NewContent } from './NewContent';
-export const Community = ({channel_id}) => {
+export const Community = () => {
 
     //Michael: START OF SEARCH BAR STUFF 
     const [class_, setClass_] = useState("hidden");
@@ -31,11 +31,24 @@ export const Community = ({channel_id}) => {
     const [posts,setPosts] = useState(undefined);
 
     const [channel,setChannel] = useState(undefined);
+   
+   
+    const params = useParams();
+
+
+
+
+    useEffect(() => {
+        getChannelById(params.channel_id).then(x => setChannel(x[0]));
+        getPostsByChannel(params.channel_id).then( x => setPosts(x));
+    }, []);
+
     const postsW = [
         new Post(1,0,"Who dies soon?",20,"aug 2,2022","@marvin23"),
         new Post(2,0,"Does Lizard man eat Uncle Ben?",-3,"Jan 5, 2025","@jake_from_stateFarm"),
         new Post(3,0,"Is Aunt May single?",300,"Sept. 4, 2022","@johnBonesJones")
     ];
+
    
    
     const params = useParams();
@@ -52,9 +65,9 @@ export const Community = ({channel_id}) => {
    
    
 
-    console.log("CP")
-    console.log(channel);
-    if( !channel){
+
+    if(!channel){
+
         return <>Loading...</>
     }
     
@@ -99,9 +112,9 @@ return(<>
 
 
     <div className='w-75 mx-auto rounded-3 mt-3'>
+
         <div className="card ">
             <div className="card-body">
-                <h2 className="card-title text-center">Spider Man 3: No Way Home</h2>
                 <div className=' px-4 pt-1 m-3'>
                     <h4 className="m-4 fs-6 card-text text-center">{channel[0].title}</h4>
                     <div className='row'>
@@ -129,8 +142,9 @@ return(<>
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                    
+
                         <NewContent user_name="STATE"/>
-                
+
                             
                 </div>
             </div>
