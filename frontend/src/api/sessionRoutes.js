@@ -2,25 +2,14 @@ import axios from "axios";
 
 const baseEndpoint = "http://3.144.198.45:8000/session";
 let apiConfig;
-let token;
-
-export const getToken = () => {
-    return token;
-}
 
 export const login = (info, setLogin = undefined) => new Promise((resolve, reject) => {
     axios.post(`${baseEndpoint}/`, info, apiConfig)
         .then(x => {
-          token = x.data;
-          apiConfig = {
-              headers: {
-                  Authorization: `Bearer ${token}`
-              }
-          };
-          resolve(x.data);
           if(setLogin){
             setLogin('success');
           }
+          resolve(x.data);
         })
         .catch(x => {
           if(setLogin){
@@ -31,6 +20,11 @@ export const login = (info, setLogin = undefined) => new Promise((resolve, rejec
 });
 
 export const getUserInfo = () => new Promise((resolve, reject) => {
+    apiConfig = {
+      headers: {
+          Authorization: `Bearer ${ sessionStorage.token }`
+      }
+    };
     axios.get(`${baseEndpoint}`, apiConfig)
         .then(x => resolve(x.data))
         .catch(x => {

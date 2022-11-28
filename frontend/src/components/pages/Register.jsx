@@ -1,9 +1,8 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { PasswordField, TextField } from "../common";
 import {useNavigate} from 'react-router-dom';
 import { login, register } from "../../api";
 import { User } from "../../models";
-import { AccountContext } from "../../context";
 
 export const Register = () => {
     // Set states for username, email, and password
@@ -13,9 +12,6 @@ export const Register = () => {
 
     // Track if valid account credentials
     const [loggedIn, setLoggedIn] = useState("success");
-
-    // Account context
-    const account = useContext(AccountContext);
 
     // Navigator
     const navigate = useNavigate();
@@ -47,7 +43,7 @@ export const Register = () => {
                             onClick = {() => {
                                 register(new User(username, email, password, new Date())).then(x => {
                                     login({username, password}, setLoggedIn).then(x => {
-                                        account.setUsername(username);
+                                        sessionStorage.token = x;
                                         navigate("/dashboard");
                                     });
                                 }).catch(x => {

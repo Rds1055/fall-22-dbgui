@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Channel } from "../../models";
-import { useContext, useEffect, useMemo, useState } from "react";
-import { AccountContext } from "../../context";
+import { useEffect, useMemo, useState } from "react";
 import { SearchField } from "../common";
+import { getUserInfo } from "../../api";
 
 export const Navbar = ()=> {
     const path = window.location.pathname;
     const navigate = useNavigate();
     const channel = new Channel(1,'Spidey Web','cb-spiderbob','Aug -1, 20202','Johnston and Johnston ate my weiner');
-    const account = useContext(AccountContext);
     const [ search, setSearch ] = useState("");
+    
     return(
 <div className = "navigationBar">
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
@@ -36,6 +36,11 @@ export const Navbar = ()=> {
             </button>
             </li>
 
+            {/* <li className="nav-item">
+                <Link type='button' to={`${channel.channel_title}/${channel.channel_id}`}> See Comments
+                </Link>
+            </li> */}
+
             <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
             <a className="nav-link" href="SubmitTitle">Submit Title</a>
@@ -43,12 +48,12 @@ export const Navbar = ()=> {
             </li>
 
             {
-                account.username &&
+                sessionStorage.token &&
                 <li className="nav-item">
                 <button type="button" className="btn btn-outline-primary btn-lg btn-block">
                 <a href="#" className = "nav-link" 
                     onClick={ () => {
-                        account.setUsername(undefined);
+                        delete sessionStorage.token;
                         navigate("/");
                     } 
                 }>Logout</a>
@@ -57,7 +62,7 @@ export const Navbar = ()=> {
             }
 
             {
-                !account.username &&
+                !sessionStorage.token &&
                 <li className="nav-item">
                 <button type="button" className="btn btn-outline-primary btn-lg btn-block">
                 <a className="nav-link" href="/login">Login</a>
@@ -68,7 +73,6 @@ export const Navbar = ()=> {
             
 
             <form className = "d-flex align-items-center flex-nowrap">
-                {/* <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/> */}
                 <SearchField value = { search } setValue = { setSearch } placeholder = "Search"/>
                 <button type="button" className="btn btn-primary" onClick={() => {
                         if (!search) {
