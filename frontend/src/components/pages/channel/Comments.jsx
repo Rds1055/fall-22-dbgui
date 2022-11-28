@@ -19,7 +19,7 @@ export const Comments = () => {
         getPostById(params.post_id).then(x => setPost(x));
         getCommentsByPost(params.post_id).then(x => setComments(x));
         
-    }, [comments]);
+    }, []);
 
     if(!comments){
         return <>
@@ -49,9 +49,6 @@ export const Comments = () => {
                                 <div className='col-9 pr-3' >
                                     <h6 className=" text-left px-3">{post.contents} </h6>
                                 </div>
-                
-                                
-                                
                             </div>
                         </div>
                     </div>
@@ -85,7 +82,7 @@ export const Comments = () => {
                         
                         <br />
                         
-                        <button type='button' className='btn btn-secondary btn-sm'>Reply</button>
+                        
                     </div>
                </div>
             </li>)

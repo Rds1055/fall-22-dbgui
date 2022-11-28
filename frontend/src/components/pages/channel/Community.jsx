@@ -37,7 +37,7 @@ export const Community = () => {
 
     useEffect(() => {
         getChannelById(params.channel_id).then(x => setChannel(x));
-        // getPostsByChannel(params.channel_id).then( x => setPosts(x));
+        getPostsByChannel(params.channel_id).then( x => setPosts(x));
         
     }, []);
  
@@ -87,12 +87,14 @@ return(<>
 
 
 
-    <div className='w-75 mx-auto rounded-3 mt-3'>
+    <div className='w-75 mx-auto rounded-3 mt-3 mb-5'>
 
         <div className="card ">
             <div className="card-body">
                 <div className=' px-4 pt-1 m-3'>
-                    <h4 className="m-4 fs-6 card-text text-center">{channel[0].title}</h4>
+                    <h4 className="m-4  card-text text-center">{channel[0].title}</h4>
+                    <br/>
+                    <h6 className='mb-4 fs-6 card-text text-center'>{channel[0].movie_sum}</h6>
                     <div className='row'>
                         <div className=''>
                             <h6 className=' text-muted m-1 left-0'>Director: <span className='text-dark'>{channel[0].director}</span>

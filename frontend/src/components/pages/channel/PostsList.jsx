@@ -21,7 +21,7 @@ if(!posts){
 
 }
 return(
-    <ul className='list-group list-unstyled w-50 mx-auto'>
+    <ul className='list-group list-unstyled w-50 mx-auto '>
         {
             posts.map((post,index) => 
                 <li key={index}className='content mt-3'>
@@ -35,13 +35,17 @@ return(
                             
                             <div className='row'>
                                 <div className='col-3'>
-                                    <a type='button' className=" arrow up" onClick={ 
-                                       updatePost(post.post_id,post.likes+1)
-                                    }></a>
-                                    <h6 className='ps-3 mt-1'>{post.likes}</h6>
-                                    <a type='button' className="arrow down" onClick={
-                                         updatePost(post.post_id,post.likes-1)
-                                    }></a>
+                                    <button type='button' className=" arrow up" onClick={ (post) => {
+                                            updatePost(post.post_id,post.likes+1)
+                                    } 
+                                       
+                                    }></button>
+                                    <h6 className='ps-3 mt-3 '>{post.likes}</h6>
+                                    <button type='button' className="arrow down" onClick={ (post) => {
+                                        updatePost(post.post_id,post.likes-1)
+                                    }
+                                         
+                                    }></button>
                                 </div>
                                 <div className='col-9 pr-3' >
                                     <h6 className=" text-left px-3">{post.contents} </h6>
@@ -52,7 +56,7 @@ return(
                                         <Link className='btn fs-6 border border-primary'type='button' to={`${post.post_id}`}>
                                                 See Comments
                                         </Link>
-                                        <span className="card-subtitle pt-2 text-primary float-end">{post.user}</span>
+                                        <span className="card-subtitle pt-2 text-primary float-end">@{post.user}</span>
                                     </div>
                                 </div>
                                 
