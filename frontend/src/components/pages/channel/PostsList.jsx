@@ -9,7 +9,17 @@ export const PostsList = ({posts}) => {
     
     const channel = new Channel(0,"Spidey-3","June 22, 1920","Spidey Good");
    
-    
+if(!posts){
+    return <> 
+        <div className='card w-50 mx-auto text-center p-4 m-4'>
+            <div className='card-title'>
+                <h4 className='text-muted'>No Posts Yet</h4>
+                <h6 className='text-muted'>Click 'New Post' to create a new post</h6>
+            </div>
+        </div>
+        </>
+
+}
 return(
     <ul className='list-group list-unstyled w-50 mx-auto'>
         {
@@ -26,13 +36,15 @@ return(
                             <div className='row'>
                                 <div className='col-3'>
                                     <a type='button' className=" arrow up" onClick={ 
-                                        updateLikes(post.post_id,post.likes+1)
+                                       updatePost(post.post_id,post.likes+1)
                                     }></a>
                                     <h6 className='ps-3 mt-1'>{post.likes}</h6>
-                                    <a type='button' className="arrow down"></a>
+                                    <a type='button' className="arrow down" onClick={
+                                         updatePost(post.post_id,post.likes-1)
+                                    }></a>
                                 </div>
                                 <div className='col-9 pr-3' >
-                                    <h6 className=" text-left px-3">{post.content} </h6>
+                                    <h6 className=" text-left px-3">{post.contents} </h6>
                                 </div>
                                 
                                 <div className=" pt-4 mb-0 ">
@@ -40,7 +52,7 @@ return(
                                         <Link className='btn fs-6 border border-primary'type='button' to={`${post.post_id}`}>
                                                 See Comments
                                         </Link>
-                                        <span className="card-subtitle pt-2 text-primary float-end">{post.user_id}</span>
+                                        <span className="card-subtitle pt-2 text-primary float-end">{post.user}</span>
                                     </div>
                                 </div>
                                 
