@@ -1,5 +1,6 @@
 const random = new (require('chance'));
 const bcrypt = require('bcrypt');
+const knex = require('../database/knex');
 
 const mixins = {
     user: (options = {}) => {
@@ -15,7 +16,7 @@ const mixins = {
     channel: (options = {}) => {
         return {
             admin_id: 1,
-            title: random.sentence(),
+            title: random.sentence({words:7}),
             movie_title: random.sentence({words:4}),
             director: random.name(),
             lead_actor: random.name(),
@@ -24,8 +25,10 @@ const mixins = {
     },
     post: (options = {}) => {
         return {
-            user_id: 4,
-            channel_id: random.integer({ min: 1, max: 4 }),
+            //username: knex.column('username').inTable('users').select(knex.raw("ORDER BY RAND() LIMIT 1")),
+            username: knex.raw("SELECT username FROM users ORDER BY RAND() LIMIT 1"),
+            // username:random.string(),
+            channel: random.integer({ min: 201, max: 220 }),
             title: random.sentence(),
             contents: random.paragraph(),
             ...options,
@@ -33,8 +36,9 @@ const mixins = {
     },
     comment: (options = {}) => {
         return {
-            user_id: random.integer({ min: 10, max: 60}),
-            post_id: random.integer({ min: 1, max: 50 }),
+            // username: knex.raw("SELECT username FROM users ORDER BY RAND() LIMIT 1"),
+            user: "NinaGreer",
+            post: random.integer({ min: 1, max: 5 }),
             contents: random.paragraph(),
             parent: random.integer({ min: 1, max: 20}),
             ...options,
