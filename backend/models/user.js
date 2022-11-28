@@ -1,8 +1,14 @@
 const knex = require('../database/knex');
 const bcrypt = require('bcrypt');
 const USERS_TABLE = 'users';
+
 const fetchAllUsers = async () => {
     const query = knex(USERS_TABLE);
+    const results = await query;
+    return results;
+}
+const fetchUsersById = async (user_id) => {
+    const query = knex(USERS_TABLE).where({ user_id });
     const results = await query;
     return results;
 }
@@ -11,8 +17,20 @@ const fetchUsersByName = async (username) => {
     const results = await query;
     return results;
 }
-const updateUsername = async (username, user_id)  => {
+const updateUsername = async (username, user_id) => {
     const query = knex(USERS_TABLE).update({username}).where({user_id});
+    const results = await query;
+    return results;
+}
+const updatePassword = async (username, newPassword) => {
+    const salt = await bcrypt.genSalt(10);
+    const newHashedPassword = await bcrypt.hash(newPassword, salt);
+    const query = knex(USERS_TABLE).update({pword:newHashedPassword}).where({username});
+    const results = await query;
+    return results;
+}
+const updateEmail = async (username, newEmail) => {
+    const query = knex(USERS_TABLE).update({email:newEmail}).where({username});
     const results = await query;
     return results;
 }
@@ -37,11 +55,11 @@ const query = knex(USERS_TABLE).where({ email });
 const result = await query;
 return result;
 }
-const authenticateUser = async (email, pword) => {
-    const users = await fetchUserByEmail(email);
+const authenticateUser = async (username, pword) => {
+    const users = await fetchUsersByName(username);
     console.log('Results of users query', users);
     if (users.length === 0) {
-        console.error(`No users matched the email: ${email}`);
+        console.error(`No users matched the username: ${username}`);
         return null;
     }
     const user = users[0];
@@ -54,9 +72,12 @@ const authenticateUser = async (email, pword) => {
 }
    module.exports = {
     fetchAllUsers,
+    fetchUsersById,
     fetchUsersByName,
     createUser,
     updateUsername,
+    updatePassword,
+    updateEmail,
     deleteUser,
     fetchUserByEmail,
     authenticateUser
