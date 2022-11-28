@@ -1,6 +1,27 @@
 const random = new (require('chance'));
 const bcrypt = require('bcrypt');
-const knex = require('../database/knex');
+const knex = require('knex')({
+    client: 'mysql',
+    debug: true,
+    connection: {
+      host : process.env.MYSQL_CLOUD_HOST,
+      port : process.env.MYSQL_PORT,
+      user : process.env.MYSQL_CLOUD_USER,
+      password : process.env.MYSQL_CLOUD_PASS,
+      ssl : true,
+      database : process.env.MYSQL_DB
+    },
+    pool: {
+      min: 0,
+      max: 10
+    },
+    seeds: {
+      directory: './seeds'
+    },
+    migrations: {
+      directory: './migrations'
+    }
+  });
 
 const mixins = {
     user: (options = {}) => {
@@ -26,9 +47,10 @@ const mixins = {
     post: (options = {}) => {
         return {
             //username: knex.column('username').inTable('users').select(knex.raw("ORDER BY RAND() LIMIT 1")),
-            username: knex.raw("SELECT username FROM users ORDER BY RAND() LIMIT 1"),
+            // user: knex.raw("SELECT username FROM users ORDER BY RAND() LIMIT 1"),
             // username:random.string(),
-            channel: random.integer({ min: 201, max: 220 }),
+            user: random.first().concat(random.last()),
+            channel: random.integer({ min: 0, max: 1000 }),
             title: random.sentence(),
             contents: random.paragraph(),
             ...options,
@@ -36,11 +58,10 @@ const mixins = {
     },
     comment: (options = {}) => {
         return {
-            // username: knex.raw("SELECT username FROM users ORDER BY RAND() LIMIT 1"),
-            user: "NinaGreer",
-            post: random.integer({ min: 1, max: 5 }),
+            user: random.first().concat(random.last()),
+            post: random.integer({ min: 0, max: 1000 }),
             contents: random.paragraph(),
-            parent: random.integer({ min: 1, max: 20}),
+            parent: null,
             ...options,
         }
     }
