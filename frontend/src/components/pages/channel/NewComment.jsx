@@ -1,18 +1,41 @@
 import { TextAreaField,TextField } from "../../common";
-import { Post } from "../../../models";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
+import { addPost,addComment,getUserInfo} from "../../../api/";
 import { useNavigate } from "react-router-dom";
-import { addPost} from "../../../api/postRoutes";
-import {addComment} from "../../../api/commentRoutes"
-
 export const NewComment = ({post}) => {
     const [contents,setContents] = useState(undefined);
     const [user,setUser] = useState(undefined);
     const [title,setTitle] = useState(undefined);
-   
-  
+   const navigate = useNavigate();
+    useEffect(() => {
+        if (sessionStorage.token) {
+            getUserInfo().then(x => setUser(x));
+        } 
+    },[]);
+
+    if (!user) {
+        return <>
+            <div className='card p-4 m-4 border-0'>
+                <div className=''>
+                    <h4>You must be logged in to post</h4>
+                    <h6>Click 'Login' to log in or 'cancel' to go back</h6>
+                </div>
+                <div className=''>
+                    <button type="button" className=" m-3 btn btn-secondary " data-bs-dismiss='modal' 
+                        >Cancel
+                    </button>
+                    <button type='button'  className='btn btn-primary' data-bs-dismiss='modal'
+                        onClick={
+                            navigate('/login')
+                        }
+                        >Login
+                    </button>
+                    
+
+                </div>
+            </div>
+        </>
+    }
     return(
         <div>
             <div className="modal-header">
