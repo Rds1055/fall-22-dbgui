@@ -21,6 +21,7 @@ const mixins = {
             director: random.name(),
             lead_actor: random.name(),
             release_date: random.date(),
+            movie_sum: random.paragraph(),
             ...options
         }
     },
