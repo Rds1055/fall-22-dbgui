@@ -26,8 +26,8 @@ const updateChannelName = async (title, channel_id)  => {
     const results = await query;
     return results;
 }
-const createChannel = async (admin_id, title, movie_title) => {
-    const query = knex(CHANNELS_TABLE).insert({admin_id, title, movie_title});
+const createChannel = async (body) => {
+    const query = knex(CHANNELS_TABLE).insert({...body});
     const results = await query;
     return results;
 }
