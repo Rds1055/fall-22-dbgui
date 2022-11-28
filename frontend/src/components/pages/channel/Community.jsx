@@ -30,32 +30,31 @@ export const Community = ({channel_id}) => {
 
     const [posts,setPosts] = useState(undefined);
 
-    const [channel,setChannel] = useState({});
-    const navigate = useNavigate();
-   
-   
-    const params = useParams();
-    console.log(params);
-
-
-
-
-    useEffect(() => {
-        getChannelById(params.channel_id).then(x => setPosts(x));
-        getPostsByChannel(params.channel_id).then( x => setChannel(x));
-        
-    }, []);
-    
-
-
-    const channel1 = new Channel(0,"Spider Man 3","Aug 1, 1943","Peter Parker (Tobey Maguire) and M.J. (Kirsten Dunst) seem to finally be on the right track in their complicated relationship, but trouble looms for the superhero and his lover. Peter's Spider-Man suit turns black and takes control of him, not only giving Peter enhanced power but also bringing out the dark side of his personality. Peter must overcome the suit's influence as two supervillains, Sandman and Venom, rise up to destroy him and all those he holds dear.");
+    const [channel,setChannel] = useState(undefined);
     const postsW = [
         new Post(1,0,"Who dies soon?",20,"aug 2,2022","@marvin23"),
         new Post(2,0,"Does Lizard man eat Uncle Ben?",-3,"Jan 5, 2025","@jake_from_stateFarm"),
         new Post(3,0,"Is Aunt May single?",300,"Sept. 4, 2022","@johnBonesJones")
     ];
-    console.log(channel,posts);
-    if(!posts || !channel){
+   
+   
+    const params = useParams();
+    console.log("P")
+    console.log(params);
+    useEffect(() => {
+        getChannelById(params.channelId).then(x => setChannel(x));
+        // getPostsByChannel(params.channelId).then( x => setPosts(x));
+        setPosts(postsW);
+        
+    }, [ posts ]);
+    
+
+   
+   
+
+    console.log("CP")
+    console.log(channel);
+    if( !channel){
         return <>Loading...</>
     }
     
@@ -68,6 +67,8 @@ return(<>
                 }}>
                     Advanced Search
             </button>
+            <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Post</button>
+        <br className='clearfix'/>
         </div>
     </div>
 
@@ -93,18 +94,29 @@ return(<>
             </button>
         </div>
 
-        <button type='button' className='btn btn-primary float-end' data-bs-toggle="modal" data-bs-target="#postModal">New Comment</button>
-
     </div>
 
 
 
     <div className='w-75 mx-auto rounded-3 mt-3'>
-        <div className="card text-center">
-            <div className="card-body col">
-                <h2 className="card-title">{channel.channel_title}</h2>
+        <div className="card ">
+            <div className="card-body">
+                <h2 className="card-title text-center">Spider Man 3: No Way Home</h2>
                 <div className=' px-4 pt-1 m-3'>
-                        <span className="m-4 fs-6 card-text">{channel.summary}</span>
+                    <h4 className="m-4 fs-6 card-text text-center">{channel[0].title}</h4>
+                    <div className='row'>
+                        <div className=''>
+                            <h6 className=' text-muted m-1 left-0'>Director: <span className='text-dark'>{channel[0].director}</span>
+                                <span className='float-end'>Release Date: <span className='text-dark'>{channel[0].release_date}</span> </span></h6>
+                        
+                            <h6 className='text-muted m-1 left-0'>Lead: <span className='text-dark ps-0'>{channel[0].lead_actor}</span>
+                                <span className='float-end'>{channel[0].num_posts} Posts</span></h6>
+                        </div>
+                       
+                           
+                       
+                    </div>
+                   
                 </div>
             </div>
          </div>
@@ -118,7 +130,6 @@ return(<>
                 <div className="modal-content">
                    
                         <NewContent user_name="STATE"/>
-                    
                 
                             
                 </div>

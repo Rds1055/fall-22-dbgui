@@ -6,25 +6,25 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { addPost} from "../../../api/postRoutes";
 import {addComment} from "../../../api/commentRoutes"
-
-export const NewContent = ({user_name,type}) => {
-    const [post_id,setpost_id] = useState(0);
-    const [channel_id,setChannel_id] = useState(0);
-    const [user_id,setUser_id] = useState('');
+import { useContext } from "react";
+import { AccountContext } from "../../../context";
+export const NewContent = ({postId,commentId}) => {
     const [content,setContent] = useState('');
+
     const params = useParams();
-    const [ user, setUser ] = useState(undefined);
+    const context = useContext(AccountContext);
+    const userName = useState(undefined);
+
 
     useEffect(() => {
         if (params.channel_id) {
-            setChannel_id(params.channel_id).then(x => setChannel_id(x));
+            setChannel_id(params.channel_id);
+           
         } 
        
     }, []);
    
-    useEffect(() => {
-       
-    }, [ user ])
+  
     return(
         <div>
             <div className="modal-header">
@@ -33,21 +33,18 @@ export const NewContent = ({user_name,type}) => {
             <div className="modal-body">
                  <div id = "register" className = "account-form container-fluid mt-5 row justify-content-center className='col me-3'">
                 <form name = "register">
-                    <TextAreaField label='Reply' value = {content} setValue={setContent}/>
+                    <TextAreaField label='Reply' 
+                        value = {content} 
+                        setValue={setContent}/>
 
-                        {/* Submit button */}
+                     
         
-                        {/* Enabled with entered credentials */}
+                
                         {
                         
                             <button
                                 type = "button" className="btn btn-secondary" data-bs-dismiss='modal'
                                 onClick = {() => {
-                                    if(type='comment'){
-                                        addComment()
-                                    }else{
-                                    // addPost(post_id,channel_id,content,0,new Date().toDateString(),0);
-                                    }
                                     setContent('');
                                 }}
                             >
@@ -57,7 +54,15 @@ export const NewContent = ({user_name,type}) => {
                         {/* Cancel (Go back to home) */}
                         <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
                         onClick={() => {
-                            // addComment(post_id,channel_id,content,0,new Date().toDateString(),0);
+                            if(commentId!=-1){
+                                var id = undefined;
+                                com = new Comment(id,context.user_id,postId,content,new Date().toDateString())
+                                addComment(comm);
+                            }else{
+                                p = new Post(postId,params.channelId,content,0,new Date().toDateString(),userName,0);
+                                addPost(p);
+                            }
+                            
                             setContent('');
                             }
                         }

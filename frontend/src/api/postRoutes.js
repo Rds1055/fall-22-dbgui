@@ -51,4 +51,5 @@ export const updatePost = (postId, params) => new Promise((resolve, reject) => {
             alert(x);
             reject(x);
         });
-})
+});
+
