@@ -10,14 +10,6 @@ export const Navbar = ()=> {
     const navigate = useNavigate();
     const channel = new Channel(1,'Spidey Web','cb-spiderbob','Aug -1, 20202','Johnston and Johnston ate my weiner');
     const [ search, setSearch ] = useState("");
-    const [ test, setTest ] = useState(undefined);
-    useEffect(() => {
-        setTest(getUserInfo())
-    })
-
-    if (test) {
-        debugger;
-    }
     
     return(
 <div className = "navigationBar">
