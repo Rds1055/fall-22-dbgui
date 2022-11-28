@@ -1,4 +1,4 @@
-import { Home, Login, Dashboard, TestSearchBars, NotFound, Profile, ChannelSearch } from "../components/pages";
+import { Home, Login, Dashboard, TestSearchBars, NotFound, Profile, ChannelSearch, SubmitTitle } from "../components/pages";
 import { Community, Comments} from "../components/pages/channel";
 
 export const AllRoutes = () => [
@@ -7,6 +7,7 @@ export const AllRoutes = () => [
     { path: "/channel/:channel_id", element: <Community/> },
     { path: "/channel/:channel_id/post/:post_id", element: <Comments/> },
     { path: "/dashboard", element: <Dashboard/> },
+    { path: "/submitTitle", element: <SubmitTitle/> },
     { path: "/TestSearchBars", element: <TestSearchBars/> },
     { path: "/profile", element: <Profile/> },
     { path: "/channel-search/:search", element: <ChannelSearch/> },

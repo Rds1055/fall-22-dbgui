@@ -8,3 +8,4 @@ export * from "./channel";
 export * from "./NotFound";
 export * from "./Profile";
 export * from "./ChannelSearch";
+export * from "./SubmitTitle";

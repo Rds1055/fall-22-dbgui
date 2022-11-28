@@ -4,6 +4,7 @@ import { Channel } from "../../models";
 import { useEffect, useMemo, useState } from "react";
 import { SearchField } from "../common";
 import { getUserInfo } from "../../api";
+import { SubmitTitle } from "./SubmitTitle";
 
 export const Navbar = ()=> {
     const path = window.location.pathname;
@@ -38,7 +39,7 @@ export const Navbar = ()=> {
 
             <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-            <a className="nav-link" href="SubmitTitle">Submit Title</a>
+            <a className="nav-link" href="/submitTitle">Submit Title</a>
             </button>
             </li>
 
