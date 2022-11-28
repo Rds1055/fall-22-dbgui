@@ -46,8 +46,7 @@ router.get('/:comment_id', async (req, res, next) => {
 });
 router.post('/', async (req, res, next) => {
     try {
-        const createComment = await req.models.comment.createComment(req.body.user_id, req.body.post_id, 
-            req.body.contents, req.body.parent);
+        const createComment = await req.models.comment.createComment(req.body);
         res.status(201).json(createComment);
     } catch (err) {
         console.error("Failed to create comment:", err);

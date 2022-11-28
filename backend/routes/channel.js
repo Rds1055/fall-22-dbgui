@@ -46,7 +46,7 @@ router.get('/movie/:movie_title', async (req, res, next) => {
 });
 router.post('/', async (req, res, next) => {
     try {
-        const createChannel = await req.models.channel.createChannel(req.body.admin_id, req.body.title, req.body.movie_title);
+        const createChannel = await req.models.channel.createChannel(req.body);
         res.status(201).json(createChannel);
     } catch (err) {
         console.error("Failed to create channel:", err);

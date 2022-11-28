@@ -56,8 +56,7 @@ router.get('/', async (req, res, next) => {
 });
 router.post('/', async (req, res, next) => {
     try {
-        const createPost = await req.models.post.createPost(req.body.user_id, req.body.channel_id, 
-            req.body.title, req.body.contents);
+        const createPost = await req.models.post.createPost(req.body);
         res.status(201).json(createPost);
     } catch (err) {
         console.error("Failed to create post:", err);
