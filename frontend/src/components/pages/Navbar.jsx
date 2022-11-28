@@ -1,16 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Channel } from "../../models";
-import { useContext, useEffect, useMemo, useState } from "react";
-import { AccountContext } from "../../context";
+import { useEffect, useMemo, useState } from "react";
 import { SearchField } from "../common";
+import { getUserInfo } from "../../api";
 
 export const Navbar = ()=> {
     const path = window.location.pathname;
     const navigate = useNavigate();
     const channel = new Channel(1,'Spidey Web','cb-spiderbob','Aug -1, 20202','Johnston and Johnston ate my weiner');
-    const account = useContext(AccountContext);
     const [ search, setSearch ] = useState("");
+    const [ test, setTest ] = useState(undefined);
+    useEffect(() => {
+        setTest(getUserInfo())
+    })
+
+    if (test) {
+        debugger;
+    }
+    
     return(
 <div className = "navigationBar">
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
@@ -48,12 +56,12 @@ export const Navbar = ()=> {
             </li>
 
             {
-                account.username &&
+                sessionStorage.token &&
                 <li className="nav-item">
                 <button type="button" className="btn btn-outline-primary btn-lg btn-block">
                 <a href="#" className = "nav-link" 
                     onClick={ () => {
-                        account.setUsername(undefined);
+                        delete sessionStorage.token;
                         navigate("/");
                     } 
                 }>Logout</a>
@@ -62,7 +70,7 @@ export const Navbar = ()=> {
             }
 
             {
-                !account.username &&
+                !sessionStorage.token &&
                 <li className="nav-item">
                 <button type="button" className="btn btn-outline-primary btn-lg btn-block">
                 <a className="nav-link" href="/login">Login</a>
