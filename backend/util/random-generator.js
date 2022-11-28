@@ -20,14 +20,15 @@ const mixins = {
             movie_title: random.sentence({words:4}),
             director: random.name(),
             lead_actor: random.name(),
-            release_date: random.date()
+            release_date: random.date(),
+            ...options
         }
     },
     post: (options = {}) => {
         return {
             //username: knex.column('username').inTable('users').select(knex.raw("ORDER BY RAND() LIMIT 1")),
-            username: knex.raw("SELECT username FROM users ORDER BY RAND() LIMIT 1"),
-            // username:random.string(),
+            // username: knex.raw("SELECT username FROM users ORDER BY RAND() LIMIT 1"),
+            user:random.string(),
             channel: random.integer({ min: 201, max: 220 }),
             title: random.sentence(),
             contents: random.paragraph(),

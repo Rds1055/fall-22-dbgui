@@ -5,6 +5,6 @@ const random = require('../util/random-generator');
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  const posts = random.n(random.post, 50);
-  await knex('posts').insert(posts);
+  const comments = random.n(random.comment, 50);
+  await knex('comments').insert(comments);
 };
