@@ -1,8 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Modal, TextField, PasswordField } from "../common/index";
 import {useNavigate} from 'react-router-dom';
 import { login } from "../../api";
-import { AccountContext } from "../../context";
 
 export const Login = () => {
 
@@ -12,9 +11,6 @@ export const Login = () => {
     const [password, setPassword] = useState('');
     // Bool to track if valid login
     const [loggedIn, setLoggedIn] = useState("success");
-
-    // Account context
-    const account = useContext(AccountContext);
 
     // Navigator
     const navigate = useNavigate();
@@ -49,7 +45,7 @@ export const Login = () => {
                     <button type="button" className="btn btn-primary"
                         onClick = {() => {
                             login({ username, password }, setLoggedIn).then(x => {
-                                account.setUsername(username);
+                                sessionStorage.token = x;
                                 navigate("/dashboard");
                             });
                             setUsername("");
