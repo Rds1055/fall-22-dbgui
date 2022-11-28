@@ -36,10 +36,10 @@ export const Navbar = ()=> {
             </button>
             </li>
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
                 <Link type='button' to={`${channel.channel_title}/${channel.channel_id}`}> See Comments
                 </Link>
-            </li>
+            </li> */}
 
             <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
@@ -73,7 +73,6 @@ export const Navbar = ()=> {
             
 
             <form className = "d-flex align-items-center flex-nowrap">
-                {/* <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/> */}
                 <SearchField value = { search } setValue = { setSearch } placeholder = "Search"/>
                 <button type="button" className="btn btn-primary" onClick={() => {
                         if (!search) {
