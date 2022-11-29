@@ -12,7 +12,7 @@ export const RestrictedContent = () => {
             <div className=''>
                 <button type="button" className=" m-3 btn btn-secondary "
                     onClick = {() => {
-                        navigate(-1);
+                        navigate("/");
                     }} 
                     >Cancel
                 </button>

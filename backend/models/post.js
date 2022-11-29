@@ -10,6 +10,23 @@ const fetchPostsById = async (post_id) => {
     const results = await query;
     return results;
 }
+const fetchPosts = async (query) => {
+    const sql = knex(POSTS_TABLE).where((qb) => {
+        if (query.date) {
+            qb.where("post_date", ">", query.date)
+        }
+        
+        if (query.likes) {
+            qb.orWhere("likes", ">", query.likes)
+        }
+
+        if (query.keyword) {
+            qb.orWhere("contents", "like", `%${query.keyword}%`)
+        }
+    })
+    const results = await sql;
+    return results;
+}
 const fetchPostsByName = async (title) => {
     const query = knex(POSTS_TABLE).where({ title });
     const results = await query;
@@ -38,8 +55,9 @@ const updatePost = async (post_id, post)  => {
         const likes = post.likes;
         const query = await knex(POSTS_TABLE).update({likes}).where({post_id});
     }
-    const results = await knex(POSTS_TABLE).where({ post_id });
-    return results;
+    const sql = knex(POSTS_TABLE).where({ post_id });
+    const result = await sql;
+    return result;
 }
 const createPost = async (body) => {
     const query = knex(POSTS_TABLE).insert({...body});
@@ -54,6 +72,7 @@ const deletePost = async (post_id) => {
    module.exports = {
     fetchAllPosts,
     fetchPostsById,
+    fetchPosts,
     fetchPostsByName,
     fetchPostsByUser,
     fetchPostsByChannel,
