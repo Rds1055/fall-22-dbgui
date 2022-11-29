@@ -1,8 +1,11 @@
 export class Comment{
-    constructor(user_id,post_id,contents,post_date){
-        this.user_id=user_id;
-        this.post_id=post_id;
+    constructor(post,comment_id,user,contents,parent,likes,post_date){
+        this.user=user;
+        this.post=post;
+        this.comment_id=comment_id;
         this.contents=contents;
+        this.parent=parent;
+        this.likes=likes;
         this.post_date=post_date;
     }
 }
