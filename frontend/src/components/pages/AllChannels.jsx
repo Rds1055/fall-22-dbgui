@@ -9,7 +9,7 @@ import { Movie } from "../../models";
 export const AllChannels = () => {
     const [channels, setChannels] = useState(undefined);
 
-  
+    const navigate = useNavigate();
     useEffect(() => {
         getChannels().then(x => setChannels(x));
     }, []);
@@ -23,14 +23,18 @@ export const AllChannels = () => {
     return <>
         <div className="p-5 text-center">
         <header>
-          <h2> Todays Top Theories </h2>
+          <h2> Channels </h2>
         </header>
       </div>
         <div>
             {
                 channels.map((channel, index) => 
                     <div key = { index }>
-                        <h3>{ channel.title }</h3>
+                        <h3 className="text-center pt-4">
+                            <button type="button" className="btn btn-outline-primary" onClick={() => navigate(`/channel/${channel.id}`)}>
+                                { channel.title }
+                            </button>
+                        </h3>
                     </div>
                     
                 )
