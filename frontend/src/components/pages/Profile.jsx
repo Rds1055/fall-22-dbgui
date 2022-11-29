@@ -6,6 +6,7 @@ import { getUserInfo } from "../../api";
 export const Profile = () => {
 
     const [ user, setUser ] = useState(undefined);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,6 +16,7 @@ export const Profile = () => {
             navigate("/restricted-content");
         }
     }, [])
+
 
     if (!user) {
         return <>
@@ -29,6 +31,7 @@ return(
 <div className = "text-center pt-3 text-light">
     <header>
 <h3> Username: </h3>
+
 { user[0].username }
 <h3> Email: </h3>
 { user[0].email }
@@ -36,6 +39,7 @@ return(
 { user[0].is_admin }
 <h3>Date Joined:</h3>
  { user[0].user_since }
+
 </header>
 
 </div>
