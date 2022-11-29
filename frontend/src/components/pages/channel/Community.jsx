@@ -1,7 +1,6 @@
 import { useEffect,useState } from 'react';
 import { TextField } from '../../common';
 import { useNavigate, useParams} from 'react-router-dom';
-import {PostsList} from "./PostsList";
 import { Post,Channel } from '../../../models';
 import { getChannelById, getPostsByChannel, getUserInfo } from '../../../api';
 import { NewComment, NewPost,PostsList } from './';
