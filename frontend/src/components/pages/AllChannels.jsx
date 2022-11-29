@@ -26,7 +26,7 @@ export const AllChannels = () => {
           <h2> Channels </h2>
         </header>
       </div>
-        <div>
+        <div className=' w-50 mx-auto border border-white'>
             {
                 channels.map((channel, index) => 
                     <div key = { index }>
