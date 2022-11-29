@@ -35,18 +35,16 @@ return(
                             <br className='clearfix'/>
                             
                             <div className='row'>
-                                <div className='col-3 my-auto mx-auto'>
-                                   
-                                <div className='d-flex justify-content-center'>
-                                    <button type='button' className="  arrow up" onClick={ (post) => {
-                                                updatePost(post.post_id,post.likes+1)
-                                        }                                        
+                                <div className='col-3'>
+                                    <button type='button' className=" arrow up" onClick={ (post) => {
+                                            updatePost(post.post_id,post.likes+1)
+                                    } 
+                                       
                                     }></button>
-                                </div>
-                                <h6 className='my-2 ms-3 text-center'>300</h6>
-                                <div className='d-flex justify-content-center'>
-                                    <button type='button' className="  arrow down " onClick={ (post) => {
-                                        updatePost(post.post_id,post.likes-1)
+                                    <h6 className='ps-3 mt-3 '>{post.likes}</h6>
+                                    <button type='button' className="arrow down" onClick={ (post) => {
+                                        updatePost(post.post_id, {likes: post.likes-1})
+
                                     }
                                     }></button>
                                 </div>
@@ -67,7 +65,7 @@ return(
                                 
                             </div>
                         </div>
-                    </div>
+                    
                     
                 
                 </li>)

@@ -27,7 +27,7 @@ export const getChannels = (params) => new Promise((resolve, reject) => {
 });
 
 export const addChannel = (channel) => new Promise((resolve, reject) => {
-    axios.channel(`${ baseEndpoint }`, channel, apiConfig)
+    axios.post(`${ baseEndpoint }`, channel, apiConfig)
         .then(x => resolve(x.data))
         .catch(x => {
             alert(x);

@@ -30,6 +30,9 @@ export const ChannelSearch = () => {
         <div className='card text-center w-75 mx-auto mt-4 p-4'>
             {
                 (channels.filter(x => {
+                    if (!x.title) {
+                        return false;
+                    }
                     return x.title.toLowerCase().includes(search.toLowerCase());
                 }).map(channel => 
                     <div key = { channel.channel_id }>

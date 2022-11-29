@@ -1,8 +1,11 @@
 import { useEffect,useState } from 'react';
 import { TextField } from '../../common';
-import {useParams} from 'react-router-dom';
-import { getChannelById, getPostsByChannel} from '../../../api';
-import { NewPost,PostsList } from './';
+import {useNavigate, useParams} from 'react-router-dom';
+import { Post,Channel } from '../../../models';
+import { getChannelById, getPostsByChannel, getUserInfo } from '../../../api';
+import { NewComment, NewPost,PostsList } from './';
+import { LoginModal } from '../../common';
+
 export const Community = () => {
 
     //Michael: START OF SEARCH BAR STUFF 
@@ -25,7 +28,7 @@ export const Community = () => {
     //MICHAEL: END OF SEARCH BAR STUFF 
 
 
-
+    const [user,setUser] = useState(undefined);
     const [posts,setPosts] = useState(undefined);
     const [channel,setChannel] = useState(undefined);
     const params = useParams();
@@ -33,9 +36,10 @@ export const Community = () => {
     useEffect(() => {
         getChannelById(params.channel_id).then(x => setChannel(x));
         getPostsByChannel(params.channel_id).then( x => setPosts(x));
-        
+        if (sessionStorage.token) {
+            getUserInfo().then(x => setUser(x));
+        } 
     }, []);
- 
 
 
     if(!channel){
@@ -112,17 +116,15 @@ export const Community = () => {
 
 
 
-    <div className="modal fade" id="postModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                   
-
-                        <NewPost channel={channel}/>
-
-                            
-                </div>
-            </div>
-        </div>
+    <LoginModal 
+        user = { user } 
+        alternative = {
+            <NewPost 
+                user = { user }
+                channel = { channel } 
+            />
+        }
+    />
 
     </>
     )

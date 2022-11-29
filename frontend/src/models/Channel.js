@@ -3,6 +3,7 @@ export class Channel {
         this.director=director;
         this.lead_actor=lead_actor;
         this.movie_sum=movie_sum;
+        this.num_posts=num_posts;
         this.release_date=release_date;
         this.title=title;
     }
