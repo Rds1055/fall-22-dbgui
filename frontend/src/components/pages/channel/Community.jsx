@@ -43,7 +43,6 @@ export const Community = () => {
             getUserInfo().then(x => setUser(x));
         } 
     }, []);
- 
 
 
     if(!channel){
