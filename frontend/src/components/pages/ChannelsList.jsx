@@ -6,13 +6,8 @@ import { Channel } from "./channel";
 import { getChannels } from "../../api";
 import { Movie } from "../../models";
 
-export const AllChannels = () => {
-    const [channels, setChannels] = useState(undefined);
-
+export const ChannelsList = ({ channels }) => {
     const navigate = useNavigate();
-    useEffect(() => {
-        getChannels().then(x => setChannels(x));
-    }, []);
 
     if (!channels) {
         return <>

@@ -72,7 +72,7 @@ export const Navbar = ()=> {
                 <SearchField value = { search } setValue = { setSearch } placeholder = "Search"/>
                 <button type="button" className="btn btn-primary" onClick={() => {
                         if (!search) {
-                            navigate(`/channel-search/ `);
+                            navigate(`/channel-search`);
                         } else {
                             navigate(`/channel-search/${ search }`);
                         }
@@ -150,7 +150,7 @@ export const Navbar = ()=> {
     <SearchField value = { search } setValue = { setSearch } placeholder = "Search"/>
     <button type="button" className="btn btn-primary" onClick={() => {
             if (!search) {
-                navigate(`/channel-search/ `);
+                navigate(`/channel-search`);
             } else {
                 navigate(`/channel-search/${ search }`);
             }
