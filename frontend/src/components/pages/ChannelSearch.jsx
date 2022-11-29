@@ -25,9 +25,9 @@ export const ChannelSearch = () => {
 
     return <>
         <div>
-            <SearchField value = { search } setValue = { setSearch }/>
+            {/* <SearchField value = { search } setValue = { setSearch }/> */}
         </div>
-        <div>
+        <div className='card text-center w-75 mx-auto mt-4 p-4'>
             {
                 (channels.filter(x => {
                     if (!x.title) {
@@ -36,6 +36,7 @@ export const ChannelSearch = () => {
                     return x.title.toLowerCase().includes(search.toLowerCase());
                 }).map(channel => 
                     <div key = { channel.channel_id }>
+
                         <Link to = {`/channel/${channel.channel_id}`}>
                             { channel.title }
                         </Link>
