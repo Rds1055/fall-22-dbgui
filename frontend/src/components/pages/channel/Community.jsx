@@ -1,10 +1,8 @@
 import { useEffect,useState } from 'react';
 import { TextField } from '../../common';
-import {useNavigate, useParams} from 'react-router-dom';
-import {PostsList} from "./PostsList";
-import { Post,Channel } from '../../../models';
-import { getChannelById, getPostsByChannel, getUserInfo } from '../../../api';
-import { NewComment, NewPost } from './';
+import {useParams} from 'react-router-dom';
+import { getChannelById, getPostsByChannel} from '../../../api';
+import { NewPost,PostsList } from './';
 export const Community = () => {
 
     //Michael: START OF SEARCH BAR STUFF 
@@ -32,9 +30,6 @@ export const Community = () => {
     const [channel,setChannel] = useState(undefined);
     const params = useParams();
 
-
-
-
     useEffect(() => {
         getChannelById(params.channel_id).then(x => setChannel(x));
         getPostsByChannel(params.channel_id).then( x => setPosts(x));
@@ -46,8 +41,7 @@ export const Community = () => {
     if(!channel){
         return <>Loading...</>
     }
-    
-return(<>
+    return(<>
     <div className='my-2 ms-2'>
         <div className = "AdvancedSearch">
             <button type="button" className="btn btn-primary btn-lg btn-block"

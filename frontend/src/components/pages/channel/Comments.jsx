@@ -8,13 +8,13 @@ import { getPostById,updatePost } from '../../../api';
 
 export const Comments = () => {
  
-   console.log(params);
+ 
    
     const [post,setPost] = useState(undefined);
     const [comments, setComments] = useState(undefined);
    
     const params = useParams();
-    console.log(params);
+    
     useEffect(() => {
         getPostById(params.post_id).then(x => setPost(x));
         getCommentsByPost(params.post_id).then(x => setComments(x));
