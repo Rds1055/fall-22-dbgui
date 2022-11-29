@@ -12,6 +12,7 @@ const fetchPostsById = async (post_id) => {
 }
 const fetchPosts = async (query) => {
     const sql = knex(POSTS_TABLE).where((qb) => {
+        qb.where("channel", "=", query.channel);
         if (query.date) {
             qb.where("post_date", ">", query.date)
         }
