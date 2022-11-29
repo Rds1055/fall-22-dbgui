@@ -25,8 +25,7 @@ const fetchPostsByChannel = async (channel) => {
     const results = await query;
     return results;
 }
-const updatePost = async (post)  => {
-    const post_id = post.post_id;
+const updatePost = async (post_id, post)  => {
     if (post.title) {
         const title = post.title;
         const query = await knex(POSTS_TABLE).update({title}).where({post_id});
