@@ -30,13 +30,12 @@ router.get('/', async (req, res, next) => {
     next();
 });
 router.post('/', async (req, res, next) => {
-    const createPost = await req.models.post.createPost(req.body.user_id, req.body.channel_id, 
-        req.body.title, req.body.contents);
+    const createPost = await req.models.post.createPost(req.body.user_id, req.body.channel_id, req.body.title, req.body.contents);
     res.status(201).json(createPost);
     next();
  });
  router.put('/', async (req, res, next) => {
-    const updatePost = await req.models.post.updatePost(req.body.title, req.body.contents, req.body.post_id);
+    const updatePost = await req.models.post.updatePostName(req.body.title, req.body.post_id);
     res.json(updatePost);
     next();
  });
