@@ -64,9 +64,9 @@ router.post('/', async (req, res, next) => {
     }
     next();
  });
- router.put('/', async (req, res, next) => {
+ router.put('/:post_id', async (req, res, next) => {
     try {
-        const updatePost = await req.models.post.updatePostName(req.body.title, req.body.post_id);
+        const updatePost = await req.models.post.updatePost(req.params.post_id, req.body);
         res.status(200).json(updatePost);
     } catch (err) {
         console.error("Failed to update post:", err);

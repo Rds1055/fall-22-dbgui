@@ -5,11 +5,11 @@ import { updatePost } from '../../../api';
 import { Post } from '../../../models';
 import "./postList.css";
 export const PostsList = ({posts}) => {
-    const navigate = useNavigate();
     
-    const channel = new Channel(0,"Spidey-3","June 22, 1920","Spidey Good");
-   
-if(!posts){
+    
+    
+   console.log(posts);
+if(posts.length==0){
     return <> 
         <div className='card w-50 mx-auto text-center p-4 m-4'>
             <div className='card-title'>
@@ -20,6 +20,7 @@ if(!posts){
         </>
 
 }
+
 return(
     <ul className='list-group list-unstyled w-50 mx-auto '>
         {
@@ -35,14 +36,14 @@ return(
                             
                             <div className='row'>
                                 <div className='col-3'>
-                                    <button type='button' className=" arrow up" onClick={ (post) => {
-                                            updatePost(post.post_id,post.likes+1)
+                                    <button type='button' className=" arrow up" onClick={ () => {
+                                        updatePost(post.post_id, {likes: post.likes+1})
                                     } 
                                        
                                     }></button>
                                     <h6 className='ps-3 mt-3 '>{post.likes}</h6>
                                     <button type='button' className="arrow down" onClick={ (post) => {
-                                        updatePost(post.post_id,post.likes-1)
+                                        updatePost(post.post_id, {likes: post.likes-1})
                                     }
                                          
                                     }></button>

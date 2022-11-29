@@ -1,17 +1,17 @@
 import { useEffect,useState } from 'react';
 import { TextField } from '../../common';
-import {useNavigate, useParams} from 'react-router-dom';
-import {PostsList} from "./PostsList";
+import { useNavigate, useParams} from 'react-router-dom';
 import { Post,Channel } from '../../../models';
-import { getChannelById, getPosts, getPostsByChannel, getUserInfo } from '../../../api';
-import { NewComment, NewPost } from './';
+import { getChannelById, getPostsByChannel, getPosts, getUserInfo } from '../../../api';
+import { NewComment, NewPost,PostsList } from './';
+import { LoginModal } from '../../common';
+
 export const Community = () => {
 
     //Michael: START OF SEARCH BAR STUFF 
     const [class_, setClass_] = useState("hidden");
 
     const changeView = () => {
-        console.log("here");
         if (class_ === "hidden") {
             setClass_("");
         } else {
@@ -27,27 +27,26 @@ export const Community = () => {
     //MICHAEL: END OF SEARCH BAR STUFF 
 
 
-
+    const [user,setUser] = useState(undefined);
     const [posts,setPosts] = useState(undefined);
     const [channel,setChannel] = useState(undefined);
     const params = useParams();
 
-
-
-
     useEffect(() => {
         getChannelById(params.channel_id).then(x => setChannel(x));
         getPostsByChannel(params.channel_id).then( x => setPosts(x));
-        
+        if (sessionStorage.token) {
+            getUserInfo().then(x => setUser(x));
+        } 
     }, []);
- 
+
+    const navigate = useNavigate();
 
 
     if(!channel){
         return <>Loading...</>
     }
-    
-return(<>
+    return(<>
     <div className='my-2 ms-2'>
         <div className = "AdvancedSearch">
             <button type="button" className="btn btn-primary btn-lg btn-block"
@@ -56,7 +55,15 @@ return(<>
                 }}>
                     Advanced Search
             </button>
-            <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Post</button>
+            {
+                sessionStorage.token &&
+                <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Post</button>
+            }
+            {
+                !sessionStorage.token &&
+                <button type='button' className='btn btn-primary float-end m-2' 
+                    onClick = {() => { navigate("/restricted-content")}}>New Post</button>
+            }
         <br className='clearfix'/>
         </div>
     </div>
@@ -105,6 +112,7 @@ return(<>
                         
                             <h6 className='text-muted m-1 left-0'>Lead: <span className='text-dark ps-0'>{channel[0].lead_actor}</span>
                                 <span className='float-end'>{channel[0].num_posts} Posts</span></h6>
+                                <span className='clearfix'></span>
                         </div>
                        
                            
@@ -120,18 +128,16 @@ return(<>
     </div>
 
 
-
     <div className="modal fade" id="postModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered">
-                <div className="modal-content">
-                   
-
-                        <NewPost channel={channel}/>
-
-                            
-                </div>
+        <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content h-100">
+                <NewPost 
+                    user = { user }
+                    channel = { channel } 
+                />
             </div>
         </div>
+    </div>
 
     </>
     )
