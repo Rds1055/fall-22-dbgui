@@ -11,6 +11,10 @@ export const Navbar = ()=> {
     const navigate = useNavigate();
     const channel = new Channel(1,'Spidey Web','cb-spiderbob','Aug -1, 20202','Johnston and Johnston ate my weiner');
     const [ search, setSearch ] = useState("");
+
+    const userProfile = () => {
+        getUserInfo().then(x => navigate(`/profile/${x[0].username}`));
+    }
     
     return(<>
     <div className = "navigationBar large-view">
@@ -33,7 +37,11 @@ export const Navbar = ()=> {
            
             <li className="nav-item">
             <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-            <a className="nav-link" href="/profile">Profile</a>
+            <a className="nav-link" 
+                onClick = {() => {
+                    userProfile();
+                }}
+            >My Profile</a>
             </button>
             </li>
 
@@ -111,7 +119,11 @@ export const Navbar = ()=> {
 
 <li className="nav-item">
 <button type="button" className="btn btn-outline-primary btn-lg btn-block">
-<a className="nav-link" href="/profile">Profile</a>
+<a className="nav-link" 
+    onClick = {() => {
+        userProfile();
+    }}
+>My Profile</a>
 </button>
 </li>
 
