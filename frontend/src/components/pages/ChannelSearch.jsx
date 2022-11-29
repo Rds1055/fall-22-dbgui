@@ -30,6 +30,9 @@ export const ChannelSearch = () => {
         <div>
             {
                 (channels.filter(x => {
+                    if (!x.title) {
+                        return false;
+                    }
                     return x.title.toLowerCase().includes(search.toLowerCase());
                 }).map(channel => 
                     <div key = { channel.channel_id }>

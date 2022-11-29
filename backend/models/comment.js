@@ -5,13 +5,13 @@ const fetchAllComments = async () => {
     const results = await query;
     return results;
 }
-const fetchCommentsByUser = async (user_id) => {
-    const query = knex(COMMENTS_TABLE).where({ user_id });
+const fetchCommentsByUser = async (user) => {
+    const query = knex(COMMENTS_TABLE).where({ user });
     const results = await query;
     return results;
 }
-const fetchCommentsByPost = async (post_id) => {
-    const query = knex(COMMENTS_TABLE).where({ post_id });
+const fetchCommentsByPost = async (post) => {
+    const query = knex(COMMENTS_TABLE).where({ post });
     const results = await query;
     return results;
 }
@@ -25,8 +25,8 @@ const updateComment = async (contents, comment_id)  => {
     const results = await query;
     return results;
 }
-const createComment = async (user_id, post_id, contents, parent) => {
-    const query = knex(COMMENTS_TABLE).insert({user_id, post_id, contents, parent});
+const createComment = async (body) => {
+    const query = knex(COMMENTS_TABLE).insert({...body});
     const results = await query;
     return results;
 }

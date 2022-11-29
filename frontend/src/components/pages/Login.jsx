@@ -45,7 +45,6 @@ export const Login = () => {
                     <button type="button" className="btn btn-primary"
                         onClick = {() => {
                             login({ username, password }, setLoggedIn).then(x => {
-                                sessionStorage.token = x;
                                 navigate("/dashboard");
                             });
                             setUsername("");
