@@ -44,6 +44,19 @@ export const getPostsByChannel = (channelId) => new Promise((resolve, reject) =>
         });
 });
 
+export const getFilteredPostsByChannel = (params) => new Promise((resolve, reject) => {
+    let _apiConfig = { ...apiConfig };
+    if (params) {
+        _apiConfig.params = params;
+    }
+    axios.get(`${ baseEndpoint }`, _apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+})
+
 export const updatePost = (postId, params) => new Promise((resolve, reject) => {
     axios.put(`${ baseEndpoint }/${ postId }`, params, apiConfig)
         .then(x => resolve(x.data))
