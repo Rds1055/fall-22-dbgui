@@ -100,6 +100,7 @@ export const Community = () => {
                         
                             <h6 className='text-muted m-1 left-0'>Lead: <span className='text-dark ps-0'>{channel[0].lead_actor}</span>
                                 <span className='float-end'>{channel[0].num_posts} Posts</span></h6>
+                                <span className='clearfix'></span>
                         </div>
                        
                            

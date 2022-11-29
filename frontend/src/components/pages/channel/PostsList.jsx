@@ -36,18 +36,17 @@ return(
                             
                             <div className='row'>
                                 <div className='col-3'>
-                                    <button type='button' className=" arrow up" onClick={ (post) => {
-                                            updatePost(post.post_id,post.likes+1)
+                                    <button type='button' className=" arrow up" onClick={ () => {
+                                        updatePost(post.post_id, {likes: post.likes+1})
                                     } 
                                        
                                     }></button>
                                     <h6 className='ps-3 mt-3 '>{post.likes}</h6>
                                     <button type='button' className="arrow down" onClick={ (post) => {
                                         updatePost(post.post_id, {likes: post.likes-1})
-
                                     }
+                                         
                                     }></button>
-                                </div>
                                 </div>
                                 <div className='col-9 pr-3' >
                                     <h6 className=" text-left px-3">{post.contents} </h6>
@@ -65,7 +64,7 @@ return(
                                 
                             </div>
                         </div>
-                    
+                    </div>
                     
                 
                 </li>)
