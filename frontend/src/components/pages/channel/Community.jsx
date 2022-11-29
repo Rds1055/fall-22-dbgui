@@ -75,18 +75,18 @@ export const Community = () => {
             <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
             <TextField label = "Search Date: " value = {date} setValue = {setDate} id = "Search-Date" type = "text"/>
             <TextField label = "Minimum Likes: " value = {likes} setValue = {setLikes} id = "Minimum-Likes" type = "text"/>
-            <TextField label = "Search Title: " value = {title} setValue = {setTitle} id = "SearchWord" type = "text"/>
 
             <button
-                type = "button" className="btn btn-primary btn-lg btn-block"
+                type = "submit" className="btn btn-primary btn-lg btn-block"
                     onClick = {() => {
-                    getPosts(keyword);
-
+                    getPosts(keyword, date, likes).then(x => setPosts(x));
+                    
                     setKeyword("");
                     setDate("");
                     setLikes("");
-                    setTitle("");
-                    <PostsList posts={posts}/>
+
+                    // <PostsList posts={posts}/>
+
                     }}
                     >
                     Search
