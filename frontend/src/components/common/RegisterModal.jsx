@@ -1,7 +1,7 @@
-import { Register } from "../../pages";
+import { Register } from "../pages";
 import {useNavigate} from 'react-router-dom';
 
-export const Modal = ({page}) => {
+export const RegisterModal = ({page}) => {
 
     const navigate = useNavigate();
 
