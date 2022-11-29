@@ -8,3 +8,4 @@ export class Channel {
         this.title=title;
     }
 }
+
