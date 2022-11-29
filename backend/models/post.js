@@ -25,9 +25,21 @@ const fetchPostsByChannel = async (channel) => {
     const results = await query;
     return results;
 }
-const updatePostName = async (title, post_id)  => {
-    const query = knex(POSTS_TABLE).update({title}).where({post_id});
-    const results = await query;
+const updatePost = async (post)  => {
+    const post_id = post.post_id;
+    if (post.title) {
+        const title = post.title;
+        const query = await knex(POSTS_TABLE).update({title}).where({post_id});
+    }
+    if (post.contents) {
+        const contents = post.contents;
+        const query = await knex(POSTS_TABLE).update({contents}).where({post_id});
+    }
+    if (post.likes) {
+        const likes = post.likes;
+        const query = await knex(POSTS_TABLE).update({likes}).where({post_id});
+    }
+    const results = await knex(POSTS_TABLE).where({ post_id });
     return results;
 }
 const createPost = async (body) => {
@@ -47,6 +59,6 @@ const deletePost = async (post_id) => {
     fetchPostsByUser,
     fetchPostsByChannel,
     createPost,
-    updatePostName,
+    updatePost,
     deletePost
  }
