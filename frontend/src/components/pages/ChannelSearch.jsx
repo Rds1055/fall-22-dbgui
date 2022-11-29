@@ -33,7 +33,7 @@ export const ChannelSearch = () => {
                     if (!x.title) {
                         return false;
                     }
-                    return x.title.includes(search);
+                    return x.title.toLowerCase().includes(search.toLowerCase());
                 }).map(channel => 
                     <div key = { channel.channel_id }>
                         <Link to = {`/channel/${channel.channel_id}`}>
