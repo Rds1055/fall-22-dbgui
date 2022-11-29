@@ -3,7 +3,7 @@ import { TextField } from '../../common';
 import {useNavigate, useParams} from 'react-router-dom';
 import {PostsList} from "./PostsList";
 import { Post,Channel } from '../../../models';
-import { getChannelById, getPostsByChannel, getUserInfo } from '../../../api';
+import { getChannelById, getPosts, getPostsByChannel, getUserInfo } from '../../../api';
 import { NewComment, NewPost } from './';
 export const Community = () => {
 
@@ -73,10 +73,13 @@ return(<>
             <button
                 type = "button" className="btn btn-primary btn-lg btn-block"
                     onClick = {() => {
+                    getPosts(keyword);
+
                     setKeyword("");
                     setDate("");
                     setLikes("");
                     setTitle("");
+                    <PostsList posts={posts}/>
                     }}
                     >
                     Search
