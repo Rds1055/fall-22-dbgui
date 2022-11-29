@@ -29,13 +29,13 @@ return(
 <div className = "text-center pt-3 text-light">
     <header>
 <h3> Username: </h3>
-{ user.username }
+{ user[0].username }
 <h3> Email: </h3>
-{ user.email }
+{ user[0].email }
 <h3>Admin: </h3>
-{ user.is_admin }
+{ user[0].is_admin }
 <h3>Date Joined:</h3>
- { user.user_since }
+ { user[0].user_since }
 </header>
 
 </div>
