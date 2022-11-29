@@ -46,8 +46,14 @@ router.get('/:post_id', async (req, res, next) => {
 });
 router.get('/', async (req, res, next) => {
     try {
-        const allPosts = await req.models.post.fetchAllPosts();
-        res.status(200).json(allPosts);
+        const query = req.query;
+        let posts;
+        if (query) {
+            posts = await req.models.post.fetchPosts(query);
+        } else {
+            posts = await req.models.post.fetchAllPosts();
+        }
+        res.status(200).json(posts);
     } catch (err) {
         console.error("Failed to get posts:", err);
         res.status(500).json({ message: err.toString() });

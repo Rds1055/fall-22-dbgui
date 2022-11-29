@@ -33,6 +33,7 @@ const mixins = {
             channel: random.integer({ min: 201, max: 220 }),
             title: random.sentence(),
             contents: random.paragraph(),
+            post_date: random.date(),
             ...options,
         }
     },
