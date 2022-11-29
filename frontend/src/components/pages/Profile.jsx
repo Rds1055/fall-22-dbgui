@@ -1,16 +1,20 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getUserInfo } from "../../api";
 
 export const Profile = () => {
 
     const [ user, setUser ] = useState(undefined);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        getUserInfo().then(x => {
-            setUser(x[0]);
-        })
-    }, [ user ])
+        if (sessionStorage.token) {
+            getUserInfo().then(x => setUser(x));
+        } else {
+            navigate("/restricted-content");
+        }
+    }, [])
 
     if (!user) {
         return <>

@@ -1,6 +1,6 @@
 import { useEffect,useState } from 'react';
 import { TextField } from '../../common';
-import {useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams} from 'react-router-dom';
 import {PostsList} from "./PostsList";
 import { Post,Channel } from '../../../models';
 import { getChannelById, getPostsByChannel, getUserInfo } from '../../../api';
@@ -12,7 +12,6 @@ export const Community = () => {
     const [class_, setClass_] = useState("hidden");
 
     const changeView = () => {
-        console.log("here");
         if (class_ === "hidden") {
             setClass_("");
         } else {
@@ -44,6 +43,8 @@ export const Community = () => {
         } 
     }, []);
 
+    const navigate = useNavigate();
+
 
     if(!channel){
         return <>Loading...</>
@@ -58,7 +59,15 @@ return(<>
                 }}>
                     Advanced Search
             </button>
-            <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Post</button>
+            {
+                sessionStorage.token &&
+                <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Post</button>
+            }
+            {
+                !sessionStorage.token &&
+                <button type='button' className='btn btn-primary float-end m-2' 
+                    onClick = {() => { navigate("/restricted-content")}}>New Post</button>
+            }
         <br className='clearfix'/>
         </div>
     </div>
@@ -119,16 +128,16 @@ return(<>
     </div>
 
 
-
-    <LoginModal 
-        user = { user } 
-        alternative = {
-            <NewPost 
-                user = { user }
-                channel = { channel } 
-            />
-        }
-    />
+    <div className="modal fade" id="postModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content h-100">
+                <NewPost 
+                    user = { user }
+                    channel = { channel } 
+                />
+            </div>
+        </div>
+    </div>
 
     </>
     )

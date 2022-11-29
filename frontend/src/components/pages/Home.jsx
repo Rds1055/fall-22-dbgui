@@ -1,4 +1,4 @@
-import { Modal } from "../common";
+import { RegisterModal } from "../common";
 
 export const Home = () => {    
      return (
@@ -35,7 +35,7 @@ export const Home = () => {
         </div>
 
 
-        <Modal page = {"home"}/>
+        <RegisterModal page = {"home"}/>
         </>
      )
 }

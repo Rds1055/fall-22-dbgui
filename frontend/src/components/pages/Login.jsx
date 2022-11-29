@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, TextField, PasswordField } from "../common/index";
+import { RegisterModal, TextField, PasswordField } from "../common/index";
 import {useNavigate} from 'react-router-dom';
 import { login } from "../../api";
 
@@ -82,7 +82,7 @@ export const Login = () => {
                 </button>
             </form>
         </div>   
-        <Modal page = {"login"}/>
+        <RegisterModal page = {"login"}/>
           
     </>;
 };
