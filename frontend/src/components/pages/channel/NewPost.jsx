@@ -11,8 +11,8 @@ export const NewPost = ({ user, channel }) => {
     const [contents,setContents] = useState('');
     const [title,setTitle] = useState('');
     const params = useParams();
-    user = user[0];
-    channel = channel[0];
+    user = user;
+    channel = channel;
    
     return(
         <div>
@@ -45,7 +45,7 @@ export const NewPost = ({ user, channel }) => {
                         onClick={() => {
                           
                                 var id = undefined;
-                                var p = new Post(id,user.username,channel.channel_id,title,contents,0,undefined);
+                                var p = new Post(id,user[0].username,channel[0].channel_id,title,contents,0,undefined);
                                 addPost(p);
                            
                             
