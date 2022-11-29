@@ -31,7 +31,7 @@ export const AllChannels = () => {
                 channels.map((channel, index) => 
                     <div key = { index }>
                         <h3 className="text-center pt-4">
-                            <button type="button" className="btn btn-outline-primary" onClick={() => navigate(`/channel/${channel.id}`)}>
+                            <button type="button" className="btn btn-outline-primary" onClick={() => navigate(`/channel/${channel.channel_id}`)}>
                                 { channel.title }
                             </button>
                         </h3>

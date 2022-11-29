@@ -49,17 +49,17 @@ router.post('/', async (req, res, next) => {
         const createComment = await req.models.comment.createComment(req.body);
         res.status(201).json(createComment);
     } catch (err) {
-        console.error("Failed to create comment:", err);
+        console.error("Failed to create post:", err);
         res.status(500).json({ message: err.toString() });
     }
     next();
  });
- router.put('/', async (req, res, next) => {
+ router.put('/:post_id', async (req, res, next) => {
     try {
-        const updateComment = await req.models.comment.updateComment(req.body.contents, req.body.comment_id);
+        const updateComment = await req.models.comment.updateComment(req.params.comment_id, req.body);
         res.status(200).json(updateComment);
     } catch (err) {
-        console.error("Failed to update comment:", err);
+        console.error("Failed to update post:", err);
         res.status(500).json({ message: err.toString() });
     }
     next();

@@ -66,17 +66,11 @@ export const Dashboard = () => {
         </div>
 
 
-
         <AllChannels />
 
 
 
-        <div className="p-5 text-center">
-          <header>
-            <h2> Todays Top Theories </h2>
-          </header>
-        </div>
-
+ 
       </>
 
       )
