@@ -7,9 +7,28 @@ import { Channel } from "./channel";
 import { getChannels } from "../../api";
 import { Movie } from "../../models";
 import { AllChannels } from "./AllChannels";
+import { getUserInfo } from "../../api";
 
 export const Dashboard = () => {
 
+  const [ user, setUser ] = useState(undefined);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (sessionStorage.token) {
+            getUserInfo().then(x => setUser(x));
+        } else {
+            navigate("/restricted-content");
+        }
+    }, [])
+
+
+    if (!user) {
+        return <>
+            Loading...
+        </>
+    }
   return (
 
     <>
