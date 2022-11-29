@@ -14,6 +14,23 @@ export const SubmitTitle = () => {
 
     const navigate = useNavigate();
 
+
+    const [ user, setUser ] = useState(undefined);
+
+    useEffect(() => {
+        if (sessionStorage.token) {
+            getUserInfo().then(x => setUser(x));
+        } else {
+            navigate("/restricted-content");
+        }
+    }, [])
+
+    if (!user) {
+        return <>
+            Loading...
+        </>
+    }
+
 return(
 
 <>
