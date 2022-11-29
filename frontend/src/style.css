@@ -252,3 +252,16 @@ header h5 {
   text-align:center;
 }
 
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .large-view {
+    display: none;
+  }
+}
+
+@media (min-width: 1001px) {
+  .small-view {
+    display: none;
+  }
+}

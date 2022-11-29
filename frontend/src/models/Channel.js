@@ -1,8 +1,10 @@
 export class Channel {
-    constructor(channel_id,channel_title,channel_date,summary){
-        this.channel_id=channel_id;
-        this.channel_title=channel_title;
-        this.channel_date=channel_date;
-        this.summary=summary;
+    constructor(director,lead_actor,movie_sum,num_posts,release_date,title){
+        this.director=director;
+        this.lead_actor=lead_actor;
+        this.movie_sum=movie_sum;
+        this.num_posts=num_posts;
+        this.release_date=release_date;
+        this.title=title;
     }
 }

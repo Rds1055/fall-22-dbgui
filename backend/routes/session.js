@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
 router.get('/', auth.authenticateJWT, async(req, res, next) => {
     try {
         const username = req.user.username;
-        const result = await req.models.user.findUserByUsername(username);
+        const result = await req.models.user.fetchUsersByName(username);
         res.status(200).json(result);
     } catch (err) {
         console.error("Failed to get session:", err);

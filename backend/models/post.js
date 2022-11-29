@@ -10,28 +10,57 @@ const fetchPostsById = async (post_id) => {
     const results = await query;
     return results;
 }
+const fetchPosts = async (query) => {
+    const sql = knex(POSTS_TABLE).where((qb) => {
+        if (query.date) {
+            qb.where("post_date", ">", query.date)
+        }
+        
+        if (query.likes) {
+            qb.orWhere("likes", ">", query.likes)
+        }
+
+        if (query.keyword) {
+            qb.orWhere("contents", "like", `%${query.keyword}%`)
+        }
+    })
+    const results = await sql;
+    return results;
+}
 const fetchPostsByName = async (title) => {
     const query = knex(POSTS_TABLE).where({ title });
     const results = await query;
     return results;
 }
-const fetchPostsByUser = async (user_id) => {
-    const query = knex(POSTS_TABLE).where({ user_id });
+const fetchPostsByUser = async (user) => {
+    const query = knex(POSTS_TABLE).where({ user });
     const results = await query;
     return results;
 }
-const fetchPostsByChannel = async (channel_id) => {
-    const query = knex(POSTS_TABLE).where({ channel_id });
+const fetchPostsByChannel = async (channel) => {
+    const query = knex(POSTS_TABLE).where({ channel });
     const results = await query;
     return results;
 }
-const updatePostName = async (title, post_id)  => {
-    const query = knex(POSTS_TABLE).update({title}).where({post_id});
-    const results = await query;
-    return results;
+const updatePost = async (post_id, post)  => {
+    if (post.title) {
+        const title = post.title;
+        const query = await knex(POSTS_TABLE).update({title}).where({post_id});
+    }
+    if (post.contents) {
+        const contents = post.contents;
+        const query = await knex(POSTS_TABLE).update({contents}).where({post_id});
+    }
+    if (post.likes) {
+        const likes = post.likes;
+        const query = await knex(POSTS_TABLE).update({likes}).where({post_id});
+    }
+    const sql = knex(POSTS_TABLE).where({ post_id });
+    const result = await sql;
+    return result;
 }
-const createPost = async (user_id, channel_id, title, contents) => {
-    const query = knex(POSTS_TABLE).insert({user_id, channel_id, title, contents});
+const createPost = async (body) => {
+    const query = knex(POSTS_TABLE).insert({...body});
     const results = await query;
     return results;
 }
@@ -43,10 +72,11 @@ const deletePost = async (post_id) => {
    module.exports = {
     fetchAllPosts,
     fetchPostsById,
+    fetchPosts,
     fetchPostsByName,
     fetchPostsByUser,
     fetchPostsByChannel,
     createPost,
-    updatePostName,
+    updatePost,
     deletePost
  }
