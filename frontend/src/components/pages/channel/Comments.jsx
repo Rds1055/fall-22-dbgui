@@ -1,18 +1,18 @@
-import {useNavigate} from 'react-router-dom';
-import { useState,useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState,useEffect} from 'react';
+import { useParams,useNavigate } from 'react-router-dom';
 import { Post, Comment } from '../../../models';
 import {NewComment} from "./NewComment"
 import { getCommentsByPost } from '../../../api';
 import { getPostById,updatePost,getUserInfo } from '../../../api';
 import { CommentsList } from './CommentsList';
+
 export const Comments = () => {
  
     const [post,setPost] = useState(undefined);
     const [comments, setComments] = useState([]);
     const [user,setUser] = useState(undefined);
     const params = useParams();
-    
+    const navigate = useNavigate();
     useEffect(() => {
         getPostById(params.post_id).then(x => setPost(x[0]));
         getCommentsByPost(params.post_id).then(x => setComments(x[0]));
@@ -28,7 +28,15 @@ export const Comments = () => {
     }
     return(
         <>
-        <button type='button' className='btn btn-primary float-end m-3' data-bs-toggle="modal" data-bs-target="#postModal">New Comment</button>
+        {
+                sessionStorage.token &&
+                <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Comment</button>
+            }
+            {
+                !sessionStorage.token &&
+                <button type='button' className='btn btn-primary float-end m-2' 
+                    onClick = {() => { navigate("/restricted-content")}}>New Comment</button>
+            }
         <br/>
         <br/>
              <div className="card w-75 mx-auto m-4">
