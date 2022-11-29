@@ -9,31 +9,7 @@ export const NewComment = ({user,post}) => {
    const navigate = useNavigate();
 console.log(post)
 
-    if (!user) {
-        return <>
-            <div className='card p-4 m-4 border-0'>
-                <div className=''>
-                    <h4>You must be logged in to post</h4>
-                    <h6>Click 'Login' to log in or 'cancel' to go back</h6>
-                </div>
-                <div className=''>
-                    <button type="button" className=" m-3 btn btn-secondary " data-bs-dismiss='modal' 
-                        >Cancel
-                    </button>
-                    <button type='button'  className='btn btn-primary' data-bs-dismiss='modal'
-                        onClick={ () => {
-                            navigate('/login')
-                        }
-                           
-                        }
-                        >Login
-                    </button>
-                    
-
-                </div>
-            </div>
-        </>
-    }
+    
     return(
         <div>
             <div className="modal-header">
