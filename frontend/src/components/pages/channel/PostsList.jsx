@@ -35,7 +35,7 @@ return(
                             
                             <div className='row'>
                                 <div className='col-3'>
-                                    <button type='button' className=" arrow up" onClick={ (post) => {
+                                    <button type='button' className=" arrow up" onClick={ () => {
                                         updatePost(post.post_id, {likes: post.likes+1})
                                     } 
                                        
