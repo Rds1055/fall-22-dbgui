@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseEndpoint = "http://localhost:8000/post";
+const baseEndpoint = "http://3.144.198.45:8000/post";
 let apiConfig;
 
 export const getPostById = (postId) => new Promise((resolve, reject) => {
@@ -51,4 +51,5 @@ export const updatePost = (postId, params) => new Promise((resolve, reject) => {
             alert(x);
             reject(x);
         });
-})
+});
+

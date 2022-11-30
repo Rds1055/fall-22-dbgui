@@ -41,7 +41,8 @@ const mixins = {
             movie_title: random.sentence({words:4}),
             director: random.name(),
             lead_actor: random.name(),
-            release_date: random.date()
+            release_date: random.date(),
+            ...options
         }
     },
     post: (options = {}) => {

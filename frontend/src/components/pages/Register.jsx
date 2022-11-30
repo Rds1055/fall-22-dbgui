@@ -1,9 +1,8 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { PasswordField, TextField } from "../common";
 import {useNavigate} from 'react-router-dom';
 import { login, register } from "../../api";
 import { User } from "../../models";
-import { AccountContext } from "../../context";
 
 export const Register = () => {
     // Set states for username, email, and password
@@ -13,9 +12,6 @@ export const Register = () => {
 
     // Track if valid account credentials
     const [loggedIn, setLoggedIn] = useState("success");
-
-    // Account context
-    const account = useContext(AccountContext);
 
     // Navigator
     const navigate = useNavigate();
@@ -45,15 +41,18 @@ export const Register = () => {
                         <button
                             type = "button" className="btn btn-primary"
                             onClick = {() => {
-                                register(new User(username, email, password, new Date()));
-                                // login({username, password}, setLoggedIn);
+                                register(new User(username, email, password, new Date())).then(x => {
+                                    login({username, password}, setLoggedIn).then(x => {
+                                        sessionStorage.token = x;
+                                        navigate("/dashboard");
+                                    });
+                                }).catch(x => {
+                                    setLoggedIn("failed")
+                                });
+                                
                                 setUsername("");
                                 setEmail("");
                                 setPassword("");
-                                if (loggedIn === "success") {
-                                    account.setUsername(username);
-                                    navigate("/dashboard");
-                                }
                             }}
                         >
                             Create Account
@@ -72,6 +71,9 @@ export const Register = () => {
                         loggedIn === "failed" &&
                         <p className = "invalid-login">Invalid input</p>
                     }
+
+                    {/* Go to login */}
+
                 </form>
             </div>          
         </>
