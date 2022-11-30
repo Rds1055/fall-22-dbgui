@@ -29,7 +29,7 @@ export const Community = () => {
 
 
     const [user,setUser] = useState(undefined);
-    const [posts,setPosts] = useState(undefined);
+    const [posts,setPosts] = useState([]);
     const [channel,setChannel] = useState(undefined);
     const params = useParams();
 
@@ -42,7 +42,7 @@ export const Community = () => {
     }, []);
 
     const navigate = useNavigate();
-
+    console.log(channel);
 
     if(!channel){
         return <>Loading...</>
@@ -90,6 +90,7 @@ export const Community = () => {
                     setDate("");
                     setLikes("");
 
+
                     // <PostsList posts={posts}/>
 
                     }}
@@ -116,7 +117,7 @@ export const Community = () => {
                                 <span className='float-end'>Release Date: <span className='text-dark'>{channel[0].release_date}</span> </span></h6>
                         
                             <h6 className='text-muted m-1 left-0'>Lead: <span className='text-dark ps-0'>{channel[0].lead_actor}</span>
-                                <span className='float-end'>{channel[0].num_posts} Posts</span></h6>
+                                <span className='float-end'>{posts.length} Posts</span></h6>
                                 <span className='clearfix'></span>
                         </div>
                        

@@ -1,15 +1,14 @@
 import {useNavigate} from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { Channel } from '../../../models';
-import { updatePost } from '../../../api';
+import { getPostsByChannel, updatePost } from '../../../api';
 import { Post } from '../../../models';
 import "./postList.css";
-export const PostsList = ({posts}) => {
+export const PostsList = ({posts, setPosts}) => {
     
     
     
-   console.log(posts);
-if(posts.length==0){
+if(!posts || posts.length==0){
     return <> 
         <div className='card w-50 mx-auto text-center p-4 m-4'>
             <div className='card-title'>
@@ -33,11 +32,16 @@ return(
                             </div>
                             
                             <br className='clearfix'/>
-                            
+                            <div className='mt-3'>
+                                <h5 className='text-center'>{post.title}</h5>
+                            </div>
                             <div className='row'>
                                 <div className='col-3'>
                                     <button type='button' className=" arrow up" onClick={ () => {
-                                        updatePost(post.post_id, {likes: post.likes+1})
+                                        updatePost(post.post_id, {likes: post.likes+1}).then(x =>
+                                            getPostsByChannel(post.channel).then(x => {
+                                                setPosts(x);
+                                            }))
                                     } 
                                        
                                     }></button>
@@ -48,7 +52,7 @@ return(
                                          
                                     }></button>
                                 </div>
-                                <div className='col-9 pr-3' >
+                                <div className='col-8 pr-3 mt-2' >
                                     <h6 className=" text-left px-3">{post.contents} </h6>
                                 </div>
                                 
@@ -57,7 +61,7 @@ return(
                                         <Link className='btn fs-6 border border-primary'type='button' to={`${post.post_id}`}>
                                                 See Comments
                                         </Link>
-                                        <span className="card-subtitle pt-2 text-primary float-end">@{post.user}</span>
+                                        <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
                                     </div>
                                 </div>
                                 
