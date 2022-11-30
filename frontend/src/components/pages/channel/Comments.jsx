@@ -43,7 +43,7 @@ export const Comments = () => {
              <div className="card w-75 mx-auto m-4">
                         <div className="card-body row">
                             <div className=''>
-                                <h6 className=' float-end text-muted '>{post.post_date}</h6>
+                                <h6 className=' float-end text-muted '>{post.post_date.slice(0,10)}</h6>
                             </div>
                             <div className='my-3'>
                                 <h5 className='text-center'>{post.title}</h5>
@@ -56,7 +56,7 @@ export const Comments = () => {
                                             updatePost(post.post_id,post.likes+1)
                                     }
                                     }></a>
-                                    <h6 className='ps-3 mt-1'>{post.likes}</h6>
+                                    <h6 className='ps-2 mt-1'>{post.likes}</h6>
                                     <a type='button' className="arrow down" onClick={ () => {
                                         updatePost(post.post_id,post.likes-1)
                                     }
