@@ -14,15 +14,16 @@ const fetchPosts = async (query) => {
     const sql = knex(POSTS_TABLE).where((qb) => {
         qb.where("channel", "=", query.channel);
         if (query.date) {
-            qb.where("post_date", ">", query.date)
+            qb.where("post_date", ">=", query.date)
         }
         
         if (query.likes) {
-            qb.orWhere("likes", ">", query.likes)
+            qb.orWhere("likes", ">=", query.likes)
         }
 
         if (query.keyword) {
             qb.orWhere("contents", "like", `%${query.keyword}%`)
+            qb.orWhere("title", "like", `%${query.keyword}%`)
         }
     })
     const results = await sql;
