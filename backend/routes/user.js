@@ -9,25 +9,20 @@ router.get('/:username', async (req, res, next) => {
     res.json(userByName);
     next();
 });
-router.get('/:user_id', async (req, res, next) => {
-    const userById = await req.models.user.fetchUsersById(req.query.user_id);
-    res.json(userById);
-    next();
-});
 router.get('/', async (req, res, next) => {
     const allUsers = await req.models.user.fetchAllUsers();
     res.json(allUsers);
     next();
 });
-router.get('/:email', async (req, res, next) => {
-    const userByEmail = await req.models.user.fetchUserByEmail(req.query.email);
-    res.json(userByEmail);
-    next();
-});
 router.post('/', async (req, res, next) => {
-    const createUser = await req.models.user.createUser(req.body.username, req.body.email, 
-        req.body.pword, req.body.is_admin, req.body.user_since);
-    res.status(201).json(createUser);
+    try {
+        const body = req.body;
+        const result = await req.models.user.createUser(body.username, body.email, body.password);
+        res.status(201).json(result);
+    } catch (err) {
+        console.error('Failed to create new user:', err);
+        res.status(500).json({ message: err.toString() });
+    }
     next();
  });
  router.put('/', async (req, res, next) => {

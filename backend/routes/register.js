@@ -3,8 +3,6 @@ const router = express.Router();
 router.post('/', async (req, res, next) => {
    try {
        const body = req.body;
-       console.log(body);
-       console.log(req.models);
        const result = await req.models.user.createUser(body.username, body.email, body.password);
        res.status(201).json(result);
    } catch (err) {

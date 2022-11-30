@@ -22,7 +22,7 @@ app.get('/health', (request, response, next) => {
   next();
 });
 app.use('/session', sessionRoutes);
-app.use('/user', authenticateJWT , usersRoutes);
+app.use('/user', usersRoutes);
 app.use('/channel', channelRoutes);
 app.use('/post', postRoutes);
 app.use('/comment', commentRoutes);
