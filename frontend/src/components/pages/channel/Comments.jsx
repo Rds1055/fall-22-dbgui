@@ -15,7 +15,7 @@ export const Comments = () => {
     const navigate = useNavigate();
     useEffect(() => {
         getPostById(params.post_id).then(x => setPost(x[0]));
-        getCommentsByPost(params.post_id).then(x => setComments(x[0]));
+        getCommentsByPost(params.post_id).then(x => setComments(x));
         if (sessionStorage.token) {
             getUserInfo().then(x => setUser(x));
         } 
@@ -66,7 +66,7 @@ export const Comments = () => {
                                     <h6 className=" text-left px-3 me-5">{post.contents} </h6>
                                 </div>
                                 <div>
-                                    <span className="  text-primary float-end">@{post.user}</span>
+                                    <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
                                     <br/>
                                     
                                     <span className="  text-secondary float-end">{ comments && comments.length } {!comments && 0} Comments</span>

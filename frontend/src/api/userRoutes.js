@@ -20,3 +20,12 @@ export const register = (user) => new Promise((resolve, reject) => {
             reject(x);
         });
 });
+
+export const deleteUser = (username) => new Promise((resolve, reject) => {
+    axios.delete(`${ baseEndpoint }/${ username }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});
