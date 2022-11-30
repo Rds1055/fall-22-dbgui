@@ -21,9 +21,8 @@ export const Community = () => {
     };
 
     const [keyword, setKeyword] = useState('');
-    const [date, setDate] = useState('');
+    const [minDate, setDate] = useState('');
     const [likes, setLikes] = useState('');
-    const [title, setTitle] = useState('');
 
     //MICHAEL: END OF SEARCH BAR STUFF 
 
@@ -75,7 +74,7 @@ export const Community = () => {
 
  
             <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
-            <TextField label = "Search Date: Example Form (2015-03-25)" value = {date} setValue = {setDate} id = "Search-Date" type = "text"/>
+            <TextField label = "Search Date: Example Form (2015-03-25)" value = {minDate} setValue = {setDate} id = "Search-Date" type = "text"/>
             <TextField label = "Minimum Likes: " value = {likes} setValue = {setLikes} id = "Minimum-Likes" type = "text"/>
 
 
@@ -83,7 +82,7 @@ export const Community = () => {
                 type = "submit" className="btn btn-primary btn-lg btn-block"
                     onClick = {() => {
 
-                    var date = new Date(date);
+                    var date = new Date(minDate);
                     getFilteredPostsByChannel({channel, keyword, date, likes}).then(x => setPosts(x));
                     
                     setKeyword("");
