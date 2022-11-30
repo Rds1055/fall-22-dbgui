@@ -6,8 +6,14 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.get('/', async (req, res, next) => {
     try {
-        const allChannels = await req.models.channel.fetchAllChannels();
-        res.status(200).json(allChannels);
+        const query = req.query;
+        let channels;
+        if (query.keyword || query.date) {
+            channels = await req.models.channel.fetchChannels(query);
+        } else {
+            channels = await req.models.channel.fetchAllChannels();
+        }
+        res.status(200).json(channels);
     } catch (err) {
         console.error("Failed to get channels:", err);
         res.status(500).json({ message: err.toString() });

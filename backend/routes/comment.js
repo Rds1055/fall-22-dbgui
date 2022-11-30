@@ -26,8 +26,14 @@ router.get('/post/:post_id', async (req, res, next) => {
 });
 router.get('/', async (req, res, next) => {
     try {
-        const allComments = await req.models.comment.fetchAllComments();
-        res.status(200).json(allComments);
+        const query = req.query;
+        let comments;
+        if (query.post) {
+            comments = await req.models.comment.fetchComments(query);
+        } else {
+            comments = await req.models.comment.fetchAllComments();
+        }
+        res.status(200).json(comments);
     } catch (err) {
         console.error("Failed to get comments:", err);
         res.status(500).json({ message: err.toString() });
