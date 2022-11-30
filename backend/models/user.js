@@ -40,11 +40,6 @@ const fetchUserCommentLikes = async (username) => {
     const result = await query;
     return result;
 }
-const updateUsername = async (username, user_id) => {
-    const query = knex(USERS_TABLE).update({username}).where({user_id});
-    const results = await query;
-    return results;
-}
 const updateUser = async (username, body) => {
     const email = body.email;
     const newPassword = body.password;
@@ -59,11 +54,6 @@ const updateUser = async (username, body) => {
         const results = await query;
     }
     const query = knex(USERS_TABLE).where({username});
-    const results = await query;
-    return results;
-}
-const updateEmail = async (username, newEmail) => {
-    const query = knex(USERS_TABLE).update({email:newEmail}).where({username});
     const results = await query;
     return results;
 }
@@ -103,9 +93,7 @@ const authenticateUser = async (username, pword) => {
     fetchUserComments,
     fetchUserCommentLikes,
     createUser,
-    updateUsername,
-    updatePassword,
-    updateEmail,
+    updateUser,
     deleteUser,
     authenticateUser
  }
