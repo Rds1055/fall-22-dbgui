@@ -81,8 +81,12 @@ console.log(user);
             <button
                 type = "submit" className="btn btn-primary btn-lg btn-block"
                     onClick = {() => {
+                    
+                    var date = undefined;
+                    if (minDate) {
+                        date = new Date(minDate);
+                    }
 
-                    var date = new Date(minDate);
                     getFilteredPostsByChannel({channel, keyword, date, likes}).then(x => setPosts(x));
                     
                     setKeyword("");
@@ -90,10 +94,6 @@ console.log(user);
                     setLikes("");
 
                     <PostsList posts={posts}/>
-
-
-                  
-
 
                     }}
                     >

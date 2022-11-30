@@ -6,6 +6,7 @@ import { getCommentsByPost } from '../../../api';
 import { getPostById,updatePost,getUserInfo } from '../../../api';
 import { CommentsList } from './CommentsList';
 import { TextField } from '../../common';
+import { getFilteredCommentsByPost } from '../../../api';
 
 export const Comments = () => {
 
@@ -72,33 +73,36 @@ export const Comments = () => {
         </div>
     </div>
 
+    <div className='px-4 w-50 ms-4'>
+        <div className='px-4'>
+            <div id = "SearchBars" className = { class_ }>
 
-    <div className='px-4'>
-        <div id = "SearchBars" className = { class_ }>
-
- 
-            <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
-            <TextField label = "Search Date: Example Form (2015-03-25)" value = {minDate} setValue = {setDate} id = "Search-Date" type = "text"/>
-            <TextField label = "Minimum Likes: " value = {likes} setValue = {setLikes} id = "Minimum-Likes" type = "text"/>
+    
+                <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
+                <TextField label = "Search Date: Example Form (2015-03-25)" value = {minDate} setValue = {setDate} id = "Search-Date" type = "text"/>
+                <TextField label = "Minimum Likes: " value = {likes} setValue = {setLikes} id = "Minimum-Likes" type = "text"/>
 
 
-            <button
-                type = "submit" className="btn btn-primary btn-lg btn-block"
-                    onClick = {() => {
+                <button
+                    type = "submit" className="btn btn-primary btn-lg btn-block"
+                        onClick = {() => {
+                        var date = undefined;
+                        if (minDate) {
+                            date = new Date(minDate);
+                        }
 
-                    var date = new Date(minDate);
-                    getCommentsByPost({post, keyword, date, likes}).then(x => setComments(x));
-                    
-                    setKeyword("");
-                    setDate("");
-                    setLikes("");
+                        getFilteredCommentsByPost({post, keyword, date, likes}).then(x => setComments(x));
+                        
+                        setKeyword("");
+                        setDate("");
+                        setLikes("");
 
-                    }}
-                    >
-                    Search
-            </button>
+                        }}
+                        >
+                        Search
+                </button>
+            </div>
         </div>
-
     </div>
 
 {/* advanced search bar end */}

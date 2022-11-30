@@ -5,6 +5,7 @@ import { SearchField } from "../common";
 import { ChannelsList } from "./";
 import { useNavigate } from "react-router-dom";
 import { TextField } from "../common";
+import { getFilteredChannels } from "../../api";
 
 
 export const ChannelSearch = () => {
@@ -94,31 +95,34 @@ export const ChannelSearch = () => {
         </div>
     </div>
 
+    <div className='px-4 w-50 ms-4'>
+        <div className='px-4'>
+            <div id = "SearchBars" className = { class_ }>
 
-    <div className='px-4'>
-        <div id = "SearchBars" className = { class_ }>
-
- 
-            <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
-            <TextField label = "Search Date: Example Form (2015-03-25)" value = {minDate} setValue = {setDate} id = "Search-Date" type = "text"/>
+    
+                <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
+                <TextField label = "Search Date: Example Form (2015-03-25)" value = {minDate} setValue = {setDate} id = "Search-Date" type = "text"/>
 
 
-            <button
-                type = "submit" className="btn btn-primary btn-lg btn-block"
-                    onClick = {() => {
+                <button
+                    type = "submit" className="btn btn-primary btn-lg btn-block"
+                        onClick = {() => {
 
-                    var date = new Date(minDate);
-                    // getCommentsByPost({post, keyword, date, likes}).then(x => setChannels(x));
-                    
-                    setKeyword("");
-                    setDate("");
+                        var date = undefined;
+                        if (minDate) {
+                            date = new Date(minDate);
+                        }
+                        getFilteredChannels({keyword, date}).then(x => setChannels(x));
+                        
+                        setKeyword("");
+                        setDate("");
 
-                    }}
-                    >
-                    Search
-            </button>
+                        }}
+                        >
+                        Search
+                </button>
+            </div>
         </div>
-
     </div>
 
 {/* advanced search bar end */}
