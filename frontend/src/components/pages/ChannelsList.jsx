@@ -6,13 +6,8 @@ import { Channel } from "./channel";
 import { getChannels } from "../../api";
 import { Movie } from "../../models";
 
-export const AllChannels = () => {
-    const [channels, setChannels] = useState(undefined);
-
+export const ChannelsList = ({ channels }) => {
     const navigate = useNavigate();
-    useEffect(() => {
-        getChannels().then(x => setChannels(x));
-    }, []);
 
     if (!channels) {
         return <>
@@ -26,7 +21,7 @@ export const AllChannels = () => {
           <h2> Channels </h2>
         </header>
       </div>
-        <div className=' w-50 mx-auto border border-white'>
+        <div>
             {
                 channels.map((channel, index) => 
                     <div key = { index }>

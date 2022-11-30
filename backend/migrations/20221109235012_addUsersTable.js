@@ -6,10 +6,10 @@ const { fetchUsersByName } = require("../models/user");
  */
 exports.up = function(knex) {
     return knex.schema.createTable('users', (table) => {
-        table.string('username').notNullable();
+        table.string('username').notNullable().unique();
         table.primary(['username']);
         table.increments('user_id');
-        table.string('email').unique();
+        table.string('email');
         table.string('pword');
         table.boolean('is_admin').defaultTo(false);
         table.timestamp('user_since').defaultTo(knex.fn.now());

@@ -21,11 +21,11 @@ const fetchCommentsById = async (comment_id) => {
     return results;
 }
 const updateComment = async (comment_id, comment)  => {
-    if (comment.contents) {
+    if (comment.contents !== undefined) {
         const contents = comment.contents;
         const query = await knex(COMMENTS_TABLE).update({contents}).where({comment_id});
     }
-    if (comment.likes) {
+    if (comment.likes !== undefined) {
         const likes = comment.likes;
         const query = await knex(COMMENTS_TABLE).update({likes}).where({comment_id});
     }

@@ -1,6 +1,7 @@
 const random = new (require('chance'));
 const bcrypt = require('bcrypt');
 const knex = require('../database/knex');
+const movies = require("./movies");
 
 const mixins = {
     user: (options = {}) => {
@@ -16,7 +17,8 @@ const mixins = {
     channel: (options = {}) => {
         return {
             admin_id: 1,
-            title: random.sentence({words:7}),
+            // title: random.sentence({words:7}),
+            title: movies[random.integer({ min: 0, max: 249 })],
             movie_title: random.sentence({words:4}),
             director: random.name(),
             lead_actor: random.name(),
