@@ -38,6 +38,7 @@ export const ChannelSearch = () => {
         getChannels().then(x => {
             setChannels(x);
             updateSearch(params.search);
+        
         });
     }, []);
 
@@ -126,7 +127,6 @@ export const ChannelSearch = () => {
     <div className='w-50 mx-auto'>
     <SearchField value = { search } setValue = { updateSearch }/>
     </div>
-       
         <ChannelsList channels = { filtered }/>
     </>
 }
