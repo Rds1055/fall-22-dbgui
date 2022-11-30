@@ -101,14 +101,7 @@ export const Comments = () => {
                         >
                         Search
                 </button>
-            </div>
-        </div>
-    </div>
-
-{/* advanced search bar end */}
-
-
-        {
+                {
                 sessionStorage.token &&
                 <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Comment</button>
             }
@@ -117,6 +110,14 @@ export const Comments = () => {
                 <button type='button' className='btn btn-primary float-end m-2' 
                     onClick = {() => { navigate("/restricted-content")}}>New Comment</button>
             }
+            </div>
+        </div>
+    </div>
+
+{/* advanced search bar end */}
+
+
+       
         <br/>
         <br/>
              <div className="card w-75 mx-auto m-4">
