@@ -60,15 +60,15 @@ export const Comments = () => {
                 }}>
                     Advanced Search
             </button>
-            {/* {
+            {
                 sessionStorage.token &&
-                <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Post</button>
-            } */}
-            {/* {
+                <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Comment</button>
+            } 
+            { 
                 !sessionStorage.token &&
                 <button type='button' className='btn btn-primary float-end m-2' 
-                    onClick = {() => { navigate("/restricted-content")}}>New Post</button>
-            } */}
+                    onClick = {() => { navigate("/restricted-content")}}>New Comment</button>
+            }
         <br className='clearfix'/>
         </div>
     </div>
@@ -101,15 +101,7 @@ export const Comments = () => {
                         >
                         Search
                 </button>
-                {
-                sessionStorage.token &&
-                <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Comment</button>
-            }
-            {
-                !sessionStorage.token &&
-                <button type='button' className='btn btn-primary float-end m-2' 
-                    onClick = {() => { navigate("/restricted-content")}}>New Comment</button>
-            }
+                
             </div>
         </div>
     </div>
