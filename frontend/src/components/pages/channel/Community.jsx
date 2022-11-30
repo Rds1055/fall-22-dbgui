@@ -90,7 +90,6 @@ export const Community = () => {
                     setDate("");
                     setLikes("");
 
-
                     // <PostsList posts={posts}/>
 
                     }}
