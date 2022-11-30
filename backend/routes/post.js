@@ -48,7 +48,7 @@ router.get('/', async (req, res, next) => {
     try {
         const query = req.query;
         let posts;
-        if (query) {
+        if (query.channel) {
             posts = await req.models.post.fetchPosts(query);
         } else {
             posts = await req.models.post.fetchAllPosts();

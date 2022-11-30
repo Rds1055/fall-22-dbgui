@@ -35,3 +35,11 @@ export const addChannel = (channel) => new Promise((resolve, reject) => {
         });
 });
 
+export const deleteChannel = (channel_id) => new Promise((resolve, reject) => {
+    axios.delete(`${ baseEndpoint }/${ channel_id }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});
