@@ -29,7 +29,7 @@ export const Profile = () => {
         if (sessionStorage.token) {
             getUserInfo().then(x => setLoggedUser(x));
         }
-    }, [])
+    }, [params.username])
 
 
     if (!user || !posts || !postLikes || !comments || !commentLikes) {
