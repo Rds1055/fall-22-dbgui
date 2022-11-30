@@ -4,7 +4,8 @@ import { Channel } from '../../../models';
 import { getPostsByChannel, updatePost } from '../../../api';
 import { Post } from '../../../models';
 import "./postList.css";
-export const PostsList = ({posts, setPosts}) => {
+import { deletePost } from '../../../api';
+export const PostsList = ({posts,user}) => {
     
     
     
@@ -39,10 +40,9 @@ return(
                                 <div className='col-3'>
                                     <button type='button' className=" arrow up" onClick={ () => {
                                         updatePost(post.post_id, {likes: post.likes+1}).then(x =>
-                                            getPostsByChannel(post.channel).then(x => {
-                                                setPosts(x);
-                                            }))
-                                    } 
+                                            getPostsByChannel(post.channel))
+                                        }
+                                     
                                        
                                     }></button>
                                     <h6 className='ps-3 mt-3 '>{post.likes}</h6>
@@ -57,12 +57,21 @@ return(
                                 </div>
                                 
                                 <div className=" pt-4 mb-0 ">
+                                
                                     <div className=" text-primary">
                                         <Link className='btn fs-6 border border-primary'type='button' to={`${post.post_id}`}>
                                                 See Comments
                                         </Link>
-                                        <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
+                                        <a className="card-subtitle pt-2 text-primary text-decoration-none float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
                                     </div>
+
+                                    {
+                                   
+                                   (user&&user.username==post.user)&&<button type='button' className='btn btn-sm  btn-link p-1 m-2 btn-danger text-decoration-none text-secondary' onClick={ () =>{
+                                       deletePost(post.post_id);
+                                   }}
+                                   >Delete</button>
+                                       }
                                 </div>
                                 
                                 
