@@ -20,11 +20,11 @@ export const UpdateEmail = ({ user }) => {
     return (
         <>
             <TextField label="Email: " value={email} setValue={setEmail} id="login-email" />
-            <button type="button" className="btn btn-primary" onClick={() => updateUser(user.username, { email }).then(x => navigate(`/profile/${user.username}`)) 
+            <button type="button" className="btn btn-primary" onClick={() => updateUser(user.username, { email }).then(x => window.location.reload()) 
             }>Update Email</button>
 
             <TextField label="Password: " value={password} setValue={setPassword} id="login-password" />
-            <button type="button" className="btn btn-primary" onClick={() => updateUser(user.username, { password}).then(x => navigate(`/profile/${user.username}`)) 
+            <button type="button" className="btn btn-primary" onClick={() => updateUser(user.username, { password}).then(x => window.location.reload()) 
             }>
                 
                 Update Password</button>
