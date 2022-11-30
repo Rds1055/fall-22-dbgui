@@ -30,11 +30,8 @@ const updateEmail = async (username, newEmail) => {
     return results;
 }
 const createUser = async (username, email, pword) => {
-    console.log('Raw password:', pword);
     const salt = await bcrypt.genSalt(10);
-    console.log('Password salt', salt);
     const hashedPassword = await bcrypt.hash(pword, salt);
-    console.log('Hashed password', hashedPassword);
 
     const query = knex(USERS_TABLE).insert({username, email, pword:hashedPassword});
     const results = await query;
