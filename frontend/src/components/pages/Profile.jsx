@@ -90,6 +90,7 @@ return(
                 >
                    Edit Profile
                 </button>
+                
 <UpdateEmailModal user = { user[0] }/>
 
 </div>
