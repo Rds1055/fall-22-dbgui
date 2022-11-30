@@ -5,6 +5,7 @@ import { Post,Channel } from '../../../models';
 import { getChannelById, getPostsByChannel, getPosts, getUserInfo } from '../../../api';
 import { NewComment, NewPost,PostsList } from './';
 import { LoginModal } from '../../common';
+import { getFilteredPostsByChannel } from '../../../api';
 
 export const Community = () => {
 
@@ -72,15 +73,18 @@ export const Community = () => {
     <div className='px-4'>
         <div id = "SearchBars" className = { class_ }>
 
+ 
             <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
             <TextField label = "Search Date: Example Form (2015-03-25)" value = {date} setValue = {setDate} id = "Search-Date" type = "text"/>
             <TextField label = "Minimum Likes: " value = {likes} setValue = {setLikes} id = "Minimum-Likes" type = "text"/>
 
+
             <button
                 type = "submit" className="btn btn-primary btn-lg btn-block"
                     onClick = {() => {
-                    var d = new Date(date);
-                    getPosts(keyword, d, likes).then(x => setPosts(x));
+
+                    var date = new Date(date);
+                    getFilteredPostsByChannel({channel, keyword, date, likes}).then(x => setPosts(x));
                     
                     setKeyword("");
                     setDate("");
