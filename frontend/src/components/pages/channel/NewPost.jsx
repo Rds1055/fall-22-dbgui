@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { addPost} from "../../../api/postRoutes";
 import {addComment} from "../../../api/commentRoutes"
 import { getUserInfo } from "../../../api";
-export const NewPost = ({ user, channel }) => {
+export const NewPost = ({ user, channel}) => {
     const [contents,setContents] = useState('');
     const [title,setTitle] = useState('');
     const params = useParams();
@@ -46,8 +46,8 @@ export const NewPost = ({ user, channel }) => {
                         onClick={() => {
                           
                                 var id = undefined;
-                                var p = new Post(id,user.username,channel.channel_id,title,contents,0);
-                                console.log(p);
+                                var p = new Post(id,user.username,channel.channel_id,title,contents,new Date());
+                        
                                 addPost(p);
                                 
                             

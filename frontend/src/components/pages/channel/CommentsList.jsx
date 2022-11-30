@@ -1,6 +1,6 @@
-import { updateComment } from "../../../api"
+import { updateComment,deleteComment } from "../../../api"
 export const CommentsList = ({comments,user}) => {
-    console.log(comments);
+
     if(!comments || comments.length==0){
         return <>
              <div className='card w-50 mx-auto text-center p-4 m-4'>
@@ -11,10 +11,11 @@ export const CommentsList = ({comments,user}) => {
             </div>
             </>
     }
+    console.log(comments,user);
     return(<>
     
 
-    return <ul className='list-unstyled '>
+     <ul className='list-unstyled '>
     {
         comments.map((comment,index) =>
         <li key={index} className=' m-2 content-fluid'>
@@ -43,16 +44,19 @@ export const CommentsList = ({comments,user}) => {
 
                     <div className="card-subtitle  pt-3  mb-2 text-muted float-end">
                         {
-                            (user && user.username==comment.user)&&<button type='button' className='btn btn-secondary' onClick={ () =>{
-                                // deleteComment(comment.comment_id);
+                         
+                            (user && user.username==comment.user)&&<button type='button' className='btn btn-danger fs-6 btn-link text-secondary p-1 text-decoration-none' onClick={ () =>{
+                                deleteComment(comment.comment_id);
                             }}
                             >Delete</button>
                         }
                         
-                        <span className='m-1 text-primary float-end'>@{comment.user}</span>
 
-                    <p className="card-subtitle  pt-3  mb-2 text-muted float-end">
-                    <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${comment.user}`}>{comment.user}</a>
+                
+                      
+
+                  
+                    <a className="card-subtitle pt-2 text-primary text-decoration-none float-end" href = {`/profile/${comment.user}`}>@{comment.user}</a>
 
                         <br/>
                     </div>

@@ -2,12 +2,12 @@ import { TextAreaField,TextField } from "../../common";
 import { useState,useEffect } from "react";
 import { addPost,addComment,getUserInfo} from "../../../api/";
 import { useNavigate } from "react-router-dom";
+import { Comment } from "../../../models";
 export const NewComment = ({user,post}) => {
     const [contents,setContents] = useState(undefined);
 
-    const [title,setTitle] = useState(undefined);
-   const navigate = useNavigate();
-console.log(post)
+  
+
 
     
     return(
@@ -29,7 +29,7 @@ console.log(post)
                                 type = "button" className="btn btn-secondary" data-bs-dismiss='modal'
                                 onClick = {() => {
                                     setContents('');
-                                    setTitle('');
+                                    
                                 }}
                             >
                                 Cancel
@@ -38,12 +38,13 @@ console.log(post)
                         {/* Cancel (Go back to home) */}
                         <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
                         onClick={() => {
-                                var comment_id = undefined;
-                                var com = new Comment(user[0].username,post.post_id,comment_id,contents,0,0,new Date().toDateString());
-                                addComment(com);
+                                var id = undefined;
+                              
+                                var com = new Comment(undefined,contents,0,0,post.post_id,new Date(),user.username)
                             
+                                addComment(com);
                             setContents('');
-                            setTitle('');
+                           
                             }
                         }
                         >

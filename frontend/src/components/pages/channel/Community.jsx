@@ -71,7 +71,7 @@ export const Community = () => {
     </div>
 
 
-    <div className='px-4 w-50 mx-auto'>
+    <div className='px-4 w-50 ms-4'>
         <div id = "SearchBars" className = { class_ }>
 
  
@@ -95,7 +95,7 @@ export const Community = () => {
                     <PostsList posts={posts}/>
 
 
-                    // <PostsList posts={posts}/>
+                  
 
 
                     }}
@@ -127,7 +127,6 @@ export const Community = () => {
                         </div>
                        
                            
-                       
                     </div>
                    
                 </div>
@@ -146,6 +145,7 @@ export const Community = () => {
                 <NewPost 
                     user = { user }
                     channel = { channel } 
+                    setPosts = {setPosts}
                 />
             </div>
         </div>

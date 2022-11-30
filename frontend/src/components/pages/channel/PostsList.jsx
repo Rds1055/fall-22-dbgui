@@ -4,6 +4,7 @@ import { Channel } from '../../../models';
 import { getPostsByChannel, updatePost } from '../../../api';
 import { Post } from '../../../models';
 import "./postList.css";
+import { deletePost } from '../../../api';
 export const PostsList = ({posts,user}) => {
     
     
@@ -19,7 +20,7 @@ if(!posts || posts.length==0){
         </>
 
 }
-console.log(user,posts)
+
 return(
     <ul className='list-group list-unstyled w-50 mx-auto '>
         {
@@ -61,16 +62,16 @@ return(
                                         <Link className='btn fs-6 border border-primary'type='button' to={`${post.post_id}`}>
                                                 See Comments
                                         </Link>
-                                        <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
+                                        <a className="card-subtitle pt-2 text-primary text-decoration-none float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
                                     </div>
 
-                                    {/* {
+                                    {
                                    
-                                   (user&&user.username==post.user)&&<button type='button' className='btn btn-sm p-1 m-2 btn-secondary' onClick={ () =>{
-                                       // deleteComment(comment.comment_id);
+                                   (user&&user.username==post.user)&&<button type='button' className='btn btn-sm  btn-link p-1 m-2 btn-secondary' onClick={ () =>{
+                                       deletePost(post.post_id);
                                    }}
                                    >Delete</button>
-                                       } */}
+                                       }
                                 </div>
                                 
                                 
