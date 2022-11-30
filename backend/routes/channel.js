@@ -46,7 +46,7 @@ router.get('/movie/:movie_title', async (req, res, next) => {
 });
 router.get('/count/:title', async (req, res, next) => {
     try {
-        const channelCount = await req.models.channel.fetchChannelCount(req.params.channel_id);
+        const channelCount = await req.models.channel.fetchChannelCount(req.params.title);
         res.status(200).json(channelCount);
     } catch (err) {
         console.error("Failed to get channels:", err);

@@ -1,7 +1,7 @@
 const knex = require('../database/knex');
 const POSTS_TABLE = 'posts';
 const fetchAllPosts = async () => {
-    const query = knex(POSTS_TABLE);
+    const query = knex(POSTS_TABLE).orderBy("likes", "desc");
     const results = await query;
     return results;
 }
@@ -25,7 +25,7 @@ const fetchPosts = async (query) => {
             qb.orWhere("contents", "like", `%${query.keyword}%`)
             qb.orWhere("title", "like", `%${query.keyword}%`)
         }
-    })
+    }).orderBy("likes", "desc");
     const results = await sql;
     return results;
 }
@@ -35,12 +35,12 @@ const fetchPostsByName = async (title) => {
     return results;
 }
 const fetchPostsByUser = async (user) => {
-    const query = knex(POSTS_TABLE).where({ user });
+    const query = knex(POSTS_TABLE).where({ user }).orderBy("likes", "desc");
     const results = await query;
     return results;
 }
 const fetchPostsByChannel = async (channel) => {
-    const query = knex(POSTS_TABLE).where({ channel });
+    const query = knex(POSTS_TABLE).where({ channel }).orderBy("likes", "desc");
     const results = await query;
     return results;
 }

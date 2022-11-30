@@ -21,6 +21,11 @@ const fetchChannelsByMovie = async (movie_title) => {
     const results = await query;
     return results;
 }
+const fetchChannelCount = async (title) => {
+    const query = knex(CHANNELS_TABLE).count("*").where({ title });
+    const result = await query;
+    return result;
+}
 const updateChannelName = async (title, channel_id)  => {
     const query = knex(CHANNELS_TABLE).update({title}).where({channel_id});
     const results = await query;
@@ -41,6 +46,7 @@ const deleteChannel = async (channel_id) => {
     fetchChannelsByName,
     fetchChannelsById,
     fetchChannelsByMovie,
+    fetchChannelCount,
     createChannel,
     updateChannelName,
     deleteChannel
