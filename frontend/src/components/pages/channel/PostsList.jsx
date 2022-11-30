@@ -72,10 +72,7 @@ return(
                                    (user&&user.username==post.user)&&<button type='button' className='btn btn-sm  btn-link p-1 m-2 btn-danger text-decoration-none text-secondary' onClick={ () =>{
                                        deletePost(post.post_id);
                                    }}
-                                   >Delete</button>&&<button type='button' className='btn btn-sm  btn-link p-1 m-2 btn-warning text-decoration-none text-secondary' onClick={ () =>{
-                                    
-                                }}
-                                >Edit</button>
+                                   >Delete</button>
                                        }
                                 </div>
                                 

@@ -46,7 +46,7 @@ export const Community = () => {
     if(!channel){
         return <>Loading...</>
     }
-
+console.log(channel)
     return(<>
     <div className='my-2 ms-2'>
         <div className = "AdvancedSearch">
@@ -121,11 +121,15 @@ export const Community = () => {
                             <h6 className='text-muted m-1 left-0'>Lead: <span className='text-dark ps-0'>{channel.lead_actor}</span>
                                 <span className='float-end'>{posts.length} Posts</span></h6>
                                 <span className='clearfix'></span>
+                                {
+
+                                
                                 <button type='button' className='btn btn-sm  p-1 btn-link btn-danger text-decoration-none text-secondary' onClick={ () =>{
                                        deleteChannel(channel.channel_id);
                                        navigate('/dashboard');
                                    }}
                                    >Delete</button>
+                                }
                         </div>
                        
                            
