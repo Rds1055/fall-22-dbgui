@@ -44,15 +44,15 @@ const fetchPostsByChannel = async (channel) => {
     return results;
 }
 const updatePost = async (post_id, post)  => {
-    if (post.title) {
+    if (post.title !== undefined) {
         const title = post.title;
         const query = await knex(POSTS_TABLE).update({title}).where({post_id});
     }
-    if (post.contents) {
+    if (post.contents !== undefined) {
         const contents = post.contents;
         const query = await knex(POSTS_TABLE).update({contents}).where({post_id});
     }
-    if (post.likes) {
+    if (post.likes !== undefined) {
         const likes = post.likes;
         const query = await knex(POSTS_TABLE).update({likes}).where({post_id});
     }

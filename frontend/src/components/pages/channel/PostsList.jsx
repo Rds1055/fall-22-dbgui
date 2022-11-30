@@ -46,7 +46,7 @@ return(
                                        
                                     }></button>
                                     <h6 className='ps-3 mt-3 '>{post.likes}</h6>
-                                    <button type='button' className="arrow down" onClick={ (post) => {
+                                    <button type='button' className="arrow down" onClick={ () => {
                                         updatePost(post.post_id, {likes: post.likes-1})
                                     }
                                          
