@@ -26,6 +26,15 @@ export const getChannels = (params) => new Promise((resolve, reject) => {
         });
 });
 
+export const getChannelCount = (channelId) => new Promise((resolve, reject) => {
+    axios.get(`${ baseEndpoint }/count/${ channelId }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});
+
 export const addChannel = (channel) => new Promise((resolve, reject) => {
     axios.post(`${ baseEndpoint }`, channel, apiConfig)
         .then(x => resolve(x.data))
