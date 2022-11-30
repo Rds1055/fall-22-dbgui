@@ -8,8 +8,7 @@ export const PostsList = ({posts,user}) => {
     
     
     
- 
-if(posts.length==0){
+if(!posts || posts.length==0){
     return <> 
         <div className='card w-50 mx-auto text-center p-4 m-4'>
             <div className='card-title'>
@@ -46,7 +45,7 @@ return(
                                        
                                     }></button>
                                     <h6 className='ps-3 mt-3 '>{post.likes}</h6>
-                                    <button type='button' className="arrow down" onClick={ (post) => {
+                                    <button type='button' className="arrow down" onClick={ () => {
                                         updatePost(post.post_id, {likes: post.likes-1})
                                     }
                                          
@@ -62,7 +61,7 @@ return(
                                         <Link className='btn fs-6 border border-primary'type='button' to={`${post.post_id}`}>
                                                 See Comments
                                         </Link>
-                                        <span className="card-subtitle pt-2 text-primary float-end">@{post.user}</span>
+                                        <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
                                     </div>
 
                                     {/* {

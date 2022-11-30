@@ -29,3 +29,12 @@ export const updateComment = (commentId, params) => new Promise((resolve, reject
             reject(x);
         });
 });
+
+export const deleteComment = (comment_id) => new Promise((resolve, reject) => {
+    axios.delete(`${ baseEndpoint }/${ comment_id }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});

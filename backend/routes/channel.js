@@ -64,9 +64,9 @@ router.post('/', async (req, res, next) => {
     }
     next();
  });
- router.delete('/', async (req, res, next) => {
+ router.delete('/:channel_id', async (req, res, next) => {
     try {
-        const deleteChannel = await req.models.channel.deleteChannel(req.body.channel_id);
+        const deleteChannel = await req.models.channel.deleteChannel(req.params.channel_id);
         res.status(204).end();
     } catch (err) {
         console.error("Failed to get channels:", err);

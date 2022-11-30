@@ -14,7 +14,7 @@ export const CommentsList = ({comments,user}) => {
     return(<>
     
 
-    <ul className='list-unstyled '>
+    return <ul className='list-unstyled '>
     {
         comments.map((comment,index) =>
         <li key={index} className=' m-2 content-fluid'>
@@ -31,7 +31,7 @@ export const CommentsList = ({comments,user}) => {
                                        
                                     }></button>
                                     <h6 className='ps-3 mt-3 '>{comment.likes}</h6>
-                                    <button type='button' className="arrow down" onClick={ (post) => {
+                                    <button type='button' className="arrow down" onClick={ () => {
                                         updateComment(comment.comment_id, {likes: comment.likes-1})
                                     }
                                          
@@ -40,6 +40,7 @@ export const CommentsList = ({comments,user}) => {
                                 <div className='col-8 pr-3 mt-2' >
                                     <h6 className=" text-left px-3">{comment.contents} </h6>
                                 </div>
+
                     <div className="card-subtitle  pt-3  mb-2 text-muted float-end">
                         {
                             (user && user.username==comment.user)&&<button type='button' className='btn btn-secondary' onClick={ () =>{
@@ -49,6 +50,10 @@ export const CommentsList = ({comments,user}) => {
                         }
                         
                         <span className='m-1 text-primary float-end'>@{comment.user}</span>
+
+                    <p className="card-subtitle  pt-3  mb-2 text-muted float-end">
+                    <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${comment.user}`}>{comment.user}</a>
+
                         <br/>
                     </div>
                     
