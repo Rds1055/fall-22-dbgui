@@ -87,7 +87,7 @@ console.log(user);
                         date = new Date(minDate);
                     }
 
-                    getFilteredPostsByChannel({channel, keyword, date, likes}).then(x => setPosts(x));
+                    getFilteredPostsByChannel({channel: params.channel_id, keyword, date, likes}).then(x => setPosts(x));
                     
                     setKeyword("");
                     setDate("");

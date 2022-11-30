@@ -60,15 +60,15 @@ export const Comments = () => {
                 }}>
                     Advanced Search
             </button>
-            {
+            {/* {
                 sessionStorage.token &&
                 <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Post</button>
-            }
-            {
+            } */}
+            {/* {
                 !sessionStorage.token &&
                 <button type='button' className='btn btn-primary float-end m-2' 
                     onClick = {() => { navigate("/restricted-content")}}>New Post</button>
-            }
+            } */}
         <br className='clearfix'/>
         </div>
     </div>
@@ -91,7 +91,7 @@ export const Comments = () => {
                             date = new Date(minDate);
                         }
 
-                        getFilteredCommentsByPost({post, keyword, date, likes}).then(x => setComments(x));
+                        getFilteredCommentsByPost({post: params.post_id, keyword, date, likes}).then(x => setComments(x));
                         
                         setKeyword("");
                         setDate("");
