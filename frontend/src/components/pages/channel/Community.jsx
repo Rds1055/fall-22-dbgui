@@ -33,15 +33,16 @@ export const Community = () => {
     const params = useParams();
 
     useEffect(() => {
-        getChannelById(params.channel_id).then(x => setChannel(x));
+        getChannelById(params.channel_id).then(x => setChannel(x[0]));
         getPostsByChannel(params.channel_id).then( x => setPosts(x));
         if (sessionStorage.token) {
-            getUserInfo().then(x => setUser(x));
+            getUserInfo().then(x => setUser(x[0]));
         } 
     }, []);
+   
 
     const navigate = useNavigate();
-    console.log(channel);
+ 
 
     if(!channel){
         return <>Loading...</>
@@ -69,7 +70,7 @@ export const Community = () => {
     </div>
 
 
-    <div className='px-4'>
+    <div className='px-4 w-50 mx-auto'>
         <div id = "SearchBars" className = { class_ }>
 
             <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
@@ -86,8 +87,7 @@ export const Community = () => {
                     setDate("");
                     setLikes("");
                     setTitle("");
-                    <PostsList posts={posts}
-                                setPosts={setPosts}/>
+                    <PostsList posts={posts}/>
                     }}
                     >
                     Search
@@ -103,15 +103,15 @@ export const Community = () => {
         <div className="card ">
             <div className="card-body">
                 <div className=' px-4 pt-1 m-3'>
-                    <h4 className="m-4  card-text text-center">{channel[0].title}</h4>
+                    <h4 className="m-4  card-text text-center">{channel.title}</h4>
                     <br/>
-                    <h6 className='mb-4 fs-6 card-text text-center'>{channel[0].movie_sum}</h6>
+                    <h6 className='mb-4 fs-6 card-text text-center'>{channel.movie_sum}</h6>
                     <div className='row'>
                         <div className=''>
-                            <h6 className=' text-muted m-1 left-0'>Director: <span className='text-dark'>{channel[0].director}</span>
-                                <span className='float-end'>Release Date: <span className='text-dark'>{channel[0].release_date}</span> </span></h6>
+                            <h6 className=' text-muted m-1 left-0'>Director: <span className='text-dark'>{channel.director}</span>
+                                <span className='float-end'>Release Date: <span className='text-dark'>{channel.release_date}</span> </span></h6>
                         
-                            <h6 className='text-muted m-1 left-0'>Lead: <span className='text-dark ps-0'>{channel[0].lead_actor}</span>
+                            <h6 className='text-muted m-1 left-0'>Lead: <span className='text-dark ps-0'>{channel.lead_actor}</span>
                                 <span className='float-end'>{posts.length} Posts</span></h6>
                                 <span className='clearfix'></span>
                         </div>
@@ -125,7 +125,8 @@ export const Community = () => {
          </div>
          
          
-            <PostsList posts={posts}/>
+            <PostsList posts={posts}
+                        user = {user}/>
     </div>
 
 

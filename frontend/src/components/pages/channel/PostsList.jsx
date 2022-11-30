@@ -4,7 +4,7 @@ import { Channel } from '../../../models';
 import { getPostsByChannel, updatePost } from '../../../api';
 import { Post } from '../../../models';
 import "./postList.css";
-export const PostsList = ({posts, setPosts}) => {
+export const PostsList = ({posts,user}) => {
     
     
     
@@ -20,7 +20,7 @@ if(posts.length==0){
         </>
 
 }
-
+console.log(user,posts)
 return(
     <ul className='list-group list-unstyled w-50 mx-auto '>
         {
@@ -40,10 +40,9 @@ return(
                                 <div className='col-3'>
                                     <button type='button' className=" arrow up" onClick={ () => {
                                         updatePost(post.post_id, {likes: post.likes+1}).then(x =>
-                                            getPostsByChannel(post.channel).then(x => {
-                                                setPosts(x);
-                                            }))
-                                    } 
+                                            getPostsByChannel(post.channel))
+                                        }
+                                     
                                        
                                     }></button>
                                     <h6 className='ps-3 mt-3 '>{post.likes}</h6>
@@ -58,12 +57,21 @@ return(
                                 </div>
                                 
                                 <div className=" pt-4 mb-0 ">
+                                
                                     <div className=" text-primary">
                                         <Link className='btn fs-6 border border-primary'type='button' to={`${post.post_id}`}>
                                                 See Comments
                                         </Link>
                                         <span className="card-subtitle pt-2 text-primary float-end">@{post.user}</span>
                                     </div>
+
+                                    {/* {
+                                   
+                                   (user&&user.username==post.user)&&<button type='button' className='btn btn-sm p-1 m-2 btn-secondary' onClick={ () =>{
+                                       // deleteComment(comment.comment_id);
+                                   }}
+                                   >Delete</button>
+                                       } */}
                                 </div>
                                 
                                 

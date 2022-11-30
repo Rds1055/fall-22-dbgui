@@ -15,7 +15,7 @@ export const Comments = () => {
     const navigate = useNavigate();
     useEffect(() => {
         getPostById(params.post_id).then(x => setPost(x[0]));
-        getCommentsByPost(params.post_id).then(x => setComments(x[0]));
+        getCommentsByPost(params.post_id).then(x => setComments(x));
         if (sessionStorage.token) {
             getUserInfo().then(x => setUser(x));
         } 
