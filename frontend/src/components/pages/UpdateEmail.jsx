@@ -31,7 +31,9 @@ export const UpdateEmail = ({ user }) => {
             <div className="pt-2">
                 <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
                     onClick={() => {
-                        navigate("/");
+                        setEmail('');
+                        setPassword('');
+                        
                     }}
                 >
                     Cancel

@@ -37,8 +37,8 @@ export const Profile = () => {
 return(
 
 <>
-
-<div className = "text-center pt-3 text-light">
+               
+<div className = "text-center pt-3 m-3 text-light">
     <header className='m-2'>
 
 <h3> Username: </h3>
@@ -56,7 +56,7 @@ return(
             posts && posts[0]["count(*)"]
         }
         {
-            !posts && 0
+            posts[0]["count(*)"] == undefined && 0
         }
 
         <h3>Post Likes:</h3>
@@ -64,7 +64,7 @@ return(
             postLikes && postLikes[0]["sum(`posts`.`likes`)"]
         }
         {
-            !postLikes && 0
+            postLikes[0]["sum(`posts`.`likes`)"] == undefined && 0
         }
 
         <h3>Comments:</h3>
@@ -72,7 +72,7 @@ return(
             comments && comments[0]["count(*)"]
         }
         {
-            !comments && 0
+            comments[0]["count(*)"] == undefined && 0
         }
 
         <h3>Comment Likes:</h3>
@@ -80,18 +80,17 @@ return(
             commentLikes && commentLikes[0]["sum(`comments`.`likes`)"]
         }
         {
-            !commentLikes && 0
+            commentLikes[0]["sum(`comments`.`likes`)"] == undefined && 0
         }
 </header>
 
 
-<button
-                    type = "button" className="btn btn-primary"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal"
-                >
+
+<button type = "button" className="btn  m-4 p-2 btn-secondary"
+        data-bs-toggle="modal" data-bs-target="#exampleModal">
                    Edit Profile
                 </button>
-                
+              
 
 
 

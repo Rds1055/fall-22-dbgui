@@ -13,7 +13,7 @@ export const NewComment = ({user,post}) => {
     return(
         <div>
             <div className="modal-header">
-                <h4 className="col-12 modal-title text-center">Reply to {post.user}</h4>
+                <h4 className="col-12 modal-title text-center">Reply to @{post.user}</h4>
             </div>
             <div className="modal-body">
                  <div id = "register" className = "account-form container-fluid mt-5 row justify-content-center className='col me-3'">
