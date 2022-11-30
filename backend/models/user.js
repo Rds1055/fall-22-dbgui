@@ -7,11 +7,6 @@ const fetchAllUsers = async () => {
     const results = await query;
     return results;
 }
-const fetchUsersById = async (user_id) => {
-    const query = knex(USERS_TABLE).where({ user_id });
-    const results = await query;
-    return results;
-}
 const fetchUsersByName = async (username) => {
     const query = knex(USERS_TABLE).where({ username });
     const results = await query;
@@ -35,11 +30,8 @@ const updateEmail = async (username, newEmail) => {
     return results;
 }
 const createUser = async (username, email, pword) => {
-    console.log('Raw password:', pword);
     const salt = await bcrypt.genSalt(10);
-    console.log('Password salt', salt);
     const hashedPassword = await bcrypt.hash(pword, salt);
-    console.log('Hashed password', hashedPassword);
 
     const query = knex(USERS_TABLE).insert({username, email, pword:hashedPassword});
     const results = await query;
@@ -49,11 +41,6 @@ const deleteUser = async (user_id) => {
     const query = knex(USERS_TABLE).delete().where({user_id});
     const results = await query;
     return results;
-}
-const fetchUserByEmail = async (email) => {
-const query = knex(USERS_TABLE).where({ email });
-const result = await query;
-return result;
 }
 const authenticateUser = async (username, pword) => {
     const users = await fetchUsersByName(username);
@@ -72,13 +59,11 @@ const authenticateUser = async (username, pword) => {
 }
    module.exports = {
     fetchAllUsers,
-    fetchUsersById,
     fetchUsersByName,
     createUser,
     updateUsername,
     updatePassword,
     updateEmail,
     deleteUser,
-    fetchUserByEmail,
     authenticateUser
  }
