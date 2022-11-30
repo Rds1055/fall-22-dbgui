@@ -28,11 +28,11 @@ const fetchComments = async (query) => {
         }
         
         if (query.likes) {
-            qb.orWhere("likes", ">=", query.likes)
+            qb.where("likes", ">=", query.likes)
         }
 
         if (query.keyword) {
-            qb.orWhere("contents", "like", `%${query.keyword}%`)
+            qb.where("contents", "like", `%${query.keyword}%`)
         }
     }).orderBy("likes", "desc");
     const results = await sql;

@@ -33,10 +33,12 @@ const fetchChannels = async (query) => {
         }
 
         if (query.keyword) {
-            qb.orWhere("title", "like", `%${query.keyword}%`)
-            qb.orWhere("director", "like", `%${query.keyword}%`)
-            qb.orWhere("lead_actor", "like", `%${query.keyword}%`)
-            qb.orWhere("movie_sum", "like", `%${query.keyword}%`)
+            qb.where((qb2) => {
+                qb2.orWhere("title", "like", `%${query.keyword}%`)
+                qb2.orWhere("director", "like", `%${query.keyword}%`)
+                qb2.orWhere("lead_actor", "like", `%${query.keyword}%`)
+                qb2.orWhere("movie_sum", "like", `%${query.keyword}%`)
+            }) 
         }
     }).orderBy("likes", "desc");
     const results = await sql;
