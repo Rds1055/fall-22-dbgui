@@ -7,7 +7,7 @@ import { getPostById,updatePost,getUserInfo } from '../../../api';
 import { CommentsList } from './CommentsList';
 
 export const Comments = () => {
- 
+  
     const [post,setPost] = useState(undefined);
     const [comments, setComments] = useState([]);
     const [user,setUser] = useState(undefined);
@@ -15,12 +15,13 @@ export const Comments = () => {
     const navigate = useNavigate();
     useEffect(() => {
         getPostById(params.post_id).then(x => setPost(x[0]));
-        getCommentsByPost(params.post_id).then(x => setComments(x[0]));
+        getCommentsByPost(params.post_id).then(x => setComments(x));
         if (sessionStorage.token) {
-            getUserInfo().then(x => setUser(x));
+            getUserInfo().then(x => setUser(x[0]));
         } 
     }, []);
-
+  console.log(user);
+  
     if(!post){
         return <>
         ...Loading
@@ -66,8 +67,9 @@ export const Comments = () => {
                                     <h6 className=" text-left px-3 me-5">{post.contents} </h6>
                                 </div>
                                 <div>
-                                    <span className="  text-primary float-end">@{post.user}</span>
+                                    <a className="card-subtitle text-decoration-none text-primary float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
                                     <br/>
+                                    
                                     
                                     <span className="  text-secondary float-end">{ comments && comments.length } {!comments && 0} Comments</span>
                                 </div>
@@ -77,7 +79,8 @@ export const Comments = () => {
                     </div>
            
         
-                        <CommentsList comments = {comments}/>
+                        <CommentsList comments = {comments}
+                                        user={user}/>
     <div className="modal fade" id="postModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content h-100">
