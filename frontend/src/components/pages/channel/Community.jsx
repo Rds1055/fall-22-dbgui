@@ -2,7 +2,7 @@ import { useEffect,useState } from 'react';
 import { TextField } from '../../common';
 import { useNavigate, useParams} from 'react-router-dom';
 import { Post,Channel } from '../../../models';
-import { getChannelById, getPostsByChannel, getPosts, getUserInfo } from '../../../api';
+import { getChannelById, getPostsByChannel, getPosts, getUserInfo, deleteChannel, addChannel } from '../../../api';
 import { NewComment, NewPost,PostsList } from './';
 import { LoginModal } from '../../common';
 import { getFilteredPostsByChannel } from '../../../api';
@@ -41,10 +41,9 @@ export const Community = () => {
         } 
     }, []);
    
-
     const navigate = useNavigate();
- 
 
+console.log(user);
     if(!channel){
         return <>Loading...</>
     }
@@ -145,7 +144,7 @@ export const Community = () => {
                 <NewPost 
                     user = { user }
                     channel = { channel } 
-                    setPosts = {setPosts}
+                   
                 />
             </div>
         </div>

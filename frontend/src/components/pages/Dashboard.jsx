@@ -87,7 +87,9 @@ export const Dashboard = () => {
         </div>
 
 
-        <ChannelsList channels = { channels }/>
+      <ChannelsList channels = { channels }/>
+
+       
 
 
 
