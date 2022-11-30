@@ -64,9 +64,9 @@ router.post('/', async (req, res, next) => {
     }
     next();
  });
- router.delete('/', async (req, res, next) => {
+ router.delete('/:comment_id', async (req, res, next) => {
     try {
-        const deleteComment = await req.models.comment.deleteComment(req.body.comment_id);
+        const deleteComment = await req.models.comment.deleteComment(req.params.comment_id);
         res.status(204).end();
     } catch (err) {
         console.error("Failed to delete comment:", err);

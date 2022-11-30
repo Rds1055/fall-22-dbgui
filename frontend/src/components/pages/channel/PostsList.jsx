@@ -61,7 +61,7 @@ return(
                                         <Link className='btn fs-6 border border-primary'type='button' to={`${post.post_id}`}>
                                                 See Comments
                                         </Link>
-                                        <span className="card-subtitle pt-2 text-primary float-end">@{post.user}</span>
+                                        <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${post.user}`}>@{post.user}</a>
                                     </div>
                                 </div>
                                 
