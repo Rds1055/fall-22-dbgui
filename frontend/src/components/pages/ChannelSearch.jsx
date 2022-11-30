@@ -47,7 +47,10 @@ export const ChannelSearch = () => {
     } 
 
     return <>
-        <SearchField value = { search } setValue = { updateSearch }/>
+    <div className='w-50 mx-auto'>
+    <SearchField value = { search } setValue = { updateSearch }/>
+    </div>
+       
         <ChannelsList channels = { filtered }/>
     </>
 }
