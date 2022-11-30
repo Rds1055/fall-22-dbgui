@@ -44,6 +44,16 @@ router.get('/movie/:movie_title', async (req, res, next) => {
     }
     next();
 });
+router.get('/count/:title', async (req, res, next) => {
+    try {
+        const channelCount = await req.models.channel.fetchChannelCount(req.params.channel_id);
+        res.status(200).json(channelCount);
+    } catch (err) {
+        console.error("Failed to get channels:", err);
+        res.status(500).json({ message: err.toString() });
+    }
+    next();
+});
 router.post('/', async (req, res, next) => {
     try {
         const createChannel = await req.models.channel.createChannel(req.body);
