@@ -24,7 +24,6 @@ export const ChannelSearch = () => {
     
         const [keyword, setKeyword] = useState('');
         const [minDate, setDate] = useState('');
-        const [likes, setLikes] = useState('');
     
         //MICHAEL: END OF SEARCH BAR STUFF 
 
@@ -101,7 +100,6 @@ export const ChannelSearch = () => {
  
             <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
             <TextField label = "Search Date: Example Form (2015-03-25)" value = {minDate} setValue = {setDate} id = "Search-Date" type = "text"/>
-            <TextField label = "Minimum Likes: " value = {likes} setValue = {setLikes} id = "Minimum-Likes" type = "text"/>
 
 
             <button
@@ -113,7 +111,6 @@ export const ChannelSearch = () => {
                     
                     setKeyword("");
                     setDate("");
-                    setLikes("");
 
                     }}
                     >
