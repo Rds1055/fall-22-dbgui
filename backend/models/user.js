@@ -103,9 +103,7 @@ const authenticateUser = async (username, pword) => {
     fetchUserComments,
     fetchUserCommentLikes,
     createUser,
-    updateUsername,
-    updatePassword,
-    updateEmail,
+    updateUser,
     deleteUser,
     authenticateUser
  }
