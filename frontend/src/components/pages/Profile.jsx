@@ -28,7 +28,7 @@ export const Profile = () => {
     }, [])
 
 
-    if (!user) {
+    if (!user || !posts || !postLikes || !comments || !commentLikes) {
         return <>
             Loading...
         </>
@@ -48,7 +48,7 @@ return(
 <h3>Admin: </h3>
 { user[0].is_admin }
 <h3>Date Joined:</h3>
- { user[0].user_since }
+ { user[0].user_since.slice(0,10) }
 
 
         <h3>Posts:</h3>
