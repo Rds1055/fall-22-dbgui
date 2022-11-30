@@ -28,7 +28,7 @@ export const CommentsList = ({comments}) => {
                                        
                                     }></button>
                                     <h6 className='ps-3 mt-3 '>{comment.likes}</h6>
-                                    <button type='button' className="arrow down" onClick={ (post) => {
+                                    <button type='button' className="arrow down" onClick={ () => {
                                         updateComment(comment.comment_id, {likes: comment.likes-1})
                                     }
                                          
