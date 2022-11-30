@@ -24,7 +24,7 @@ export const ChannelSearch = () => {
             updateSearch(params.search);
         }
         
-    }, [params.search])
+    }, [params.search, channels])
 
     const updateSearch = (s) => {
         if (!s) {

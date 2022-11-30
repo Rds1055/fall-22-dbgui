@@ -12,6 +12,24 @@ export const getUserByUsername = (username) => new Promise((resolve, reject) => 
         });
 });
 
+export const getUserPosts = (username) => new Promise((resolve, reject) => {
+    axios.get(`${ baseEndpoint }/posts/${ username }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});
+
+export const getUserPostLikes = (username) => new Promise((resolve, reject) => {
+    axios.get(`${ baseEndpoint }/posts/likes/${ username }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});
+
 export const register = (user) => new Promise((resolve, reject) => {
     axios.post(`${ baseEndpoint }`, user, apiConfig)
         .then(x => resolve(x.data))

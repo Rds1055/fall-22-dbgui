@@ -13,7 +13,12 @@ export const Navbar = ()=> {
     const [ search, setSearch ] = useState("");
 
     const userProfile = () => {
-        getUserInfo().then(x => navigate(`/profile/${x[0].username}`));
+        if (sessionStorage.token) {
+            getUserInfo().then(x => navigate(`/profile/${x[0].username}`));
+        } else {
+            navigate("/restricted-content");
+        }
+       
     }
     
     return(<>
