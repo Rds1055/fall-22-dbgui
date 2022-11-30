@@ -10,7 +10,7 @@
       table.text('title');
       table.text('contents');
       table.integer('likes').defaultTo(0);
-      table.timestamp('post_date').notNullable().defaultTo(knex.fn.now());
+      table.date('post_date').notNullable();
       table.foreign('user').references('username').inTable('users').onDelete('CASCADE');
       table.foreign('channel').references('channel_id').inTable('channels').onDelete('CASCADE');
       table.index('post_id');

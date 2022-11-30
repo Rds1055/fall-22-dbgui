@@ -46,8 +46,8 @@ export const NewPost = ({ user, channel}) => {
                         onClick={() => {
                           
                                 var id = undefined;
-                                var p = new Post(id,user.username,channel.channel_id,title,contents,new Date());
-                        
+                                var p = new Post(id,user.username,channel.channel_id,title,contents,0,new Date());
+                                console.log(p);
                                 addPost(p);
                                 
                             
