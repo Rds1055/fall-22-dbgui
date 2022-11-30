@@ -7,7 +7,7 @@ import { updateUser } from "../../api";
 
 export const UpdateEmail = ({ user }) => {
     // Set states for username, email, and password
-    console.log(user);
+   
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

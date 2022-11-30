@@ -6,7 +6,7 @@ import { getCommentsByPost } from '../../../api';
 import { getPostById,updatePost,getUserInfo } from '../../../api';
 import { CommentsList } from './CommentsList';
 import { TextField } from '../../common';
-import { getFilteredCommentsByPost } from '../../../api';
+import { getFilteredCommentsByPost,deletePost } from '../../../api';
 
 export const Comments = () => {
 
@@ -41,7 +41,7 @@ export const Comments = () => {
             getUserInfo().then(x => setUser(x[0]));
         } 
     }, []);
-  console.log(user);
+
   
     if(!post){
         return <>
@@ -124,16 +124,16 @@ export const Comments = () => {
                             <br className='clearfix'/>
                             <div className='row mx-3 pe-4'>
                                 <div className='col-3'>
-                                    <a type='button' className=" arrow up" onClick={ () =>{
-                                            updatePost(post.post_id,post.likes+1)
+                                    <button type='button' className=" arrow up" onClick={ () =>{
+                                            updatePost(post.post_id, {likes: post.likes+1}).then(x => window.location.reload());
                                     }
-                                    }></a>
-                                    <h6 className='ps-2 mt-1'>{post.likes}</h6>
-                                    <a type='button' className="arrow down" onClick={ () => {
-                                        updatePost(post.post_id,post.likes-1)
+                                    }></button>
+                                    <h6 className='ps-2 mt-3 ms-1'>{post.likes}</h6>
+                                    <button type='button' className="arrow down" onClick={ () => {
+                                        updatePost(post.post_id, {likes: post.likes-1}).then(x => window.location.reload());
                                     }
                                          
-                                    }></a>
+                                    }></button>
                                 </div>
                                 <div className='col-8 pr-3' >
                                     <h6 className=" text-left px-3 me-5">{post.contents} </h6>
@@ -144,8 +144,16 @@ export const Comments = () => {
                                     
                                     
                                     <span className="  text-secondary float-end">{ comments && comments.length } {!comments && 0} Comments</span>
+                                    {
+                                   
+                                   (user&&user.username==post.user)&&<button type='button' className='btn btn-sm  btn-link p-1 m-2 btn-danger text-decoration-none text-secondary' onClick={ () =>{
+                                       deletePost(post.post_id).then(x => window.history.go(-1));
+
+                                   }}
+                                   >Delete</button>
+                                       }
                                 </div>
-                                
+                               
                             </div>
                         </div>
                     </div>

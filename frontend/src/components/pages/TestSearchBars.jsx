@@ -11,7 +11,7 @@ export const TestSearchBars = () =>{
     const [class_, setClass_] = useState("hidden");
 
     const changeView = () => {
-        console.log("here");
+      
         if (class_ === "hidden") {
             setClass_("");
         } else {

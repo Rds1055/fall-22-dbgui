@@ -25,10 +25,18 @@ export const Navbar = ()=> {
     <div className = "navigationBar large-view">
     <nav className="navbar navbar-expand-lg navbar navbar-dark bg-primary" fill="currentColor" >
 
+    {
+
     
-        <a className="ripple" href="/">
+        sessionStorage.token&&<a className="ripple" href="/dashboard">
         <img alt="example" className="img-fluid rounded-circle"src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/11-hands-on-crystal-ball-and-cryptocurrency-allan-swart.jpg" width="100" height="75"/>
     </a>
+    }
+    {
+         !sessionStorage.token&&<a className="ripple" href="/">
+         <img alt="example" className="img-fluid rounded-circle"src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/11-hands-on-crystal-ball-and-cryptocurrency-allan-swart.jpg" width="100" height="75"/>
+     </a>
+    }
     
 
     <div className="collapse navbar-collapse" id="navbarNav">

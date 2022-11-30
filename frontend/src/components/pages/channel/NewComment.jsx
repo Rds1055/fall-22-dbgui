@@ -42,7 +42,7 @@ export const NewComment = ({user,post}) => {
                               
                                 var com = new Comment(undefined,contents,0,0,post.post_id,new Date(),user.username)
                             
-                                addComment(com);
+                                addComment(com).then(x => window.location.reload());
                             setContents('');
                            
                             }

@@ -46,7 +46,7 @@ export const Community = () => {
     if(!channel){
         return <>Loading...</>
     }
-console.log(channel)
+
     return(<>
     <div className='my-2 ms-2'>
         <div className = "AdvancedSearch">
@@ -125,7 +125,7 @@ console.log(channel)
 
                                 
                                 <button type='button' className='btn btn-sm  p-1 btn-link btn-danger text-decoration-none text-secondary' onClick={ () =>{
-                                       deleteChannel(channel.channel_id);
+                                       deleteChannel(channel.channel_id).then(x => window.location.reload());
                                        navigate('/dashboard');
                                    }}
                                    >Delete</button>

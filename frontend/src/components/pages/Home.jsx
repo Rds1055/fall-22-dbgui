@@ -34,8 +34,11 @@ export const Home = () => {
             </div>
         </div>
 
-
-        <RegisterModal page = {"home"}/>
+        
+            <RegisterModal page = {"home"}/>
+        
+        
+       
         </>
      )
 }

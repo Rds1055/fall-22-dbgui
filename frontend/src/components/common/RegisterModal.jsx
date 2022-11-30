@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 export const RegisterModal = ({page}) => {
 
     const navigate = useNavigate();
-
+    
     return <>
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered">

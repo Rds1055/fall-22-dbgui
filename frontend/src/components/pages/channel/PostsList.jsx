@@ -39,16 +39,15 @@ return(
                             <div className='row'>
                                 <div className='col-3'>
                                     <button type='button' className=" arrow up" onClick={ () => {
-                                        updatePost(post.post_id, {likes: post.likes+1}).then(x =>
-                                            getPostsByChannel(post.channel))
+                                        updatePost(post.post_id, {likes: post.likes+1}).then(x => window.location.reload());
                                         }
                                      
                                        
                                     }></button>
-                                    <h6 className='ps-3  mt-3 '>{post.likes}</h6>
+                                    <h6 className='ps-2  mt-3  ms-1'>{post.likes}</h6>
                                     <button type='button' className="arrow down" onClick={ () => {
 
-                                        updatePost(post.post_id, {likes: post.likes-1});
+                                        updatePost(post.post_id, {likes: post.likes-1}).then(x => window.location.reload());
                                       
                                     }
                                          
@@ -70,7 +69,7 @@ return(
                                     {
                                    
                                    (user&&user.username==post.user)&&<button type='button' className='btn btn-sm  btn-link p-1 m-2 btn-danger text-decoration-none text-secondary' onClick={ () =>{
-                                       deletePost(post.post_id);
+                                       deletePost(post.post_id).then(x => window.location.reload());
                                    }}
                                    >Delete</button>
                                        }

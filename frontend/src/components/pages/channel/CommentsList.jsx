@@ -11,7 +11,7 @@ export const CommentsList = ({comments,user}) => {
             </div>
             </>
     }
-    console.log(comments,user);
+
     return(<>
     
 
@@ -27,13 +27,13 @@ export const CommentsList = ({comments,user}) => {
             
                 <div className='col-3'>
                                     <button type='button' className=" arrow up" onClick={ () => {
-                                        updateComment(comment.comment_id, {likes: comment.likes+1})
+                                        updateComment(comment.comment_id, {likes: comment.likes+1}).then(x => window.location.reload())
                                     } 
                                        
                                     }></button>
-                                    <h6 className='ps-2 mt-3 '>{comment.likes}</h6>
+                                    <h6 className='ps-2 mt-3 ms-1 '>{comment.likes}</h6>
                                     <button type='button' className="arrow down" onClick={ () => {
-                                        updateComment(comment.comment_id, {likes: comment.likes-1})
+                                        updateComment(comment.comment_id, {likes: comment.likes-1}).then(x => window.location.reload())
                                     }
                                          
                                     }></button>
@@ -46,7 +46,7 @@ export const CommentsList = ({comments,user}) => {
                         {
                          
                             (user && user.username==comment.user)&&<button type='button' className='btn btn-danger fs-6 btn-link text-secondary p-1 text-decoration-none' onClick={ () =>{
-                                deleteComment(comment.comment_id);
+                                deleteComment(comment.comment_id).then(x => window.location.reload());
                             }}
                             >Delete</button>
                         }

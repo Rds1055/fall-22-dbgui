@@ -44,7 +44,7 @@ export const Register = () => {
                                 register(new User(username, email, password, new Date())).then(x => {
                                     login({username, password}, setLoggedIn).then(x => {
                                         navigate("/dashboard");
-                                    });
+                                    }).then(x => window.location.reload());
                                 }).catch(x => {
                                     setLoggedIn("failed")
                                 });
