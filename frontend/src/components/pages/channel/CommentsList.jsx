@@ -11,7 +11,7 @@ export const CommentsList = ({comments}) => {
             </>
     }
 
-    <ul className='list-unstyled '>
+    return <ul className='list-unstyled '>
     {
         comments.map((comment,index) =>
         <li key={index} className=' m-2 content-fluid'>
@@ -38,7 +38,7 @@ export const CommentsList = ({comments}) => {
                                     <h6 className=" text-left px-3">{comment.contents} </h6>
                                 </div>
                     <p className="card-subtitle  pt-3  mb-2 text-muted float-end">
-                        <span className='m-1 text-primary'>{comment.user_id}</span>
+                    <a className="card-subtitle pt-2 text-primary float-end" href = {`/profile/${comment.user}`}>{comment.user}</a>
                         <br/>
                     </p>
                     
