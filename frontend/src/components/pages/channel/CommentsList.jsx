@@ -1,7 +1,19 @@
 import { updateComment } from "../../../api"
+import { useState } from "react";
+import { TextField } from '../../common';
+import { getCommentsByPost } from "../../../api";
+import { useNavigate, useParams} from 'react-router-dom';
+import { Post,Channel } from '../../../models';
+import { getChannelById, getPostsByChannel, getPosts, getUserInfo } from '../../../api';
+import { NewComment, NewPost,PostsList } from './';
+
+
 export const CommentsList = ({comments}) => {
+
+
+
     if(!comments){
-        return <>
+        return <> 
              <div className='card w-50 mx-auto text-center p-4 m-4'>
                 <div className='card-title'>
                     <h4 className='text-muted'>No Comments Yet</h4>
@@ -10,6 +22,7 @@ export const CommentsList = ({comments}) => {
             </div>
             </>
     }
+
 
     <ul className='list-unstyled '>
     {

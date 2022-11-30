@@ -5,8 +5,30 @@ import {NewComment} from "./NewComment"
 import { getCommentsByPost } from '../../../api';
 import { getPostById,updatePost,getUserInfo } from '../../../api';
 import { CommentsList } from './CommentsList';
+import { TextField } from '../../common';
 
 export const Comments = () => {
+
+            //Michael: START OF SEARCH BAR STUFF 
+
+            const [class_, setClass_] = useState("hidden");
+    
+            const changeView = () => {
+                if (class_ === "hidden") {
+                    setClass_("");
+                } else {
+                    setClass_("hidden");
+                }
+            };
+        
+            const [keyword, setKeyword] = useState('');
+            const [minDate, setDate] = useState('');
+            const [likes, setLikes] = useState('');     
+        
+            //MICHAEL: END OF SEARCH BAR STUFF 
+
+
+
  
     const [post,setPost] = useState(undefined);
     const [comments, setComments] = useState([]);
@@ -28,6 +50,61 @@ export const Comments = () => {
     }
     return(
         <>
+        {/* // Advanced Search Bar Start */}
+
+    <div className='my-2 ms-2'>
+        <div className = "AdvancedSearch">
+            <button type="button" className="btn btn-primary btn-lg btn-block"
+                onClick={() => {
+                    changeView();
+                }}>
+                    Advanced Search
+            </button>
+            {
+                sessionStorage.token &&
+                <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Post</button>
+            }
+            {
+                !sessionStorage.token &&
+                <button type='button' className='btn btn-primary float-end m-2' 
+                    onClick = {() => { navigate("/restricted-content")}}>New Post</button>
+            }
+        <br className='clearfix'/>
+        </div>
+    </div>
+
+
+    <div className='px-4'>
+        <div id = "SearchBars" className = { class_ }>
+
+ 
+            <TextField label = "Search Keyword: " value = {keyword} setValue = {setKeyword} id = "Search-Keyword" type = "text"/>
+            <TextField label = "Search Date: Example Form (2015-03-25)" value = {minDate} setValue = {setDate} id = "Search-Date" type = "text"/>
+            <TextField label = "Minimum Likes: " value = {likes} setValue = {setLikes} id = "Minimum-Likes" type = "text"/>
+
+
+            <button
+                type = "submit" className="btn btn-primary btn-lg btn-block"
+                    onClick = {() => {
+
+                    var date = new Date(minDate);
+                    getCommentsByPost({post, keyword, date, likes}).then(x => setComments(x));
+                    
+                    setKeyword("");
+                    setDate("");
+                    setLikes("");
+
+                    }}
+                    >
+                    Search
+            </button>
+        </div>
+
+    </div>
+
+{/* advanced search bar end */}
+
+
         {
                 sessionStorage.token &&
                 <button type='button' className='btn btn-primary float-end m-2' data-bs-toggle="modal" data-bs-target="#postModal">New Comment</button>
