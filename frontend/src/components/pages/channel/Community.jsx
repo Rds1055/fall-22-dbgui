@@ -42,10 +42,11 @@ export const Community = () => {
    
     const navigate = useNavigate();
 
-console.log(user);
+
     if(!channel){
         return <>Loading...</>
     }
+
     return(<>
     <div className='my-2 ms-2'>
         <div className = "AdvancedSearch">
@@ -94,7 +95,6 @@ console.log(user);
                     setLikes("");
 
                     <PostsList posts={posts}/>
-
                     }}
                     >
                     Search
@@ -116,11 +116,16 @@ console.log(user);
                     <div className='row'>
                         <div className=''>
                             <h6 className=' text-muted m-1 left-0'>Director: <span className='text-dark'>{channel.director}</span>
-                                <span className='float-end'>Release Date: <span className='text-dark'>{channel.release_date}</span> </span></h6>
+                                <span className='float-end'>Release Date: <span className='text-dark'>{channel.release_date.slice(0,10)}</span> </span></h6>
                         
                             <h6 className='text-muted m-1 left-0'>Lead: <span className='text-dark ps-0'>{channel.lead_actor}</span>
                                 <span className='float-end'>{posts.length} Posts</span></h6>
                                 <span className='clearfix'></span>
+                                <button type='button' className='btn btn-sm  p-1 btn-link btn-danger text-decoration-none text-secondary' onClick={ () =>{
+                                       deleteChannel(channel.channel_id);
+                                       navigate('/dashboard');
+                                   }}
+                                   >Delete</button>
                         </div>
                        
                            
@@ -128,6 +133,10 @@ console.log(user);
                    
                 </div>
             </div>
+            
+                                   
+                                   
+                                       
          </div>
          
          

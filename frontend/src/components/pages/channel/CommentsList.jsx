@@ -18,10 +18,10 @@ export const CommentsList = ({comments,user}) => {
      <ul className='list-unstyled '>
     {
         comments.map((comment,index) =>
-        <li key={index} className=' m-2 content-fluid'>
-           <div className="card w-50 mx-auto p-1">
+        <li key={index} className=' m-2 content-fluid '>
+           <div className="card w-50 mx-auto p-1 ">
                 <div className=''>
-                    <h6 className='  m-1 text-secondary float-end '>{comment.post_date}</h6>
+                    <h6 className='  m-1 text-secondary float-end me-2'>{comment.post_date.slice(0,10)}</h6>
                 </div>
                 <div className='card-body row mt-0 p-0'>
             
@@ -31,7 +31,7 @@ export const CommentsList = ({comments,user}) => {
                                     } 
                                        
                                     }></button>
-                                    <h6 className='ps-3 mt-3 '>{comment.likes}</h6>
+                                    <h6 className='ps-2 mt-3 '>{comment.likes}</h6>
                                     <button type='button' className="arrow down" onClick={ () => {
                                         updateComment(comment.comment_id, {likes: comment.likes-1})
                                     }
@@ -56,7 +56,7 @@ export const CommentsList = ({comments,user}) => {
                       
 
                   
-                    <a className="card-subtitle pt-2 text-primary text-decoration-none float-end" href = {`/profile/${comment.user}`}>@{comment.user}</a>
+                    <a className="card-subtitle pt-2 text-primary me-2 text-decoration-none float-end" href = {`/profile/${comment.user}`}>@{comment.user}</a>
 
                         <br/>
                     </div>
