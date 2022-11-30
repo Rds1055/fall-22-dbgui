@@ -21,7 +21,7 @@ export const ChannelsList = ({ channels }) => {
           <h2> Channels </h2>
         </header>
       </div>
-        <div>
+        <div className='border-white border w-50 mx-auto mb-5 pb-5'>
             {
                 (channels && channels.length > 0) &&
                 channels.map((channel, index) => 

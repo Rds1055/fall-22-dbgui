@@ -58,7 +58,7 @@ export const Register = () => {
                         </button>
                     }
                     {/* Cancel (Go back to home) */}
-                    <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"
                         onClick = {() => {
                             navigate("/");
                         }}

@@ -40,8 +40,8 @@ return(
 <div className = "text-center pt-3 text-light">
     <header>
         <h3> Username: </h3>
-        { user[0].username }
-
+        @{ user[0].username }
+        
         <h3> Email: </h3>
         { user[0].email }
 
