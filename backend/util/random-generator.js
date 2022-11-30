@@ -36,6 +36,7 @@ const mixins = {
             title: random.sentence(),
             contents: random.paragraph(),
             post_date: random.date(),
+            likes: random.integer({ min: 0, max: 100000 }),
             ...options,
         }
     },
@@ -46,6 +47,7 @@ const mixins = {
             post: random.integer({ min: 1, max: 5 }),
             contents: random.paragraph(),
             parent: random.integer({ min: 1, max: 20}),
+            likes: random.integer({ min: 0, max: 10000 }),
             ...options,
         }
     }
