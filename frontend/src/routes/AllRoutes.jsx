@@ -9,8 +9,9 @@ export const AllRoutes = () => [
     { path: "/dashboard", element: <Dashboard/> },
     { path: "/submitTitle", element: <SubmitTitle/> },
     { path: "/TestSearchBars", element: <TestSearchBars/> },
-    { path: "/profile", element: <Profile/> },
+    { path: "/profile/:username", element: <Profile/> },
     { path: "/channel-search/:search", element: <ChannelSearch/> },
+    { path: "/channel-search", element: <ChannelSearch/> },
     { path: "/restricted-content", element: <RestrictedContent/> },
     { path: "*", element: <NotFound/> }
 ]

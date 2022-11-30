@@ -8,8 +8,7 @@ export const PostsList = ({posts, setPosts}) => {
     
     
     
- 
-if(posts.length==0){
+if(!posts || posts.length==0){
     return <> 
         <div className='card w-50 mx-auto text-center p-4 m-4'>
             <div className='card-title'>

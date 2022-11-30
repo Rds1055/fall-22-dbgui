@@ -2,47 +2,52 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
 import { getChannels } from "../../api";
 import { SearchField } from "../common";
+import { ChannelsList } from "./";
 
 export const ChannelSearch = () => {
     const params = useParams();
 
     const [ channels, setChannels ] = useState(undefined);
-    const [ search, setSearch ] = useState(undefined);
+    const [ search, setSearch ] = useState("");
+    const [ filtered, setFiltered ] = useState([]);
 
     useEffect(() => {
-        getChannels().then(x => setChannels(x));
+        getChannels().then(x => {
+            setChannels(x);
+            updateSearch(params.search);
+        });
     }, []);
 
     useEffect(() => {
-        setSearch(params.search);
-    }, [params.search]);
+        if (channels) {
+            updateSearch(params.search);
+        }
+        
+    }, [params.search])
+
+    const updateSearch = (s) => {
+        if (!s) {
+            s = "";
+        }
+        setSearch(s);
+        params.search = s;
+
+        setFiltered(channels.filter(x => {
+            if (!x.title) {
+                return false;
+            }
+            return x.title.toLowerCase().includes(search.toLowerCase());
+        }))
+    }
 
     if (!channels) {
         return <>
             Loading...
         </>
-    }
+    } 
 
     return <>
-        <div>
-            {/* <SearchField value = { search } setValue = { setSearch }/> */}
-        </div>
-        <div className='card text-center w-75 mx-auto mt-4 p-4'>
-            {
-                (channels.filter(x => {
-                    if (!x.title) {
-                        return false;
-                    }
-                    return x.title.toLowerCase().includes(search.toLowerCase());
-                }).map(channel => 
-                    <div key = { channel.channel_id }>
-
-                        <Link to = {`/channel/${channel.channel_id}`}>
-                            { channel.title }
-                        </Link>
-                    </div>
-                ))
-            }
-        </div>
+        <SearchField value = { search } setValue = { updateSearch }/>
+        <ChannelsList channels = { filtered }/>
     </>
 }
