@@ -21,6 +21,7 @@ const fetchCommentsById = async (comment_id) => {
     return results;
 }
 const updateComment = async (comment_id, comment)  => {
+    console.log(comment_id);
     if (comment.contents) {
         const contents = comment.contents;
         const query = await knex(COMMENTS_TABLE).update({contents}).where({comment_id});
