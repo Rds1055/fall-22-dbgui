@@ -40,20 +40,20 @@ const fetchUserCommentLikes = async (username) => {
     const result = await query;
     return result;
 }
-const updateUsername = async (username, user_id) => {
-    const query = knex(USERS_TABLE).update({username}).where({user_id});
-    const results = await query;
-    return results;
-}
-const updatePassword = async (username, newPassword) => {
-    const salt = await bcrypt.genSalt(10);
-    const newHashedPassword = await bcrypt.hash(newPassword, salt);
-    const query = knex(USERS_TABLE).update({pword:newHashedPassword}).where({username});
-    const results = await query;
-    return results;
-}
-const updateEmail = async (username, newEmail) => {
-    const query = knex(USERS_TABLE).update({email:newEmail}).where({username});
+const updateUser = async (username, body) => {
+    const email = body.email;
+    const newPassword = body.password;
+    if (email) {
+        const query = knex(USERS_TABLE).update({email}).where({username});
+        const results = await query;
+    }
+    if (newPassword) {
+        const salt = await bcrypt.genSalt(10);
+        const newHashedPassword = await bcrypt.hash(newPassword, salt);
+        const query = knex(USERS_TABLE).update({pword:newHashedPassword}).where({username});
+        const results = await query;
+    }
+    const query = knex(USERS_TABLE).where({username});
     const results = await query;
     return results;
 }
@@ -93,9 +93,7 @@ const authenticateUser = async (username, pword) => {
     fetchUserComments,
     fetchUserCommentLikes,
     createUser,
-    updateUsername,
-    updatePassword,
-    updateEmail,
+    updateUser,
     deleteUser,
     authenticateUser
  }
