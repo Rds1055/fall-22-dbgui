@@ -18,12 +18,14 @@ const fetchPosts = async (query) => {
         }
         
         if (query.likes) {
-            qb.orWhere("likes", ">=", query.likes)
+            qb.where("likes", ">=", query.likes)
         }
 
         if (query.keyword) {
-            qb.orWhere("contents", "like", `%${query.keyword}%`)
-            qb.orWhere("title", "like", `%${query.keyword}%`)
+            qb.where((qb2) => {
+                qb2.orWhere("contents", "like", `%${query.keyword}%`)
+                qb2.orWhere("title", "like", `%${query.keyword}%`)
+            })
         }
     }).orderBy("likes", "desc");
     const results = await sql;
