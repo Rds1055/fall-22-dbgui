@@ -48,7 +48,7 @@ router.get('/', async (req, res, next) => {
     try {
         const query = req.query;
         let posts;
-        if (query) {
+        if (query.channel) {
             posts = await req.models.post.fetchPosts(query);
         } else {
             posts = await req.models.post.fetchAllPosts();
@@ -80,9 +80,9 @@ router.post('/', async (req, res, next) => {
     }
     next();
  });
- router.delete('/', async (req, res, next) => {
+ router.delete('/:post_id', async (req, res, next) => {
     try {
-        const deletePost = await req.models.post.deletePost(req.body.post_id);
+        const deletePost = await req.models.post.deletePost(req.params.post_id);
         res.status(204).end();
     } catch (err) {
         console.error("Failed to delete post:", err);

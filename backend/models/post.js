@@ -14,15 +14,16 @@ const fetchPosts = async (query) => {
     const sql = knex(POSTS_TABLE).where((qb) => {
         qb.where("channel", "=", query.channel);
         if (query.date) {
-            qb.where("post_date", ">", query.date)
+            qb.where("post_date", ">=", query.date)
         }
         
         if (query.likes) {
-            qb.orWhere("likes", ">", query.likes)
+            qb.orWhere("likes", ">=", query.likes)
         }
 
         if (query.keyword) {
             qb.orWhere("contents", "like", `%${query.keyword}%`)
+            qb.orWhere("title", "like", `%${query.keyword}%`)
         }
     })
     const results = await sql;
@@ -44,15 +45,15 @@ const fetchPostsByChannel = async (channel) => {
     return results;
 }
 const updatePost = async (post_id, post)  => {
-    if (post.title) {
+    if (post.title !== undefined) {
         const title = post.title;
         const query = await knex(POSTS_TABLE).update({title}).where({post_id});
     }
-    if (post.contents) {
+    if (post.contents !== undefined) {
         const contents = post.contents;
         const query = await knex(POSTS_TABLE).update({contents}).where({post_id});
     }
-    if (post.likes) {
+    if (post.likes !== undefined) {
         const likes = post.likes;
         const query = await knex(POSTS_TABLE).update({likes}).where({post_id});
     }

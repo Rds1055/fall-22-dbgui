@@ -66,3 +66,11 @@ export const updatePost = (postId, params) => new Promise((resolve, reject) => {
         });
 });
 
+export const deletePost = (post_id) => new Promise((resolve, reject) => {
+    axios.delete(`${ baseEndpoint }/${ post_id }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});

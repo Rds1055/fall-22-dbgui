@@ -24,6 +24,46 @@ router.get('/', async (req, res, next) => {
     }
     next();
 });
+router.get("/posts/:username", async(req, res, next) => {
+    try {
+        const posts = await req.models.user.fetchUserPosts(req.params.username);
+        res.status(200).json(posts);
+    } catch (err) {
+        console.error('Failed to get user posts:', err);
+        res.status(500).json({ message: err.toString() });
+    }
+    next();
+});
+router.get("/posts/likes/:username", async(req, res, next) => {
+    try {
+        const posts = await req.models.user.fetchUserPostLikes(req.params.username);
+        res.status(200).json(posts);
+    } catch (err) {
+        console.error('Failed to get user post likes:', err);
+        res.status(500).json({ message: err.toString() });
+    }
+    next();
+});
+router.get("/comments/:username", async(req, res, next) => {
+    try {
+        const posts = await req.models.user.fetchUserComments(req.params.username);
+        res.status(200).json(posts);
+    } catch (err) {
+        console.error('Failed to get user comments:', err);
+        res.status(500).json({ message: err.toString() });
+    }
+    next();
+});
+router.get("/comments/likes/:username", async(req, res, next) => {
+    try {
+        const posts = await req.models.user.fetchUserCommentLikes(req.params.username);
+        res.status(200).json(posts);
+    } catch (err) {
+        console.error('Failed to get user comment likes:', err);
+        res.status(500).json({ message: err.toString() });
+    }
+    next();
+});
 router.post('/', async (req, res, next) => {
     try {
         const body = req.body;
@@ -45,10 +85,10 @@ router.post('/', async (req, res, next) => {
     }
     next();
  });
- router.delete('/', async (req, res, next) => {
+ router.delete('/:username', async (req, res, next) => {
     try {
-        const deleteUser = await req.models.user.deleteUser(req.body.user_id);
-    res.status(204).end();
+        const deleteUser = await req.models.user.deleteUser(req.params.username);
+        res.status(204).end();
     } catch (err) {
         console.error('Failed to delete user:', err);
         res.status(500).json({ message: err.toString() });

@@ -1,5 +1,5 @@
 export class Comment{
-    constructor(post,comment_id,user,contents,parent,likes,post_date){
+    constructor(comment_id,contents,likes,parent,post,post_date,user){
         this.user=user;
         this.post=post;
         this.comment_id=comment_id;

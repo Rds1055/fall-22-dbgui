@@ -58,7 +58,7 @@ export const Login = () => {
 
                 {/* Cancel (Go back to home) */}
                 <button
-                    type = "button" className="btn btn-primary"
+                    type = "button" className="btn btn-secondary"
                     onClick = {() => {
                         navigate("/");
                     }}

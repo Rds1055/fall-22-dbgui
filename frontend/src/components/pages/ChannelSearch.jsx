@@ -23,7 +23,7 @@ export const ChannelSearch = () => {
             updateSearch(params.search);
         }
         
-    }, [params.search])
+    }, [params.search, channels])
 
     const updateSearch = (s) => {
         if (!s) {
@@ -47,7 +47,10 @@ export const ChannelSearch = () => {
     } 
 
     return <>
-        <SearchField value = { search } setValue = { updateSearch }/>
+    <div className='w-50 mx-auto'>
+    <SearchField value = { search } setValue = { updateSearch }/>
+    </div>
+       
         <ChannelsList channels = { filtered }/>
     </>
 }
