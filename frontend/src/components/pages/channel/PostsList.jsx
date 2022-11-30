@@ -29,7 +29,7 @@ return(
                    <div className="card">
                         <div className="card-body row">
                             <div className=''>
-                                <h6 className=' float-end text-muted '>{post.post_date}</h6>
+                                <h6 className=' float-end text-muted '>{post.post_date.slice(0,10)}</h6>
                             </div>
                             
                             <br className='clearfix'/>
@@ -45,9 +45,11 @@ return(
                                      
                                        
                                     }></button>
-                                    <h6 className='ps-3 mt-3 '>{post.likes}</h6>
+                                    <h6 className='ps-3  mt-3 '>{post.likes}</h6>
                                     <button type='button' className="arrow down" onClick={ () => {
-                                        updatePost(post.post_id, {likes: post.likes-1})
+
+                                        updatePost(post.post_id, {likes: post.likes-1});
+                                      
                                     }
                                          
                                     }></button>

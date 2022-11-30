@@ -26,7 +26,7 @@ export const ChannelsList = ({ channels }) => {
                 (channels && channels.length > 0) &&
                 channels.map((channel, index) => 
                     <div key = { index }>
-                        <h3 className="text-center pt-4">
+                        <h3 className="text-center pt-2">
                             <button type="button" className="btn btn-outline-primary" onClick={() => navigate(`/channel/${channel.channel_id}`)}>
                                 { channel.title }
                             </button>

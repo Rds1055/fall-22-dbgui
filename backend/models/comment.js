@@ -20,6 +20,24 @@ const fetchCommentsById = async (comment_id) => {
     const results = await query;
     return results;
 }
+const fetchComments = async (query) => {
+    const sql = knex(COMMENTS_TABLE).where((qb) => {
+        qb.where("post", "=", query.post);
+        if (query.date) {
+            qb.where("comment_date", ">=", query.date)
+        }
+        
+        if (query.likes) {
+            qb.where("likes", ">=", query.likes)
+        }
+
+        if (query.keyword) {
+            qb.where("contents", "like", `%${query.keyword}%`)
+        }
+    }).orderBy("likes", "desc");
+    const results = await sql;
+    return results;
+}
 const updateComment = async (comment_id, comment)  => {
     if (comment.contents !== undefined) {
         const contents = comment.contents;
@@ -48,6 +66,7 @@ const deleteComment = async (comment_id) => {
     fetchCommentsByUser,
     fetchCommentsByPost,
     fetchCommentsById,
+    fetchComments,
     createComment,
     updateComment,
     deleteComment

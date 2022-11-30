@@ -48,6 +48,7 @@ const mixins = {
             contents: random.paragraph(),
             parent: random.integer({ min: 1, max: 20}),
             likes: random.integer({ min: 0, max: 50 }),
+            post_date: random.date(),
             ...options,
         }
     }

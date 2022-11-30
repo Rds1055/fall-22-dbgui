@@ -49,7 +49,7 @@ return(
                     {/* Director field */}
                     <TextField label = "Director: " value = {director} setValue = {setDirector} />
                     {/* Release Date field */}
-                    <TextField label = "Release Date: " value = {date} setValue = {setDate} />
+                    <TextField label = "Release Date: Example Form (2015-03-25)" value = {date} setValue = {setDate} />
                     {/* summary field */}
                     <TextField label = "Movie Summary: " value = {summary} setValue = {setSummary} />
                 </div>
@@ -59,9 +59,14 @@ return(
                     
                     <button type="button" className="btn btn-primary"
                         onClick = {() => {
+                            // if(Date.parse(date) == NaN){
+                            //     navigate("/dashboard");
+                            // }
+
                             addChannel(new Channel(director, actor, summary, null, date, Title)).then(x => {
                                 navigate(`/channel/${x[0]}`)
                             });
+                            
                             setTitle("");
                             setActor("");
                             setDate("");
