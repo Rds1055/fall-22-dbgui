@@ -54,7 +54,7 @@ router.post('/', async (req, res, next) => {
     }
     next();
  });
- router.put('/:post_id', async (req, res, next) => {
+ router.put('/:comment_id', async (req, res, next) => {
     try {
         const updateComment = await req.models.comment.updateComment(req.params.comment_id, req.body);
         res.status(200).json(updateComment);
