@@ -30,6 +30,24 @@ export const getUserPostLikes = (username) => new Promise((resolve, reject) => {
         });
 });
 
+export const getUserComments = (username) => new Promise((resolve, reject) => {
+    axios.get(`${ baseEndpoint }/comments/${ username }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});
+
+export const getUserCommentLikes = (username) => new Promise((resolve, reject) => {
+    axios.get(`${ baseEndpoint }/comments/likes/${ username }`, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+});
+
 export const register = (user) => new Promise((resolve, reject) => {
     axios.post(`${ baseEndpoint }`, user, apiConfig)
         .then(x => resolve(x.data))
@@ -38,6 +56,15 @@ export const register = (user) => new Promise((resolve, reject) => {
             reject(x);
         });
 });
+
+export const updateUser = (username, params) => new Promise((resolve, reject) => {
+    axios.put(`${ baseEndpoint }/${ username }`, params, apiConfig)
+        .then(x => resolve(x.data))
+        .catch(x => {
+            alert(x);
+            reject(x);
+        });
+})
 
 export const deleteUser = (username) => new Promise((resolve, reject) => {
     axios.delete(`${ baseEndpoint }/${ username }`, apiConfig)

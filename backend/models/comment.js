@@ -1,17 +1,17 @@
 const knex = require('../database/knex');
 const COMMENTS_TABLE = 'comments';
 const fetchAllComments = async () => {
-    const query = knex(COMMENTS_TABLE);
+    const query = knex(COMMENTS_TABLE).orderBy("likes", "desc");
     const results = await query;
     return results;
 }
 const fetchCommentsByUser = async (user) => {
-    const query = knex(COMMENTS_TABLE).where({ user });
+    const query = knex(COMMENTS_TABLE).where({ user }).orderBy("likes", "desc");
     const results = await query;
     return results;
 }
 const fetchCommentsByPost = async (post) => {
-    const query = knex(COMMENTS_TABLE).where({ post });
+    const query = knex(COMMENTS_TABLE).where({ post }).orderBy("likes", "desc");
     const results = await query;
     return results;
 }
