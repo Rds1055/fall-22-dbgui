@@ -37,18 +37,12 @@ export const Profile = () => {
 return(
 
 <>
-<button type = "button" className="btn btn-primary float-end m-3"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal"
-                >
-                   Edit Profile
-                </button>
-                <br/>
-                <br/>
+
 <div className = "text-center pt-3 text-light">
     <header className='m-2'>
 
 <h3> Username: </h3>
-@{ user[0].username }
+{ user[0].username }
 <h3> Email: </h3>
 { user[0].email }
 <h3>Admin: </h3>
