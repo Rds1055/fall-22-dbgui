@@ -2,7 +2,7 @@ const knex = require('../database/knex');
 const CHANNELS_TABLE = 'channels';
 
 const fetchAllChannels = async () => {
-    const query = knex(CHANNELS_TABLE);
+    const query = knex(CHANNELS_TABLE).orderBy("release_date", "desc");;
     const results = await query;
     return results;
 }
@@ -29,7 +29,7 @@ const fetchChannelCount = async (title) => {
 const fetchChannels = async (query) => {
     const sql = knex(CHANNELS_TABLE).where((qb) => {
         if (query.date) {
-            qb.where("comment_date", ">=", query.date)
+            qb.where("release_date", ">=", query.date)
         }
 
         if (query.keyword) {
@@ -40,7 +40,7 @@ const fetchChannels = async (query) => {
                 qb2.orWhere("movie_sum", "like", `%${query.keyword}%`)
             }) 
         }
-    }).orderBy("likes", "desc");
+    }).orderBy("release_date", "desc");
     const results = await sql;
     return results;
 }
