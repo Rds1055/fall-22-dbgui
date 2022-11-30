@@ -45,10 +45,10 @@ router.post('/', async (req, res, next) => {
     }
     next();
  });
- router.delete('/', async (req, res, next) => {
+ router.delete('/:username', async (req, res, next) => {
     try {
-        const deleteUser = await req.models.user.deleteUser(req.body.user_id);
-    res.status(204).end();
+        const deleteUser = await req.models.user.deleteUser(req.params.username);
+        res.status(204).end();
     } catch (err) {
         console.error('Failed to delete user:', err);
         res.status(500).json({ message: err.toString() });
