@@ -1,6 +1,7 @@
 import axios from "axios";
+import { address } from "./ipAddress";
 
-const baseEndpoint = "http://3.144.198.45:8000/session";
+const baseEndpoint = address + "session";
 let apiConfig;
 
 export const login = (info, setLogin = undefined) => new Promise((resolve, reject) => {

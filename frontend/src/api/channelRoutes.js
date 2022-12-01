@@ -1,6 +1,7 @@
 import axios from "axios";
+import { address } from "./ipAddress";
 
-const baseEndpoint = "http://3.144.198.45:8000/channel";
+const baseEndpoint = address + "channel";
 let apiConfig;
 
 export const getChannelById = (channelId) => new Promise((resolve, reject) => {

@@ -1,6 +1,7 @@
 import axios from "axios";
+import { address } from "./ipAddress";
 
-const baseEndpoint = "http://3.144.198.45:8000/comment";
+const baseEndpoint = address + "comment";
 let apiConfig;
 
 export const getCommentsByPost = (post_id) => new Promise((resolve, reject) => {

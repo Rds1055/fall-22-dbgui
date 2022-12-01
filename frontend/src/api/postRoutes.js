@@ -1,6 +1,7 @@
 import axios from "axios";
+import { address } from "./ipAddress";
 
-const baseEndpoint = "http://3.144.198.45:8000/post";
+const baseEndpoint = address + "post";
 let apiConfig;
 
 export const getPostById = (postId) => new Promise((resolve, reject) => {
